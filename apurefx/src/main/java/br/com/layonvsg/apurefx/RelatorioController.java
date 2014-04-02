@@ -16,10 +16,10 @@ import javafx.scene.layout.AnchorPane;
 
 import javax.xml.rpc.ServiceException;
 
-import br.com.temasistemas.derivativos.dao.ConfigDao;
-import br.com.temasistemas.derivativos.dto.ConfigInfo;
-import br.com.temasistemas.relatorios.ws.adapter.ServicoWebGeracaoRelatorio;
-import br.com.temasistemas.relatorios.ws.adapter.ServicoWebGeracaoRelatorioBeanServiceLocator;
+import br.com.layonvsg.apurefx.dao.ConfigDao;
+import br.com.layonvsg.apurefx.dto.ConfigInfo;
+import br.com.layonvsg.relatorios.ws.adapter.ServicoWebGeracaoRelatorio;
+import br.com.layonvsg.relatorios.ws.adapter.ServicoWebGeracaoRelatorioBeanServiceLocator;
 
 public class RelatorioController
 {

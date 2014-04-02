@@ -1,10 +1,11 @@
 package br.com.layonvsg.apurefx;
 
+import java.awt.TextField;
+
 import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import br.com.temasistemas.derivativos.dao.ConfigDao;
-import br.com.temasistemas.derivativos.dto.ConfigInfo;
+import br.com.layonvsg.apurefx.dao.ConfigDao;
+import br.com.layonvsg.apurefx.dto.ConfigInfo;
 
 public class ConfigController
 {

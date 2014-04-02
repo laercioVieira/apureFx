@@ -33,15 +33,15 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
-import br.com.temasistemas.derivativos.dao.ConfigDao;
-import br.com.temasistemas.derivativos.dao.PersonalConfigDao;
-import br.com.temasistemas.derivativos.dto.ConfigInfo;
-import br.com.temasistemas.derivativos.dto.PersonalConfig;
-import br.com.temasistemas.derivativos.importador.ImportadorDataApuracao;
-import br.com.temasistemas.derivativos.model.DataApuracao;
-import br.com.temasistemas.derivativos.model.Ocorrencias;
-import br.com.temasistemas.derivativos.model.Status;
-import br.com.temasistemas.derivativos.model.TipoApuracao;
+import br.com.layonvsg.apurefx.dao.ConfigDao;
+import br.com.layonvsg.apurefx.dao.PersonalConfigDao;
+import br.com.layonvsg.apurefx.dto.ConfigInfo;
+import br.com.layonvsg.apurefx.dto.PersonalConfig;
+import br.com.layonvsg.apurefx.importador.ImportadorDataApuracao;
+import br.com.layonvsg.apurefx.model.DataApuracao;
+import br.com.layonvsg.apurefx.model.Ocorrencias;
+import br.com.layonvsg.apurefx.model.Status;
+import br.com.layonvsg.apurefx.model.TipoApuracao;
 
 import com.google.common.collect.ImmutableList;
 

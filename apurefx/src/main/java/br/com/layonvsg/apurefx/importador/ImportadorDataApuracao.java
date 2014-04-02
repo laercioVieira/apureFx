@@ -16,8 +16,8 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import br.com.temasistemas.derivativos.model.DataApuracao;
-import br.com.temasistemas.derivativos.model.Status;
+import br.com.layonvsg.apurefx.model.DataApuracao;
+import br.com.layonvsg.apurefx.model.Status;
 
 public class ImportadorDataApuracao
 {

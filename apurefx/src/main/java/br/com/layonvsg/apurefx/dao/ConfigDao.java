@@ -1,6 +1,6 @@
 package br.com.layonvsg.apurefx.dao;
 
-import br.com.temasistemas.derivativos.dto.ConfigInfo;
+import br.com.layonvsg.apurefx.dto.ConfigInfo;
 
 import com.google.common.base.Optional;
 

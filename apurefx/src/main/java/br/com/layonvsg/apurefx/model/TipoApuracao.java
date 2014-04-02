@@ -10,20 +10,16 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 
-import br.com.temasistemas.derivativos.dto.ConfigInfo;
-import br.com.temasistemas.disponivel.ws.adapter.ServicoWebApuracaoDisponivel;
-import br.com.temasistemas.disponivel.ws.adapter.ServicoWebApuracaoDisponivelBeanServiceLocator;
-import br.com.temasistemas.estruturada.ws.adapter.ServicoWebApuracaoEstruturada;
-import br.com.temasistemas.estruturada.ws.adapter.ServicoWebApuracaoEstruturadaBeanServiceLocator;
-import br.com.temasistemas.futuro.ws.adapter.Log;
-import br.com.temasistemas.futuro.ws.adapter.ServicoWebApuracaoFuturo;
-import br.com.temasistemas.futuro.ws.adapter.ServicoWebApuracaoFuturoBeanServiceLocator;
-import br.com.temasistemas.opcoes.ws.adapter.disponivel.ServicoWebApuracaoOpcaoPadronizadaSobreDisponivel;
-import br.com.temasistemas.opcoes.ws.adapter.disponivel.ServicoWebApuracaoOpcaoPadronizadaSobreDisponivelBeanServiceLocator;
-import br.com.temasistemas.opcoes.ws.adapter.futuro.ServicoWebApuracaoOpcaoPadronizadaSobreFuturo;
-import br.com.temasistemas.opcoes.ws.adapter.futuro.ServicoWebApuracaoOpcaoPadronizadaSobreFuturoBeanServiceLocator;
-import br.com.temasistemas.sca.ws.adapter.ServicoWebApuracaoSCA;
-import br.com.temasistemas.sca.ws.adapter.ServicoWebApuracaoSCABeanServiceLocator;
+import br.com.layonvsg.apurefx.dto.ConfigInfo;
+import br.com.layonvsg.disponivel.ws.adapter.ServicoWebApuracaoDisponivel;
+import br.com.layonvsg.disponivel.ws.adapter.ServicoWebApuracaoDisponivelBeanServiceLocator;
+import br.com.layonvsg.estruturada.ws.adapter.ServicoWebApuracaoEstruturada;
+import br.com.layonvsg.estruturada.ws.adapter.ServicoWebApuracaoEstruturadaBeanServiceLocator;
+import br.com.layonvsg.futuro.ws.adapter.Log;
+import br.com.layonvsg.futuro.ws.adapter.ServicoWebApuracaoFuturo;
+import br.com.layonvsg.futuro.ws.adapter.ServicoWebApuracaoFuturoBeanServiceLocator;
+import br.com.layonvsg.sca.ws.adapter.ServicoWebApuracaoSCA;
+import br.com.layonvsg.sca.ws.adapter.ServicoWebApuracaoSCABeanServiceLocator;
 
 
 public enum TipoApuracao
@@ -102,7 +98,7 @@ public enum TipoApuracao
 					new ServicoWebApuracaoDisponivelBeanServiceLocator()
 						.getServicoWebApuracaoDisponivelPort( this.getURLServico( configInfo ) );
 
-				final br.com.temasistemas.disponivel.ws.adapter.Log[] logs = servicoWebApuracaoDisponivel.apurar(
+				final br.com.layonvsg.disponivel.ws.adapter.Log[] logs = servicoWebApuracaoDisponivel.apurar(
 					dateToCalendar( dataAtual ),
 					dateToCalendar( dataAnterior ),
 					instituicaoId );
@@ -114,7 +110,7 @@ public enum TipoApuracao
 
 				final List<Ocorrencias> listaOcorrencia = new ArrayList<>( logs.length );
 
-				for ( final br.com.temasistemas.disponivel.ws.adapter.Log log : logs )
+				for ( final br.com.layonvsg.disponivel.ws.adapter.Log log : logs )
 				{
 					listaOcorrencia.add( log.toOcorrencia() );
 				}
@@ -246,7 +242,7 @@ public enum TipoApuracao
 					new ServicoWebApuracaoEstruturadaBeanServiceLocator()
 						.getServicoWebApuracaoEstruturadaPort( this.getURLServico( configInfo ) );
 
-				final br.com.temasistemas.estruturada.ws.adapter.Log[] logs = servicoWebApuracaoEstruturada.apurar(
+				final br.com.layonvsg.estruturada.ws.adapter.Log[] logs = servicoWebApuracaoEstruturada.apurar(
 					dateToCalendar( dataAtual ),
 					dateToCalendar( dataAnterior ),
 					instituicaoId );
@@ -258,7 +254,7 @@ public enum TipoApuracao
 
 				final List<Ocorrencias> listaOcorrencia = new ArrayList<>( logs.length );
 
-				for ( final br.com.temasistemas.estruturada.ws.adapter.Log log : logs )
+				for ( final br.com.layonvsg.estruturada.ws.adapter.Log log : logs )
 				{
 					listaOcorrencia.add( log.toOcorrencia() );
 				}
@@ -295,7 +291,7 @@ public enum TipoApuracao
 					new ServicoWebApuracaoSCABeanServiceLocator()
 						.getServicoWebApuracaoSCAPort( this.getURLServico( configInfo ) );
 
-				final br.com.temasistemas.sca.ws.adapter.Log[] logs = servicoWebApuracaoSCA.apurar(
+				final br.com.layonvsg.sca.ws.adapter.Log[] logs = servicoWebApuracaoSCA.apurar(
 					dateToCalendar( dataAtual ),
 					dateToCalendar( dataAnterior ),
 					instituicaoId );
@@ -307,7 +303,7 @@ public enum TipoApuracao
 
 				final List<Ocorrencias> listaOcorrencia = new ArrayList<>( logs.length );
 
-				for ( final br.com.temasistemas.sca.ws.adapter.Log log : logs )
+				for ( final br.com.layonvsg.sca.ws.adapter.Log log : logs )
 				{
 					listaOcorrencia.add( log.toOcorrencia() );
 				}
