@@ -1,0 +1,11 @@
+eclipse.preferences.version=1
+encoding//src/main/java/br/com/layonvsg/opcoes/ws/adapter/disponivel/Log.java=UTF-8
+encoding//src/main/java/br/com/layonvsg/opcoes/ws/adapter/disponivel/ServicoWebApuracaoOpcaoPadronizadaSobreDisponivel.java=UTF-8
+encoding//src/main/java/br/com/layonvsg/opcoes/ws/adapter/disponivel/ServicoWebApuracaoOpcaoPadronizadaSobreDisponivelBeanService.java=UTF-8
+encoding//src/main/java/br/com/layonvsg/opcoes/ws/adapter/disponivel/ServicoWebApuracaoOpcaoPadronizadaSobreDisponivelBeanServiceLocator.java=UTF-8
+encoding//src/main/java/br/com/layonvsg/opcoes/ws/adapter/disponivel/ServicoWebApuracaoOpcaoPadronizadaSobreDisponivelBeanServiceSoapBindingStub.java=UTF-8
+encoding//src/main/java/br/com/layonvsg/opcoes/ws/adapter/futuro/Log.java=UTF-8
+encoding//src/main/java/br/com/layonvsg/opcoes/ws/adapter/futuro/ServicoWebApuracaoOpcaoPadronizadaSobreFuturo.java=UTF-8
+encoding//src/main/java/br/com/layonvsg/opcoes/ws/adapter/futuro/ServicoWebApuracaoOpcaoPadronizadaSobreFuturoBeanService.java=UTF-8
+encoding//src/main/java/br/com/layonvsg/opcoes/ws/adapter/futuro/ServicoWebApuracaoOpcaoPadronizadaSobreFuturoBeanServiceLocator.java=UTF-8
+encoding//src/main/java/br/com/layonvsg/opcoes/ws/adapter/futuro/ServicoWebApuracaoOpcaoPadronizadaSobreFuturoBeanServiceSoapBindingStub.java=UTF-8

@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 
-<AnchorPane id="AnchorPane" fx:id="reportForm" disable="false" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="301.0" prefWidth="622.0" styleClass="theme" visible="true" xmlns:fx="http://javafx.com/fxml" fx:controller="br.com.temasistemas.derivativos.RelatorioController">
+<AnchorPane id="AnchorPane" fx:id="reportForm" disable="false" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="301.0" prefWidth="622.0" styleClass="theme" visible="true" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="br.com.layonvsg.apurefx.RelatorioController">
   <children>
     <VBox prefHeight="400.0" prefWidth="406.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>

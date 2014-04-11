@@ -26,6 +26,14 @@
 				<configuration>
 					<source>1.7</source>
 					<target>1.7</target>
+					<excludes>
+						../br/com/layonvsg/disponivel/ws/adapter/*.java;
+						../br/com/layonvsg/estruturada/ws/adapter/*.java;
+						../br/com/layonvsg/futuro/ws/adapter/*.java;
+						../br/com/layonvsg/opcoes/ws/adapter/*.java;
+						../br/com/layonvsg/relatorios/ws/adapter/*.java;
+						../br/com/layonvsg/sca/ws/adapter/*.java;
+					</excludes>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -36,6 +44,13 @@
 			<groupId>br.com.temasistemas</groupId>
 			<artifactId>java-lang-ext</artifactId>
 			<version>01.00.00.00</version>
+		</dependency>
+		<dependency>
+			<groupId>oracle</groupId>
+			<artifactId>javafx</artifactId>
+			<version>01.00.00.00</version>
+			<scope>system</scope>
+			<systemPath>${java.home}/../../SceneBuilder/runtime/jre/lib/jfxrt.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.poi</groupId>

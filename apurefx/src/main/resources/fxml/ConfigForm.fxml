@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="configForm" prefHeight="155.0" prefWidth="481.0000999999975" styleClass="theme" xmlns:fx="http://javafx.com/fxml" fx:controller="br.com.temasistemas.derivativos.ConfigController">
+<AnchorPane fx:id="configForm" prefHeight="155.0" prefWidth="481.0000999999975" styleClass="theme" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="br.com.layonvsg.apurefx.ConfigController">
   <!-- TODO Add Nodes -->
   <children>
     <Label contentDisplay="CENTER" layoutX="32.0" layoutY="21.0" prefHeight="28.0" prefWidth="435.0001220703125" styleClass="titleLabel" text="Configurações do Servidor dos WebServices" textAlignment="CENTER" wrapText="true">
@@ -28,7 +28,7 @@
     </HBox>
     <HBox id="HBox" alignment="CENTER" layoutX="315.0" layoutY="117.0" prefHeight="28.0" spacing="15.0">
       <children>
-        <Button id="button1" fx:id="btnSalvar" onAction="#salvar" text="OK" />
+        <Button id="button1" fx:id="btnSalvar" defaultButton="true" onAction="#salvar" text="OK" />
         <Button id="button1" fx:id="btnCancelar" onAction="#cancelar" text="Cancelar" />
       </children>
     </HBox>

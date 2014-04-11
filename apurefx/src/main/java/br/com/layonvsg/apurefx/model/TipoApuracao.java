@@ -18,6 +18,10 @@ import br.com.layonvsg.estruturada.ws.adapter.ServicoWebApuracaoEstruturadaBeanS
 import br.com.layonvsg.futuro.ws.adapter.Log;
 import br.com.layonvsg.futuro.ws.adapter.ServicoWebApuracaoFuturo;
 import br.com.layonvsg.futuro.ws.adapter.ServicoWebApuracaoFuturoBeanServiceLocator;
+import br.com.layonvsg.opcoes.ws.adapter.disponivel.ServicoWebApuracaoOpcaoPadronizadaSobreDisponivel;
+import br.com.layonvsg.opcoes.ws.adapter.disponivel.ServicoWebApuracaoOpcaoPadronizadaSobreDisponivelBeanServiceLocator;
+import br.com.layonvsg.opcoes.ws.adapter.futuro.ServicoWebApuracaoOpcaoPadronizadaSobreFuturo;
+import br.com.layonvsg.opcoes.ws.adapter.futuro.ServicoWebApuracaoOpcaoPadronizadaSobreFuturoBeanServiceLocator;
 import br.com.layonvsg.sca.ws.adapter.ServicoWebApuracaoSCA;
 import br.com.layonvsg.sca.ws.adapter.ServicoWebApuracaoSCABeanServiceLocator;
 
@@ -148,7 +152,7 @@ public enum TipoApuracao
 					new ServicoWebApuracaoOpcaoPadronizadaSobreDisponivelBeanServiceLocator()
 						.getServicoWebApuracaoOpcaoPadronizadaSobreDisponivelPort( this.getURLServico( configInfo ) );
 
-				final br.com.temasistemas.opcoes.ws.adapter.disponivel.Log[] logs = servicoWebApuracaoOpcaoPadronizada.apurar(
+				final br.com.layonvsg.opcoes.ws.adapter.disponivel.Log[] logs = servicoWebApuracaoOpcaoPadronizada.apurar(
 					dateToCalendar( dataAtual ),
 					dateToCalendar( dataAnterior ),
 					instituicaoId );
@@ -160,7 +164,7 @@ public enum TipoApuracao
 
 				final List<Ocorrencias> listaOcorrencia = new ArrayList<>( logs.length );
 
-				for ( final br.com.temasistemas.opcoes.ws.adapter.disponivel.Log log : logs )
+				for ( final br.com.layonvsg.opcoes.ws.adapter.disponivel.Log log : logs )
 				{
 					listaOcorrencia.add( log.toOcorrencia() );
 				}
@@ -198,7 +202,7 @@ public enum TipoApuracao
 					new ServicoWebApuracaoOpcaoPadronizadaSobreFuturoBeanServiceLocator()
 						.getServicoWebApuracaoOpcaoPadronizadaSobreFuturoPort( this.getURLServico( configInfo ) );
 
-				final br.com.temasistemas.opcoes.ws.adapter.futuro.Log[] logs = servicoWebApuracaoOpcaoPadronizada.apurar(
+				final br.com.layonvsg.opcoes.ws.adapter.futuro.Log[] logs = servicoWebApuracaoOpcaoPadronizada.apurar(
 					dateToCalendar( dataAtual ),
 					dateToCalendar( dataAnterior ),
 					instituicaoId );
@@ -210,7 +214,7 @@ public enum TipoApuracao
 
 				final List<Ocorrencias> listaOcorrencia = new ArrayList<>( logs.length );
 
-				for ( final br.com.temasistemas.opcoes.ws.adapter.futuro.Log log : logs )
+				for ( final br.com.layonvsg.opcoes.ws.adapter.futuro.Log log : logs )
 				{
 					listaOcorrencia.add( log.toOcorrencia() );
 				}

@@ -8,10 +8,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import org.apache.poi.util.IOUtils;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 
 import com.google.common.base.Optional;
-import com.google.common.io.Files;
 
 public abstract class BasicDao
 {
@@ -79,7 +79,7 @@ public abstract class BasicDao
 	{
 		try
 		{
-			Files.forceMkdir( new File( CAMINHO_MAIN_CONFIG_DIR ) );
+			FileUtils.forceMkdir( new File( CAMINHO_MAIN_CONFIG_DIR ) );
 		}
 		catch ( final Exception ex )
 		{
