@@ -26,13 +26,15 @@
 				<configuration>
 					<source>1.7</source>
 					<target>1.7</target>
+					<compilerVersion>1.7</compilerVersion>
+					
 					<excludes>
-						../br/com/layonvsg/disponivel/ws/adapter/*.java;
-						../br/com/layonvsg/estruturada/ws/adapter/*.java;
-						../br/com/layonvsg/futuro/ws/adapter/*.java;
-						../br/com/layonvsg/opcoes/ws/adapter/*.java;
-						../br/com/layonvsg/relatorios/ws/adapter/*.java;
-						../br/com/layonvsg/sca/ws/adapter/*.java;
+						../br.com.layonvsg.disponivel.ws.adapter.*,
+						../br.com.layonvsg.estruturada.ws.adapter.*,
+						../br.com.layonvsg.futuro.ws.adapter.*,
+						../br.com.layonvsg.opcoes.ws.adapter.*,
+						../br.com.layonvsg.relatorios.ws.adapter.*,
+						../br.com.layonvsg.sca.ws.adapter.*,
 					</excludes>
 				</configuration>
 			</plugin>

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<negocios>
+	<negocio>
+		<id>1</id>
+		<preco>64.62576734732012</preco>
+		<quantidade>64</quantidade>
+		<contratoId>64</contratoId>
+		<clienteId>1000</clienteId>
+		<corretoraId>1000</corretoraId>
+		<instituicaoId>1000</instituicaoId>
+		<valorTaxa xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:nil="true" />
+		<numero>0</numero>
+		<tarifacao>
+			<valorUnitarioTaxaRegistroNormal>64.62576734732012</valorUnitarioTaxaRegistroNormal>
+			<valorUnitarioTaxaRegistroDayTrade>0.0</valorUnitarioTaxaRegistroDayTrade>
+			<valorUnitarioTaxaNegociacaoNormal>64.62576734732012</valorUnitarioTaxaNegociacaoNormal>
+			<valorUnitarioTaxaNegociacaoDayTrade>0.0</valorUnitarioTaxaNegociacaoDayTrade>
+		</tarifacao>
+		<horaNegociacao xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:nil="true" />
+		<registroEspecificacaoComitente
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" />
+	</negocio>
+	<negocio>
+		<id>2</id>
+		<preco>59.684773652083344</preco>
+		<quantidade>59</quantidade>
+		<contratoId>59</contratoId>
+		<clienteId>1000</clienteId>
+		<corretoraId>1000</corretoraId>
+		<instituicaoId>1000</instituicaoId>
+		<valorTaxa xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:nil="true" />
+		<numero>0</numero>
+		<tarifacao>
+			<valorUnitarioTaxaRegistroNormal>59.684773652083344</valorUnitarioTaxaRegistroNormal>
+			<valorUnitarioTaxaRegistroDayTrade>1.0</valorUnitarioTaxaRegistroDayTrade>
+			<valorUnitarioTaxaNegociacaoNormal>59.684773652083344</valorUnitarioTaxaNegociacaoNormal>
+			<valorUnitarioTaxaNegociacaoDayTrade>1.0</valorUnitarioTaxaNegociacaoDayTrade>
+		</tarifacao>
+		<horaNegociacao xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:nil="true" />
+		<registroEspecificacaoComitente
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" />
+	</negocio>
+	<negocio>
+		<id>3</id>
+		<preco>69.38693861247802</preco>
+		<quantidade>69</quantidade>
+		<contratoId>69</contratoId>
+		<clienteId>1000</clienteId>
+		<corretoraId>1000</corretoraId>
+		<instituicaoId>1000</instituicaoId>
+		<valorTaxa xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:nil="true" />
+		<numero>0</numero>
+		<tarifacao>
+			<valorUnitarioTaxaRegistroNormal>69.38693861247802</valorUnitarioTaxaRegistroNormal>
+			<valorUnitarioTaxaRegistroDayTrade>2.0</valorUnitarioTaxaRegistroDayTrade>
+			<valorUnitarioTaxaNegociacaoNormal>69.38693861247802</valorUnitarioTaxaNegociacaoNormal>
+			<valorUnitarioTaxaNegociacaoDayTrade>2.0</valorUnitarioTaxaNegociacaoDayTrade>
+		</tarifacao>
+		<horaNegociacao xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:nil="true" />
+		<registroEspecificacaoComitente
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" />
+	</negocio>
+	<negocio>
+		<id>4</id>
+		<preco>26.185833942780736</preco>
+		<quantidade>26</quantidade>
+		<contratoId>26</contratoId>
+		<clienteId>1000</clienteId>
+		<corretoraId>1000</corretoraId>
+		<instituicaoId>1000</instituicaoId>
+		<valorTaxa xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:nil="true" />
+		<numero>0</numero>
+		<tarifacao>
+			<valorUnitarioTaxaRegistroNormal>26.185833942780736</valorUnitarioTaxaRegistroNormal>
+			<valorUnitarioTaxaRegistroDayTrade>3.0</valorUnitarioTaxaRegistroDayTrade>
+			<valorUnitarioTaxaNegociacaoNormal>26.185833942780736</valorUnitarioTaxaNegociacaoNormal>
+			<valorUnitarioTaxaNegociacaoDayTrade>3.0</valorUnitarioTaxaNegociacaoDayTrade>
+		</tarifacao>
+		<horaNegociacao xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:nil="true" />
+		<registroEspecificacaoComitente
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" />
+	</negocio>
+	<negocio>
+		<id>5</id>
+		<preco>27.709782220300976</preco>
+		<quantidade>27</quantidade>
+		<contratoId>27</contratoId>
+		<clienteId>1000</clienteId>
+		<corretoraId>1000</corretoraId>
+		<instituicaoId>1000</instituicaoId>
+		<valorTaxa xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:nil="true" />
+		<numero>0</numero>
+		<tarifacao>
+			<valorUnitarioTaxaRegistroNormal>27.709782220300976</valorUnitarioTaxaRegistroNormal>
+			<valorUnitarioTaxaRegistroDayTrade>4.0</valorUnitarioTaxaRegistroDayTrade>
+			<valorUnitarioTaxaNegociacaoNormal>27.709782220300976</valorUnitarioTaxaNegociacaoNormal>
+			<valorUnitarioTaxaNegociacaoDayTrade>4.0</valorUnitarioTaxaNegociacaoDayTrade>
+		</tarifacao>
+		<horaNegociacao xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:nil="true" />
+		<registroEspecificacaoComitente
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" />
+	</negocio>
+	<negocio>
+		<id>6</id>
+		<preco>61.06084772384921</preco>
+		<quantidade>61</quantidade>
+		<contratoId>61</contratoId>
+		<clienteId>1000</clienteId>
+		<corretoraId>1000</corretoraId>
+		<instituicaoId>1000</instituicaoId>
+		<valorTaxa xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:nil="true" />
+		<numero>0</numero>
+		<tarifacao>
+			<valorUnitarioTaxaRegistroNormal>61.06084772384921</valorUnitarioTaxaRegistroNormal>
+			<valorUnitarioTaxaRegistroDayTrade>5.0</valorUnitarioTaxaRegistroDayTrade>
+			<valorUnitarioTaxaNegociacaoNormal>61.06084772384921</valorUnitarioTaxaNegociacaoNormal>
+			<valorUnitarioTaxaNegociacaoDayTrade>5.0</valorUnitarioTaxaNegociacaoDayTrade>
+		</tarifacao>
+		<horaNegociacao xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:nil="true" />
+		<registroEspecificacaoComitente
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" />
+	</negocio>
+	<negocio>
+		<id>7</id>
+		<preco>64.98711021208443</preco>
+		<quantidade>64</quantidade>
+		<contratoId>64</contratoId>
+		<clienteId>1000</clienteId>
+		<corretoraId>1000</corretoraId>
+		<instituicaoId>1000</instituicaoId>
+		<valorTaxa xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:nil="true" />
+		<numero>0</numero>
+		<tarifacao>
+			<valorUnitarioTaxaRegistroNormal>64.98711021208443</valorUnitarioTaxaRegistroNormal>
+			<valorUnitarioTaxaRegistroDayTrade>6.0</valorUnitarioTaxaRegistroDayTrade>
+			<valorUnitarioTaxaNegociacaoNormal>64.98711021208443</valorUnitarioTaxaNegociacaoNormal>
+			<valorUnitarioTaxaNegociacaoDayTrade>6.0</valorUnitarioTaxaNegociacaoDayTrade>
+		</tarifacao>
+		<horaNegociacao xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:nil="true" />
+		<registroEspecificacaoComitente
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" />
+	</negocio>
+	<negocio>
+		<id>8</id>
+		<preco>16.70017515942482</preco>
+		<quantidade>16</quantidade>
+		<contratoId>16</contratoId>
+		<clienteId>1000</clienteId>
+		<corretoraId>1000</corretoraId>
+		<instituicaoId>1000</instituicaoId>
+		<valorTaxa xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:nil="true" />
+		<numero>0</numero>
+		<tarifacao>
+			<valorUnitarioTaxaRegistroNormal>16.70017515942482</valorUnitarioTaxaRegistroNormal>
+			<valorUnitarioTaxaRegistroDayTrade>7.0</valorUnitarioTaxaRegistroDayTrade>
+			<valorUnitarioTaxaNegociacaoNormal>16.70017515942482</valorUnitarioTaxaNegociacaoNormal>
+			<valorUnitarioTaxaNegociacaoDayTrade>7.0</valorUnitarioTaxaNegociacaoDayTrade>
+		</tarifacao>
+		<horaNegociacao xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:nil="true" />
+		<registroEspecificacaoComitente
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" />
+	</negocio>
+	<negocio>
+		<id>9</id>
+		<preco>68.30200140686144</preco>
+		<quantidade>68</quantidade>
+		<contratoId>68</contratoId>
+		<clienteId>1000</clienteId>
+		<corretoraId>1000</corretoraId>
+		<instituicaoId>1000</instituicaoId>
+		<valorTaxa xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:nil="true" />
+		<numero>0</numero>
+		<tarifacao>
+			<valorUnitarioTaxaRegistroNormal>68.30200140686144</valorUnitarioTaxaRegistroNormal>
+			<valorUnitarioTaxaRegistroDayTrade>8.0</valorUnitarioTaxaRegistroDayTrade>
+			<valorUnitarioTaxaNegociacaoNormal>68.30200140686144</valorUnitarioTaxaNegociacaoNormal>
+			<valorUnitarioTaxaNegociacaoDayTrade>8.0</valorUnitarioTaxaNegociacaoDayTrade>
+		</tarifacao>
+		<horaNegociacao xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:nil="true" />
+		<registroEspecificacaoComitente
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" />
+	</negocio>
+	<negocio>
+		<id>10</id>
+		<preco>24.220010798321923</preco>
+		<quantidade>24</quantidade>
+		<contratoId>24</contratoId>
+		<clienteId>1000</clienteId>
+		<corretoraId>1000</corretoraId>
+		<instituicaoId>1000</instituicaoId>
+		<valorTaxa xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:nil="true" />
+		<numero>0</numero>
+		<tarifacao>
+			<valorUnitarioTaxaRegistroNormal>24.220010798321923</valorUnitarioTaxaRegistroNormal>
+			<valorUnitarioTaxaRegistroDayTrade>9.0</valorUnitarioTaxaRegistroDayTrade>
+			<valorUnitarioTaxaNegociacaoNormal>24.220010798321923</valorUnitarioTaxaNegociacaoNormal>
+			<valorUnitarioTaxaNegociacaoDayTrade>9.0</valorUnitarioTaxaNegociacaoDayTrade>
+		</tarifacao>
+		<horaNegociacao xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:nil="true" />
+		<registroEspecificacaoComitente
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" />
+	</negocio>
+</negocios>
