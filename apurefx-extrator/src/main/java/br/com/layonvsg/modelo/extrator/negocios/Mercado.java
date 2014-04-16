@@ -5,6 +5,7 @@ import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlEnumValue;
 import javax.xml.bind.annotation.XmlType;
 
+import br.com.temasistemas.derivativos.modelo.MercadoDerivativo;
 import br.com.temasistemas.java.lang.ext.enums.IntegerValuableEnum;
 
 @XmlType
@@ -39,5 +40,11 @@ public enum Mercado implements IntegerValuableEnum<Mercado> {
     public String getDescricao() {
         return this.descricao;
     }
+
+	public MercadoDerivativo getCompatible()
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

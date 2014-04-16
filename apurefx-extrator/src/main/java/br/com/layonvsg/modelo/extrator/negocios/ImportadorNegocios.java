@@ -1,11 +1,12 @@
 package br.com.layonvsg.modelo.extrator.negocios;
 
-import java.io.Console;
 import java.io.File;
 import java.io.IOException;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
+
+import br.com.temasistemas.derivativos.modelo.negocio.Negocio;
 
 public class ImportadorNegocios
 {
@@ -18,17 +19,6 @@ public class ImportadorNegocios
 	public static void main(
 		final String[] args )
 	{
-		final Console console = System.console();
-		if( console == null )
-		{
-			System.exit( 0 );
-		}
-		
-		final String user = console.readLine( "Digite a senha: " );
-		final char[] passw = console.readPassword( "Digite sua senha: " );
-		final String password = new String( passw );
-		System.err.println( "\n\nUsuario => " + user );
-		System.err.println( "Senha => " + password );
 		
 		try
 		{
@@ -80,6 +70,11 @@ public class ImportadorNegocios
 			System.out.println( "\n\nNegocios Importados com sucesso!.");
 			System.out.println( "Localização: " + file.getCanonicalPath().toString() );
 		
+			
+			for ( final Negocio n : NegocioConverter.convertFrom( negocios.getNegocios() ) )
+			{
+				System.out.println( n );
+			}
 		}
 		catch ( final JAXBException e )
 		{

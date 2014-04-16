@@ -7,6 +7,10 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import br.com.temasistemas.derivativos.modelo.MercadoDerivativo;
+import br.com.temasistemas.derivativos.modelo.negocio.ModalidadeNegociacao;
+import br.com.temasistemas.derivativos.modelo.negocio.NaturezaNegociacao;
+
 @XmlRootElement( name = "negocio" )
 @XmlAccessorType( XmlAccessType.FIELD )
 public class NegocioXML
@@ -34,10 +38,10 @@ public class NegocioXML
 	private Long instituicaoId;
 
 	@XmlElement( nillable = false )
-	private NaturezaNegociacaoXML naturezaNegociacao;
+	private NaturezaNegociacao naturezaNegociacao;
 
 	@XmlElement( nillable = false )
-	private ModalidadeNegociacaoXML modalidadeNegociacao;
+	private ModalidadeNegociacao modalidadeNegociacao;
 
 	@XmlElement( nillable = true )
 	private Double valorTaxa;
@@ -58,7 +62,7 @@ public class NegocioXML
 	private TarifacaoXML tarifacao;
 
 	@XmlElement( nillable = false )
-	private Mercado mercado;
+	private MercadoDerivativo mercado;
 
 	@XmlElement( nillable = true )
 	private Date horaNegociacao;
@@ -148,24 +152,24 @@ public class NegocioXML
 		this.instituicaoId = instituicaoId;
 	}
 
-	public NaturezaNegociacaoXML getNaturezaNegociacao()
+	public NaturezaNegociacao getNaturezaNegociacao()
 	{
 		return naturezaNegociacao;
 	}
 
 	public void setNaturezaNegociacao(
-		final NaturezaNegociacaoXML naturezaNegociacao )
+		final NaturezaNegociacao naturezaNegociacao )
 	{
 		this.naturezaNegociacao = naturezaNegociacao;
 	}
 
-	public ModalidadeNegociacaoXML getModalidadeNegociacao()
+	public ModalidadeNegociacao getModalidadeNegociacao()
 	{
 		return modalidadeNegociacao;
 	}
 
 	public void setModalidadeNegociacao(
-		final ModalidadeNegociacaoXML modalidadeNegociacao )
+		final ModalidadeNegociacao modalidadeNegociacao )
 	{
 		this.modalidadeNegociacao = modalidadeNegociacao;
 	}
@@ -236,13 +240,13 @@ public class NegocioXML
 		this.tarifacao = tarifacao;
 	}
 
-	public Mercado getMercado()
+	public MercadoDerivativo getMercado()
 	{
 		return mercado;
 	}
 
 	public void setMercado(
-		final Mercado mercado )
+		final MercadoDerivativo mercado )
 	{
 		this.mercado = mercado;
 	}

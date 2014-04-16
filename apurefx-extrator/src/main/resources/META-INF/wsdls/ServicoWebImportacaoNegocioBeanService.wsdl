@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://ws.layonvsg.com.br/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="ServicoWebImportacaoNegocioBeanService" targetNamespace="http://ws.layonvsg.com.br/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ws.layonvsg.com.br/" elementFormDefault="unqualified" targetNamespace="http://ws.layonvsg.com.br/" version="1.0">
+<xs:element name="importarApartirDe" type="tns:importarApartirDe"/>
+<xs:element name="importarApartirDeResponse" type="tns:importarApartirDeResponse"/>
+<xs:element name="log" type="tns:log"/>
+<xs:complexType name="importarApartirDe">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="localizacao" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="importarApartirDeResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="logs" type="tns:log"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="log">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="mensagem" type="xs:string"/>
+      <xs:element minOccurs="0" name="stackTrace" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="importarApartirDe">
+    <wsdl:part element="tns:importarApartirDe" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="importarApartirDeResponse">
+    <wsdl:part element="tns:importarApartirDeResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ServicoWebImportacaoNegocio">
+    <wsdl:operation name="importarApartirDe">
+      <wsdl:input message="tns:importarApartirDe" name="importarApartirDe">
+    </wsdl:input>
+      <wsdl:output message="tns:importarApartirDeResponse" name="importarApartirDeResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServicoWebImportacaoNegocioBeanServiceSoapBinding" type="tns:ServicoWebImportacaoNegocio">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="importarApartirDe">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="importarApartirDe">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="importarApartirDeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServicoWebImportacaoNegocioBeanService">
+    <wsdl:port binding="tns:ServicoWebImportacaoNegocioBeanServiceSoapBinding" name="ServicoWebImportacaoNegocioPort">
+      <soap:address location="http://localhost:8081/apurefx-extrator/ServicoWebImportacaoNegocio"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

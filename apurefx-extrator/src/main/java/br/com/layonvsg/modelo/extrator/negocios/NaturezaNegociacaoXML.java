@@ -6,6 +6,7 @@ import javax.xml.bind.annotation.XmlType;
 
 import org.apache.commons.lang3.text.WordUtils;
 
+import br.com.temasistemas.derivativos.modelo.negocio.NaturezaNegociacao;
 import br.com.temasistemas.java.lang.ext.enums.IntegerValuableEnum;
 import br.com.temasistemas.java.lang.ext.exception.BusinessRuntimeException;
 
@@ -15,6 +16,13 @@ public enum NaturezaNegociacaoXML implements IntegerValuableEnum<NaturezaNegocia
 
     @XmlEnumValue(value = "1" ) COMPRA {
 
+
+    	@Override
+		public NaturezaNegociacao getCompatible()
+    	{
+    		return NaturezaNegociacao.COMPRA;
+    	}
+    	
         @Override
         public NaturezaNegociacaoXML obterNaturezaInversa() {
 
@@ -35,6 +43,13 @@ public enum NaturezaNegociacaoXML implements IntegerValuableEnum<NaturezaNegocia
     },
     @XmlEnumValue(value = "2" ) VENDA {
 
+    	@Override
+		public NaturezaNegociacao getCompatible()
+    	{
+    		return NaturezaNegociacao.VENDA;
+    	}
+    	
+    	
         @Override
         public NaturezaNegociacaoXML obterNaturezaInversa() {
 
@@ -56,6 +71,13 @@ public enum NaturezaNegociacaoXML implements IntegerValuableEnum<NaturezaNegocia
     },
     @XmlEnumValue(value = "5" ) EXERCICIO {
 
+    	@Override
+		public NaturezaNegociacao getCompatible()
+    	{
+    		return NaturezaNegociacao.EXERCICIO;
+    	}
+    	
+    	
         @Override
         public NaturezaNegociacaoXML obterNaturezaIgual() {
 
@@ -82,5 +104,10 @@ public enum NaturezaNegociacaoXML implements IntegerValuableEnum<NaturezaNegocia
     }
 
     public abstract NaturezaNegociacaoXML obterNaturezaIgual();
+
+	public NaturezaNegociacao getCompatible()
+	{
+		throw new UnsupportedOperationException( "Metodo ainda não implementado pela Natureza adicionada: { "+ name()+" }" );
+	}
 
 }
