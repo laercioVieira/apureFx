@@ -8,8 +8,8 @@
 		<preco>110.05</preco>
 		<naturezaNegociacao>1</naturezaNegociacao>
 		<modalidadeNegociacao>1</modalidadeNegociacao>
-		<valorTaxa>0</valorTaxa>
-		<precoUltimoNegocio>0</precoUltimoNegocio>
+		<!-- <valorTaxa>0</valorTaxa>
+		 --><precoUltimoNegocio>0</precoUltimoNegocio>
 		<instituicaoId>1000</instituicaoId>
 		<corretoraId>1000</corretoraId>
 		<contratoId>101</contratoId>
@@ -38,8 +38,8 @@
 		<preco>110.08</preco>
 		<naturezaNegociacao>1</naturezaNegociacao>
 		<modalidadeNegociacao>1</modalidadeNegociacao>
-		<valorTaxa>0</valorTaxa>
-		<precoUltimoNegocio>0</precoUltimoNegocio>
+		<!-- <valorTaxa>0</valorTaxa>
+		 --><precoUltimoNegocio>0</precoUltimoNegocio>
 		<instituicaoId>1000</instituicaoId>
 		<corretoraId>1000</corretoraId>
 		<contratoId>101</contratoId>
@@ -68,8 +68,8 @@
 		<preco>111</preco>
 		<naturezaNegociacao>2</naturezaNegociacao>
 		<modalidadeNegociacao>1</modalidadeNegociacao>
-		<valorTaxa>0</valorTaxa>
-		<precoUltimoNegocio>0</precoUltimoNegocio>
+		<!-- <valorTaxa>0</valorTaxa>
+		 --><precoUltimoNegocio>0</precoUltimoNegocio>
 		<instituicaoId>1000</instituicaoId>
 		<corretoraId>1000</corretoraId>
 		<contratoId>101</contratoId>
@@ -98,8 +98,8 @@
 		<preco>112</preco>
 		<naturezaNegociacao>2</naturezaNegociacao>
 		<modalidadeNegociacao>1</modalidadeNegociacao>
-		<valorTaxa>0</valorTaxa>
-		<precoUltimoNegocio>0</precoUltimoNegocio>
+		<!-- <valorTaxa>0</valorTaxa>
+		 --><precoUltimoNegocio>0</precoUltimoNegocio>
 		<instituicaoId>1000</instituicaoId>
 		<corretoraId>1000</corretoraId>
 		<contratoId>101</contratoId>

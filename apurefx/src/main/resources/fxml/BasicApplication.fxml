@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?scenebuilder-preview-i18n-resource BasicApplication_pt-br.properties?>
+
+<VBox prefHeight="394.0" prefWidth="640.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <MenuBar VBox.vgrow="NEVER">
+      <menus>
+        <Menu mnemonicParsing="false" text="%menu.title.file">
+          <items>
+            <MenuItem mnemonicParsing="false" text="%menu.title.importarNegocio" />
+            <MenuItem mnemonicParsing="false" text="%menu.title.AbrirApuracao" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="%menu.title.mudarEstilo" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <Menu mnemonicParsing="false" text="menu.title.mudarIdioma">
+              <items>
+                <CheckMenuItem mnemonicParsing="false" selected="true" text="menu.title.portugues" />
+                <CheckMenuItem mnemonicParsing="false" text="menu.title.ingles" />
+              </items>
+            </Menu>
+            <MenuItem mnemonicParsing="false" text="%menu.title.quit" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="%menu.title.edit">
+          <items>
+            <MenuItem mnemonicParsing="false" text="%menu.title.undo" />
+            <MenuItem mnemonicParsing="false" text="%menu.title.redo" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="%menu.title.cut" />
+            <MenuItem mnemonicParsing="false" text="%menu.title.copy" />
+            <MenuItem mnemonicParsing="false" text="%menu.title.paste" />
+            <MenuItem mnemonicParsing="false" text="%menu.title.delete" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="%menu.title.select.all" />
+            <MenuItem mnemonicParsing="false" text="%menu.title.unselect.all" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="%menu.title.help">
+          <items>
+            <MenuItem mnemonicParsing="false" text="%menu.title.about" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+    <SplitPane dividerPositions="0.3072100313479624" focusTraversable="true" prefHeight="351.0" prefWidth="640.0">
+      <items>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="362.0" prefWidth="235.0">
+          <children>
+            <VBox id="VBox" alignment="CENTER" prefHeight="362.0" prefWidth="170.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <children>
+                <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="160.0" style="" styleClass="botoesPrincipal" text="%principal.button.negocios" wrapText="false" />
+                <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="160.0" styleClass="botoesPrincipal" text="%principal.button.apuracao" />
+                <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="160.0" styleClass="botoesPrincipal" text="%principal.button.mudarestilo" />
+                <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="160.0" styleClass="botoesPrincipal" text="%principal.button.sair" />
+              </children>
+            </VBox>
+          </children>
+        </AnchorPane>
+        <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="362.0" prefWidth="447.0">
+          <children>
+            <Label alignment="CENTER" layoutX="14.0" layoutY="289.0" prefHeight="59.0" prefWidth="399.0" style="&#10;" text="%label.text.drag.here" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
+              <font>
+                <Font size="18.0" />
+              </font>
+            </Label>
+            <TextArea layoutX="28.0" layoutY="26.0" prefHeight="256.0" prefWidth="385.0" wrapText="true" />
+          </children>
+        </AnchorPane>
+      </items>
+    </SplitPane>
+  </children>
+  <stylesheets>
+    <URL value="@BasicApplication.css" />
+  </stylesheets>
+</VBox>

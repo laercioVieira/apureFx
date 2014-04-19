@@ -17,7 +17,7 @@ public class NegocioXML
 {
 
 	@XmlElement( name = "id", required = true, nillable = false )
-	private int id;
+	private Long id;
 
 	@XmlElement( required = true, nillable = false )
 	private double preco;
@@ -75,13 +75,13 @@ public class NegocioXML
 		super();
 	}
 
-	public int getId()
+	public Long getId()
 	{
 		return id;
 	}
 
 	public void setId(
-		final int id )
+		final Long id )
 	{
 		this.id = id;
 	}

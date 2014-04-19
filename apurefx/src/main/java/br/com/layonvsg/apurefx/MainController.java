@@ -97,11 +97,11 @@ public class MainController
 		{
 			configurarTabelaDatasApuracao();
 
-			setUpConfigForm();
-
-			setUpRelatorioForm();
+			setUpRelatorioForm();			
 			
 			configurarComboTipoApuracao();
+			
+			setUpConfigForm();
 
 		}
 		catch ( final Exception ex )
