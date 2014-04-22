@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
@@ -56,6 +58,12 @@ public class MainController
 
 	private ConfigDao configDao = new ConfigDao();
 	
+	@FXML
+	private ResourceBundle resources;
+	
+	@FXML
+	private URL location;
+
 	@FXML
 	private Button btnImportar;
 
@@ -141,7 +149,10 @@ public class MainController
 					throws IOException
 	{
 		final FXMLLoader fxmlLoader = new FXMLLoader( getClass().getResource(
-			"/fxml/Relatorios.fxml" ) );
+			"fxml/Relatorios.fxml" ), ResourceBundle.getBundle(
+				"fxml/BasicApplication",
+				Locale.getDefault(),
+				ClassLoader.getSystemClassLoader() ) );
 
 		final AnchorPane relatorioFormPanel = ( AnchorPane ) fxmlLoader.load();
 		setRelatorioForm( new Stage( StageStyle.UTILITY ) );
@@ -155,7 +166,10 @@ public class MainController
 		throws IOException
 	{
 		final FXMLLoader fxmlLoader = new FXMLLoader( getClass().getResource(
-			"/fxml/ConfigForm.fxml" ) );
+			"fxml/ConfigForm.fxml" ), ResourceBundle.getBundle(
+				"fxml/BasicApplication",
+				Locale.getDefault(),
+				ClassLoader.getSystemClassLoader() ) );
 
 		final AnchorPane configBdFormPanel = ( AnchorPane ) fxmlLoader.load();
 		setConfigForm( new Stage( StageStyle.TRANSPARENT ) );
@@ -543,6 +557,32 @@ public class MainController
 		final ConfigDao configDao )
 	{
 		this.configDao = configDao;
+	}
+
+	
+	public ResourceBundle getResources()
+	{
+		return resources;
+	}
+
+	
+	public void setResources(
+		final ResourceBundle resources )
+	{
+		this.resources = resources;
+	}
+
+	
+	public URL getLocation()
+	{
+		return location;
+	}
+
+	
+	public void setLocation(
+		final URL location )
+	{
+		this.location = location;
 	}
 
 }

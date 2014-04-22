@@ -44,49 +44,80 @@ public class ServicoImportadorNegociosBean
 	{
 		if ( localizacao != null )
 		{
-
 			try
 			{
-				if ( !localizacao.isHidden() && localizacao.isFile() )
+				String msg = "Iniciando a importação de negócios. Localização: \'";
+					msg.concat( localizacao.getCanonicalPath() ).concat( "\'." );
+				getLogger().log(
+					new br.com.temasistemas.log.Log( msg ) );
+
+				msg = "Iniciando a Limpeza dos negócios.";
+				getLogger().log(
+					new br.com.temasistemas.log.Log( msg ) );
+
+				getRepositorioNegocio().excluirTodos();
+
+				msg = "Limpeza dos negócios efetuada.";
+				getLogger().log(
+					new br.com.temasistemas.log.Log( msg ) );
+
+				if ( localizacao.isHidden() || !localizacao.isFile() )
 				{
-					LOG.info( "Iniciando a importação de negócios" );
-					LOG.trace( "Iniciando a importação de negócios" );
-
-					if ( localizacao.canRead() )
-					{
-						getLogger().log(
-							new br.com.temasistemas.log.Log( MessageFormat.format(
-								"Não foi possivel ler a partir da localização informada: [ {0} ]",
-								localizacao ) ) );
-						return;
-					}
-
-					final JAXBContext jaxbContext = JAXBContext.newInstance( NegociosXML.class );
-					final NegociosXML negocios = ( NegociosXML ) jaxbContext.createUnmarshaller().unmarshal(
+					msg = MessageFormat.format(
+						"Importação não efetuada. Localização: \' {0} \', é oculta ou não é um arquivo .xml válido.",
 						localizacao );
-
-					final List<Negocio> listaNegocios = NegocioConverter.convertFrom( negocios.getNegocios() );
-					for ( final Negocio negocio : listaNegocios )
-					{
-						getRepositorioNegocio().salvar(
-							negocio );
-					}
-
-					getRepositorioNegocio().flush();
-					LOG.info( "Negocios Importados com sucesso!" );
-					LOG.trace( "Localização: " + localizacao.getCanonicalPath().toString() );
+					getLogger().log(
+						new br.com.temasistemas.log.Log( msg ) );
+					return;
 				}
+
+				if ( !localizacao.canRead() )
+				{
+					getLogger().log(
+						new br.com.temasistemas.log.Log( MessageFormat.format(
+							"Não foi possivel ler a partir da localização informada: \' {0} \'",
+							localizacao ) ) );
+					return;
+				}
+
+				final JAXBContext jaxbContext = JAXBContext.newInstance( NegociosXML.class );
+				final NegociosXML negocios = ( NegociosXML ) jaxbContext.createUnmarshaller().unmarshal(
+					localizacao );
+
+				final List<Negocio> listaNegocios = NegocioConverter.convertFrom( negocios.getNegocios() );
+
+				msg = "Iniciando a Persistência dos negócios. Quantidade: " + ( listaNegocios != null ? listaNegocios.size() : 0 );
+				getLogger().log(
+					new br.com.temasistemas.log.Log( msg ) );
+
+				for ( final Negocio negocio : listaNegocios )
+				{
+					getRepositorioNegocio().salvar(
+						negocio );
+				}
+
+				getRepositorioNegocio().flush();
+				msg = "Persistência dos negócios efetuada.";
+				getLogger().log(
+					new br.com.temasistemas.log.Log( msg ) );
+
+				msg =
+					"Negocios Importados com sucesso! Localização: \'"
+						+ localizacao.getCanonicalPath().toString()
+						+ "\'.";
+				getLogger().log(
+					new br.com.temasistemas.log.Log( msg ) );
 			}
 			catch ( final JAXBException e )
 			{
-				LOG.info( "Houveram erros durante a importação de negócios. Detalhes no log da aplicação." );
-
+				LOG.warn( "Houveram erros durante a conversão de negócios ( .xml > java ). Detalhes no log da aplicação." );
 				getLogger().log(
 					getLogBuilder().criarLog(
 						e ) );
 			}
 			catch ( final IOException e )
 			{
+				LOG.error( "Houveram erros durante a importação de negócios. Detalhes no log da aplicação." );
 				getLogger().log(
 					getLogBuilder().criarLog(
 						e ) );

@@ -5,6 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
+<?scenebuilder-preview-i18n-resource BasicApplication_pt_BR.properties?>
 
 <AnchorPane fx:id="configForm" prefHeight="155.0" prefWidth="481.0000999999975" styleClass="theme" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="br.com.layonvsg.apurefx.ConfigController">
   <!-- TODO Add Nodes -->

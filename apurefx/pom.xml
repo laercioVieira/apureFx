@@ -11,7 +11,11 @@
 		<artifactId>layonvsg-base-profiles</artifactId>
 		<version>01.00.00</version>
 	</parent>
+	<properties>
+		<gitPessoalLoc>D:\Documents\GitHub</gitPessoalLoc>
+	</properties>
 	<build>
+	
 		<resources>
 			<resource>
 				<directory>src\main\resources</directory>
@@ -26,22 +30,20 @@
 				<configuration>
 					<source>1.7</source>
 					<target>1.7</target>
-					<compilerVersion>1.7</compilerVersion>
-					
-					<excludes>
-						../br.com.layonvsg.disponivel.ws.adapter.*,
-						../br.com.layonvsg.estruturada.ws.adapter.*,
-						../br.com.layonvsg.futuro.ws.adapter.*,
-						../br.com.layonvsg.opcoes.ws.adapter.*,
-						../br.com.layonvsg.relatorios.ws.adapter.*,
-						../br.com.layonvsg.sca.ws.adapter.*,
-					</excludes>
+					<compilerVersion>1.7</compilerVersion>					
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
 
 	<dependencies>
+		<dependency>
+			<groupId>webservices</groupId>
+			<artifactId>webservices-client</artifactId>
+			<version>01.00.00</version>
+			<scope>system</scope>
+			<systemPath>${gitPessoalLoc}\${project.artifactId}\${project.artifactId}\src\main\resources\META-INF\lib\axis.jar</systemPath>
+		</dependency>
 		<dependency>
 			<groupId>br.com.temasistemas</groupId>
 			<artifactId>java-lang-ext</artifactId>

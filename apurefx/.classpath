@@ -34,11 +34,11 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JAVAFX"/>
-	<classpathentry kind="lib" path="src/main/resources/META-INF/libs/org.apache.commons.logging_1.1.1.v201101211721.jar"/>
-	<classpathentry kind="lib" path="src/main/resources/META-INF/libs/axis.jar"/>
-	<classpathentry kind="lib" path="src/main/resources/META-INF/libs/commons-discovery-0.2.jar"/>
-	<classpathentry kind="lib" path="src/main/resources/META-INF/libs/javax.wsdl_1.6.2.v201012040545.jar"/>
-	<classpathentry kind="lib" path="src/main/resources/META-INF/libs/jaxrpc.jar"/>
-	<classpathentry kind="lib" path="src/main/resources/META-INF/libs/saaj.jar"/>
+	<classpathentry kind="lib" path="src/main/resources/META-INF/lib/axis.jar"/>
+	<classpathentry kind="lib" path="src/main/resources/META-INF/lib/commons-discovery-0.2.jar"/>
+	<classpathentry kind="lib" path="src/main/resources/META-INF/lib/javax.wsdl_1.6.2.v201012040545.jar"/>
+	<classpathentry kind="lib" path="src/main/resources/META-INF/lib/jaxrpc.jar"/>
+	<classpathentry kind="lib" path="src/main/resources/META-INF/lib/org.apache.commons.logging_1.1.1.v201101211721.jar"/>
+	<classpathentry kind="lib" path="src/main/resources/META-INF/lib/saaj.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

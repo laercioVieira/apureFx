@@ -10,6 +10,10 @@ public class PersonalConfig
 
 	private String defaultFolder = "C:\\";
 
+	private String defaultLocalizacaoNegocios =
+					"D:\\Documents\\GitHub\\apureFx\\apurefx-extrator\\src\\main\\resources\\negocios.xml";
+	
+	
 	public PersonalConfig()
 	{
 		super();
@@ -26,6 +30,21 @@ public class PersonalConfig
 		final String defaultFolder )
 	{
 		this.defaultFolder = defaultFolder;
+	}
+
+
+	
+	public String getDefaultLocalizacaoNegocios()
+	{
+		return defaultLocalizacaoNegocios;
+	}
+
+
+	
+	public void setDefaultLocalizacaoNegocios(
+		final String defaultLocalizacaoNegocios )
+	{
+		this.defaultLocalizacaoNegocios = defaultLocalizacaoNegocios;
 	}
 
 }

@@ -1,9 +1,12 @@
 package br.com.layonvsg.apurefx;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Derivativos
@@ -30,12 +33,17 @@ public class Derivativos
 		final Stage primaryStage )
 		throws Exception
 	{
-		final AnchorPane page =
-			( AnchorPane ) FXMLLoader.load( Thread.currentThread().getContextClassLoader().getResource(
-				"fxml/Derivativos.fxml" ) );
+		final VBox page = ( VBox ) FXMLLoader.load(
+			Thread.currentThread().getContextClassLoader().getResource(
+				"fxml/BasicApplication.fxml" ),
+			ResourceBundle.getBundle(
+				"fxml/BasicApplication",
+				Locale.getDefault(),
+				ClassLoader.getSystemClassLoader() ) );
+
 		final Scene scene = new Scene( page );
 		primaryStage.setScene( scene );
-		primaryStage.setTitle( "Derivativos - BankPro" );
+		primaryStage.setTitle( "ApureFX - Uma Solução para integração JavaFX." );
 		primaryStage.show();
 
 	}
