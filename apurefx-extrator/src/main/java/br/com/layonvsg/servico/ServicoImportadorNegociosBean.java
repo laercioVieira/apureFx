@@ -1,7 +1,6 @@
 package br.com.layonvsg.servico;
 
 import java.io.File;
-import java.io.IOException;
 import java.text.MessageFormat;
 import java.util.List;
 
@@ -115,7 +114,7 @@ public class ServicoImportadorNegociosBean
 					getLogBuilder().criarLog(
 						e ) );
 			}
-			catch ( final IOException e )
+			catch ( final Exception e )
 			{
 				LOG.error( "Houveram erros durante a importação de negócios. Detalhes no log da aplicação." );
 				getLogger().log(

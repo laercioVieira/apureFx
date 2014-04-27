@@ -13,6 +13,8 @@ public class ImportacaoNegocioController
 	private TextArea textArea;
 	
 
+	private int tentativas;
+	
 	public ImportacaoNegocioController()
 	{
 		super();
@@ -43,6 +45,7 @@ public class ImportacaoNegocioController
 				for ( final Log log : logs )
 				{
 					System.out.println( log.getMensagem() );
+					getTextArea().appendText( "Tentativa " + ++tentativas + ":\n" );
 					getTextArea().appendText( log.getMensagem() );
 					getTextArea().appendText( "\n" );
 				}
@@ -51,6 +54,13 @@ public class ImportacaoNegocioController
 		catch ( final Exception e )
 		{
 			e.printStackTrace();
+			getTextArea().setEditable( false );
+			getTextArea().setFocusTraversable( true );
+			getTextArea().appendText( "Tentativa " + ++tentativas + ":\n" );
+			getTextArea().appendText( "Ocorreram erros durante a tentativa de importação dos negócios.\n" );
+			getTextArea().appendText( "Mensagem: " + e.getMessage() );
+			getTextArea().appendText( "\nCausa: " + e.getCause() );
+			getTextArea().appendText( "\n\n" );
 		}
 
 	}

@@ -1,8 +1,10 @@
 package br.com.layonvsg.apurefx;
 
-import java.awt.TextField;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import br.com.layonvsg.apurefx.dao.ConfigDao;
 import br.com.layonvsg.apurefx.dto.ConfigInfo;
@@ -14,6 +16,12 @@ public class ConfigController
 
 	private ConfigDao configDao = new ConfigDao();
 
+	@FXML
+	private ResourceBundle resources;
+	
+	@FXML
+	private URL location;
+	
 	@FXML
 	private AnchorPane configForm;
 
@@ -47,8 +55,12 @@ public class ConfigController
 	{
 		try
 		{
+			getConfigInfo().setHost( getTxtHost().getText() );
+			getConfigInfo().setPorta( getTxtPorta().getText() );
+			
 			getConfigDao().salvar(
 				getConfigInfo() );
+			
 			getConfigForm().getScene().getWindow().hide();
 		}
 		catch ( final Exception ex )
@@ -111,6 +123,32 @@ public class ConfigController
 		final TextField txtPorta )
 	{
 		this.txtPorta = txtPorta;
+	}
+
+	
+	public ResourceBundle getResources()
+	{
+		return resources;
+	}
+
+	
+	public void setResources(
+		final ResourceBundle resources )
+	{
+		this.resources = resources;
+	}
+
+	
+	public URL getLocation()
+	{
+		return location;
+	}
+
+	
+	public void setLocation(
+		final URL location )
+	{
+		this.location = location;
 	}
 
 }

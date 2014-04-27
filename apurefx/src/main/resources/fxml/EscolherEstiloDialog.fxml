@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?scenebuilder-preview-i18n-resource BasicApplication_pt_BR.properties?>
+<?scenebuilder-stylesheet ../css/AlertDialog.css?>
+
+<GridPane id="container" fx:id="containerMudarEstilo" hgap="15.0" maxHeight="+Infinity" maxWidth="+Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="202.00009999999747" prefWidth="376.0" vgap="10.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="br.com.layonvsg.apurefx.EscolherEstiloController">
+  <children>
+    <VBox alignment="CENTER" fillWidth="true" maxHeight="-1.0" maxWidth="-1.0" minHeight="-1.0" minWidth="-1.0" padding="$x1" prefHeight="128.0" prefWidth="288.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+      <children>
+        <HBox id="HBox" alignment="CENTER" prefWidth="288.0" spacing="5.0">
+          <children>
+            <Label id="messageLabel" fx:id="lblMensagem" alignment="CENTER_LEFT" prefHeight="25.999900000002526" text="%escolherEstilo.label.mensagem" textAlignment="LEFT" wrapText="true">
+              <font>
+                <Font name="System Bold" size="16.0" />
+              </font>
+            </Label>
+          </children>
+        </HBox>
+        <Label id="detailsLabel" fx:id="lblDetalhes" prefHeight="28.0" text="%escolherEstilo.label.escolherEstilo" textAlignment="LEFT" wrapText="true" VBox.vgrow="ALWAYS">
+          <font>
+            <Font size="12.0" />
+          </font>
+          <VBox.margin>
+            <Insets fx:id="x1" />
+          </VBox.margin>
+        </Label>
+        <ChoiceBox fx:id="chBoxTema" prefHeight="28.0" prefWidth="183.0">
+          <items>
+            <FXCollections fx:factory="observableArrayList">
+              <String fx:value="Item 1" />
+              <String fx:value="Item 2" />
+              <String fx:value="Item 3" />
+            </FXCollections>
+          </items>
+        </ChoiceBox>
+      </children>
+    </VBox>
+    <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="TOP">
+      <image>
+        <Image url="@../images/AlertDialog.png" />
+      </image>
+    </ImageView>
+    <HBox fx:id="containerBotoesControle" alignment="CENTER" maxHeight="-Infinity" maxWidth="+Infinity" minHeight="-Infinity" minWidth="-1.0" prefHeight="42.0" prefWidth="288.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <children>
+        <Button id="cancelButton" fx:id="btnCancel" cancelButton="true" minWidth="80.0" mnemonicParsing="false" prefWidth="80.0" text="%escolherEstilo.button.cancelar" HBox.hgrow="NEVER">
+          <HBox.margin>
+            <Insets fx:id="x1" />
+          </HBox.margin>
+        </Button>
+        <Button id="okButton" fx:id="btnOk" minWidth="80.0" mnemonicParsing="false" text="%escolherEstilo.button.ok" HBox.hgrow="NEVER">
+          <HBox.margin>
+            <Insets left="14.0" />
+          </HBox.margin>
+        </Button>
+      </children>
+    </HBox>
+  </children>
+  <columnConstraints>
+    <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="-Infinity" />
+    <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="+Infinity" minWidth="-Infinity" />
+  </columnConstraints>
+  <padding>
+    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+  </padding>
+  <rowConstraints>
+    <RowConstraints maxHeight="+Infinity" minHeight="-Infinity" prefHeight="110.0" valignment="CENTER" vgrow="ALWAYS" />
+    <RowConstraints maxHeight="44.0" minHeight="-Infinity" prefHeight="44.0" vgrow="NEVER" />
+  </rowConstraints>
+  <stylesheets>
+    <URL value="@../css/AlertDialog.css" />
+  </stylesheets>
+</GridPane>

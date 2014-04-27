@@ -11,7 +11,7 @@
 <?import javafx.scene.paint.*?>
 <?scenebuilder-stylesheet ../css/derivativos.css?>
 
-<AnchorPane id="AnchorPane" fx:id="mainPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="theme" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="br.com.layonvsg.apurefx.MainController">
+<AnchorPane id="AnchorPane" fx:id="mainPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="theme" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="br.com.layonvsg.apurefx.ApuracaoController">
   <children>
     <SplitPane id="splitPaneHorizontal1" dividerPositions="" focusTraversable="true" prefHeight="482.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="118.0">
       <items>

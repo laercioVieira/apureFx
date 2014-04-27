@@ -47,7 +47,7 @@ import br.com.layonvsg.apurefx.model.TipoApuracao;
 
 import com.google.common.collect.ImmutableList;
 
-public class MainController
+public class ApuracaoController
 {
 
 	private static final int INDICE_COLUNA_STATUS_DATA_APURACAO = 1;
@@ -93,7 +93,7 @@ public class MainController
 
 	private final Map<DataApuracao, List<Ocorrencias>> logs = new HashMap<>( 0 );
 
-	public MainController()
+	public ApuracaoController()
 	{
 		super();
 	}
@@ -104,11 +104,8 @@ public class MainController
 		try
 		{
 			configurarTabelaDatasApuracao();
-
-			setUpRelatorioForm();			
-			
 			configurarComboTipoApuracao();
-			
+			setUpRelatorioForm();			
 			setUpConfigForm();
 
 		}
@@ -127,7 +124,7 @@ public class MainController
 			descricoesTipo.add( tipoApuracao.getDescricao() );
 		}
 
-		getCmbTipoApuracao().setItems(
+		getCmbTipoApuracao().setItems( 
 			FXCollections.observableArrayList( descricoesTipo ) );
 		getCmbTipoApuracao().getSelectionModel().selectedIndexProperty().addListener(
 			new ChangeListener<Number>()
@@ -148,12 +145,9 @@ public class MainController
 	private void setUpRelatorioForm()
 					throws IOException
 	{
-		final FXMLLoader fxmlLoader = new FXMLLoader( getClass().getResource(
-			"fxml/Relatorios.fxml" ), ResourceBundle.getBundle(
-				"fxml/BasicApplication",
-				Locale.getDefault(),
-				ClassLoader.getSystemClassLoader() ) );
-
+		final URL url = ClassLoader.getSystemResource( "fxml/Relatorios.fxml" );
+		
+		final FXMLLoader fxmlLoader = new FXMLLoader( url, resources );
 		final AnchorPane relatorioFormPanel = ( AnchorPane ) fxmlLoader.load();
 		setRelatorioForm( new Stage( StageStyle.UTILITY ) );
 		getRelatorioForm().initModality(
@@ -165,11 +159,10 @@ public class MainController
 	private void setUpConfigForm()
 		throws IOException
 	{
-		final FXMLLoader fxmlLoader = new FXMLLoader( getClass().getResource(
-			"fxml/ConfigForm.fxml" ), ResourceBundle.getBundle(
-				"fxml/BasicApplication",
-				Locale.getDefault(),
-				ClassLoader.getSystemClassLoader() ) );
+		final URL location = ClassLoader.getSystemResource( 
+			"fxml/ConfigForm.fxml" );
+		
+		final FXMLLoader fxmlLoader = new FXMLLoader( location, resources );
 
 		final AnchorPane configBdFormPanel = ( AnchorPane ) fxmlLoader.load();
 		setConfigForm( new Stage( StageStyle.TRANSPARENT ) );

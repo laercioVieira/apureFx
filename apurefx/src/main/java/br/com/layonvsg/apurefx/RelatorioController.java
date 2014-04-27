@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,258 +25,310 @@ import br.com.layonvsg.relatorios.ws.adapter.ServicoWebGeracaoRelatorioBeanServi
 public class RelatorioController
 {
 
-    private final Locale localeBrasil = new Locale("pt", "BR");
+	private final Locale localeBrasil = new Locale( "pt", "BR" );
 
-    @FXML
-    private AnchorPane reportForm;
+	@FXML
+	private URL location;
 
-    @FXML
-    private TextField txtDataInicio;
+	@FXML
+	private ResourceBundle resource;
 
-    @FXML
-    private TextField txtIdCliente;
+	@FXML
+	private AnchorPane reportForm;
 
-    @FXML
-    private TextField txtDataPregao;
+	@FXML
+	private TextField txtDataInicio;
 
-    @FXML
-    private TextField txtIdCorretora;
+	@FXML
+	private TextField txtIdCliente;
 
-    @FXML
-    private TextField txtIdInstituicao;
+	@FXML
+	private TextField txtDataPregao;
 
-    @FXML
-    private TextField txtIdCliOperDerivDia;
+	@FXML
+	private TextField txtIdCorretora;
 
-    @FXML
-    private TextField txtDataPregaoInicioTxRegNeg;
-    @FXML
-    private TextField txtDataPregaoFimTxRegNeg;
-    @FXML
-    private TextField txtIdCliTxRegNeg;
-    @FXML
-    private TextField txtUsarIdClienteTxRegNeg;
-    @FXML
-    private TextField txtIdInstituicaoTxRegNeg;
+	@FXML
+	private TextField txtIdInstituicao;
 
-    @FXML
-    private TextField txtInstituicaoIdMovimentoFinanceiro;
+	@FXML
+	private TextField txtIdCliOperDerivDia;
 
-    @FXML
-    private TextField txtCorretoraIdMovimentoFinanceiro;
+	@FXML
+	private TextField txtDataPregaoInicioTxRegNeg;
 
-    @FXML
-    private TextField txtDataLiquidacaoMovimentoFinanceiro;
+	@FXML
+	private TextField txtDataPregaoFimTxRegNeg;
 
-    @FXML
-    private TextField txtClienteMovimentoFinanceiro;
+	@FXML
+	private TextField txtIdCliTxRegNeg;
 
-    private ConfigDao configDao = new ConfigDao();
+	@FXML
+	private TextField txtUsarIdClienteTxRegNeg;
 
-    public void sair() {
+	@FXML
+	private TextField txtIdInstituicaoTxRegNeg;
 
-        this.getReportForm().getScene().getWindow().hide();
-    }
+	@FXML
+	private TextField txtInstituicaoIdMovimentoFinanceiro;
 
-    public AnchorPane getReportForm() {
+	@FXML
+	private TextField txtCorretoraIdMovimentoFinanceiro;
 
-        return this.reportForm;
-    }
+	@FXML
+	private TextField txtDataLiquidacaoMovimentoFinanceiro;
 
-    public void setReportForm(
-            final AnchorPane reportForm) {
+	@FXML
+	private TextField txtClienteMovimentoFinanceiro;
 
-        this.reportForm = reportForm;
-    }
+	private ConfigDao configDao = new ConfigDao();
 
-    public void gerarRelatorioOperacoesDerivativosRealizadasDia(
-            final ActionEvent event) throws Exception {
+	public void sair()
+	{
 
-        final ConfigInfo configInfo = this.getConfigDao().obterConfigInfoVigente();
-        try {
+		this.getReportForm().getScene().getWindow().hide();
+	}
 
-            final ServicoWebGeracaoRelatorio servicoWebGeracaoRelatorio =
-                    new ServicoWebGeracaoRelatorioBeanServiceLocator()
-                            .getServicoWebGeracaoRelatorioPort(this.getURLServico(configInfo));
+	public AnchorPane getReportForm()
+	{
 
-            final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy",
-                    this.localeBrasil);
-            final Calendar dataPregao = new GregorianCalendar();
-            dataPregao.setTime(simpleDateFormat.parse(this.txtDataPregao.getText()));
-            final Double idCliente = new Double(this.txtIdCliOperDerivDia.getText());
-            final Double idCorretora = new Double(this.txtIdCorretora.getText());
-            final Double idInstituicao = new Double(this.txtIdInstituicao.getText());
-            servicoWebGeracaoRelatorio.gerarRelatorioOperacoesDerivativosRealizadasDia(
-                    idInstituicao, dataPregao, idCorretora, idCliente);
-        } catch (final ServiceException e) {
+		return this.reportForm;
+	}
 
-            throw new RuntimeException(
-                    "Ocorreu um erro inesperado na tentativa de uso do ServicoWebGeracaoRelatorio");
-        } catch (final RemoteException e) {
+	public void setReportForm(
+		final AnchorPane reportForm )
+	{
 
-            throw new RuntimeException(
-                    "Ocorreu um erro inesperado na tentativa de uso do ServicoWebGeracaoRelatorio");
-        } catch (final MalformedURLException e) {
+		this.reportForm = reportForm;
+	}
 
-            throw new RuntimeException(
-                    "Ocorreu um erro inesperado na tentativa de uso do ServicoWebGeracaoRelatorio");
-        }
-    }
+	public void gerarRelatorioOperacoesDerivativosRealizadasDia(
+		final ActionEvent event )
+		throws Exception
+	{
 
-    public void gerarRelatorioExtratoConsolidadoDeAtivo(
-            final ActionEvent event) throws Exception
-    {
-        final ConfigInfo configInfo = this.getConfigDao().obterConfigInfoVigente();
-        try {
+		final ConfigInfo configInfo = this.getConfigDao().obterConfigInfoVigente();
+		try
+		{
 
-            final ServicoWebGeracaoRelatorio servicoWebGeracaoRelatorio =
-                    new ServicoWebGeracaoRelatorioBeanServiceLocator()
-                            .getServicoWebGeracaoRelatorioPort(this.getURLServico(configInfo));
+			final ServicoWebGeracaoRelatorio servicoWebGeracaoRelatorio =
+				new ServicoWebGeracaoRelatorioBeanServiceLocator().getServicoWebGeracaoRelatorioPort( this
+					.getURLServico( configInfo ) );
 
-            final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy",
-                    this.localeBrasil);
-            final Calendar dataInicio = new GregorianCalendar();
-            dataInicio.setTime(simpleDateFormat.parse(this.txtDataInicio.getText()));
-            final Double idCliente = new Double(this.txtIdCliente.getText());
-            servicoWebGeracaoRelatorio.gerarRelatorioExtratoConsolidadoDeAtivos(idCliente,
-                    dataInicio);
-        } catch (final ServiceException e) {
+			final SimpleDateFormat simpleDateFormat = new SimpleDateFormat( "dd/MM/yyyy", this.localeBrasil );
+			final Calendar dataPregao = new GregorianCalendar();
+			dataPregao.setTime( simpleDateFormat.parse( this.txtDataPregao.getText() ) );
+			final Double idCliente = new Double( this.txtIdCliOperDerivDia.getText() );
+			final Double idCorretora = new Double( this.txtIdCorretora.getText() );
+			final Double idInstituicao = new Double( this.txtIdInstituicao.getText() );
+			servicoWebGeracaoRelatorio.gerarRelatorioOperacoesDerivativosRealizadasDia(
+				idInstituicao,
+				dataPregao,
+				idCorretora,
+				idCliente );
+		}
+		catch ( final ServiceException e )
+		{
 
-            throw new RuntimeException(
-                    "Ocorreu um erro inesperado na tentativa de uso do ServicoWebGeracaoRelatorio");
-        } catch (final RemoteException e) {
+			throw new RuntimeException( "Ocorreu um erro inesperado na tentativa de uso do ServicoWebGeracaoRelatorio" );
+		}
+		catch ( final RemoteException e )
+		{
 
-            throw new RuntimeException(
-                    "Ocorreu um erro inesperado na tentativa de uso do ServicoWebGeracaoRelatorio");
-        } catch (final MalformedURLException e) {
+			throw new RuntimeException( "Ocorreu um erro inesperado na tentativa de uso do ServicoWebGeracaoRelatorio" );
+		}
+		catch ( final MalformedURLException e )
+		{
 
-            throw new RuntimeException(
-                    "Ocorreu um erro inesperado na tentativa de uso do ServicoWebGeracaoRelatorio");
-        }
-    }
+			throw new RuntimeException( "Ocorreu um erro inesperado na tentativa de uso do ServicoWebGeracaoRelatorio" );
+		}
+	}
 
-    public void gerarRelatorioAtivoDisponivel(
-            final ActionEvent event)
-    {
+	public void gerarRelatorioExtratoConsolidadoDeAtivo(
+		final ActionEvent event )
+		throws Exception
+	{
+		final ConfigInfo configInfo = this.getConfigDao().obterConfigInfoVigente();
+		try
+		{
 
-        final ConfigInfo configInfo = this.getConfigDao().obterConfigInfoVigente();
-        try
-        {
-            final ServicoWebGeracaoRelatorio servicoWebGeracaoRelatorio =
-                    new ServicoWebGeracaoRelatorioBeanServiceLocator()
-                            .getServicoWebGeracaoRelatorioPort(this.getURLServico(configInfo));
+			final ServicoWebGeracaoRelatorio servicoWebGeracaoRelatorio =
+				new ServicoWebGeracaoRelatorioBeanServiceLocator().getServicoWebGeracaoRelatorioPort( this
+					.getURLServico( configInfo ) );
 
-            servicoWebGeracaoRelatorio.gerarRelatorioAtivosDisponiveis();
-        } catch (final ServiceException e)
-        {
-            throw new RuntimeException(
-                    "Ocorreu um erro inesperado na tentativa de uso do ServicoWebGeracaoRelatorio");
-        } catch (final RemoteException e)
-        {
-            throw new RuntimeException(
-                    "Ocorreu um erro inesperado na tentativa de uso do ServicoWebGeracaoRelatorio");
-        } catch (final MalformedURLException e)
-        {
-            throw new RuntimeException(
-                    "Ocorreu um erro inesperado na tentativa de uso do ServicoWebGeracaoRelatorio");
-        }
-    }
+			final SimpleDateFormat simpleDateFormat = new SimpleDateFormat( "dd/MM/yyyy", this.localeBrasil );
+			final Calendar dataInicio = new GregorianCalendar();
+			dataInicio.setTime( simpleDateFormat.parse( this.txtDataInicio.getText() ) );
+			final Double idCliente = new Double( this.txtIdCliente.getText() );
+			servicoWebGeracaoRelatorio.gerarRelatorioExtratoConsolidadoDeAtivos(
+				idCliente,
+				dataInicio );
+		}
+		catch ( final ServiceException e )
+		{
 
-    public void gerarRelatorioTaxasDeNegociacaoERegistroPorPeriodo(
-            final ActionEvent event) throws Exception
-    {
-        final ConfigInfo configInfo = this.getConfigDao().obterConfigInfoVigente();
-        try
-        {
-            final ServicoWebGeracaoRelatorio servicoWebGeracaoRelatorio =
-                    new ServicoWebGeracaoRelatorioBeanServiceLocator()
-                            .getServicoWebGeracaoRelatorioPort(this.getURLServico(configInfo));
+			throw new RuntimeException( "Ocorreu um erro inesperado na tentativa de uso do ServicoWebGeracaoRelatorio" );
+		}
+		catch ( final RemoteException e )
+		{
 
-            final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy",
-                    this.localeBrasil);
-            final Calendar dataPregaoInicio = new GregorianCalendar();
-            final Calendar dataPregaoFim = new GregorianCalendar();
-            dataPregaoInicio.setTime(simpleDateFormat.parse(this.txtDataPregaoInicioTxRegNeg
-                    .getText()));
-            dataPregaoFim.setTime(simpleDateFormat.parse(this.txtDataPregaoFimTxRegNeg.getText()));
-            final Double idCliente = new Double(this.txtIdCliTxRegNeg.getText());
-            final Byte usarIdCliente = new Byte(this.txtUsarIdClienteTxRegNeg.getText());
-            final Double idInstituicao = new Double(this.txtIdInstituicaoTxRegNeg.getText());
-            servicoWebGeracaoRelatorio.gerarRelatorioTaxasDeNegociacaoERegistroOperacaoPeriodo(
-                    usarIdCliente, idCliente, idInstituicao, dataPregaoInicio, dataPregaoFim);
-        } catch (final ServiceException e)
-        {
-            throw new RuntimeException(
-                    "Ocorreu um erro inesperado na tentativa de uso do ServicoWebGeracaoRelatorio");
-        } catch (final RemoteException e)
-        {
-            throw new RuntimeException(
-                    "Ocorreu um erro inesperado na tentativa de uso do ServicoWebGeracaoRelatorio");
-        } catch (final MalformedURLException e)
-        {
-            throw new RuntimeException(
-                    "Ocorreu um erro inesperado na tentativa de uso do ServicoWebGeracaoRelatorio");
-        }
-    }
+			throw new RuntimeException( "Ocorreu um erro inesperado na tentativa de uso do ServicoWebGeracaoRelatorio" );
+		}
+		catch ( final MalformedURLException e )
+		{
 
-    public void gerarRelatorioMovimentoFinanceiro(
-            final ActionEvent event) throws Exception
-    {
-        final ConfigInfo configInfo = this.getConfigDao().obterConfigInfoVigente();
-        try
-        {
-            final ServicoWebGeracaoRelatorio servicoWebGeracaoRelatorio =
-                    new ServicoWebGeracaoRelatorioBeanServiceLocator()
-                            .getServicoWebGeracaoRelatorioPort(this.getURLServico(configInfo));
+			throw new RuntimeException( "Ocorreu um erro inesperado na tentativa de uso do ServicoWebGeracaoRelatorio" );
+		}
+	}
 
-            final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy",
-                    this.localeBrasil);
-            final Calendar dataLiquidacao = new GregorianCalendar();
+	public void gerarRelatorioAtivoDisponivel(
+		final ActionEvent event )
+	{
 
-            dataLiquidacao.setTime(simpleDateFormat.parse(this.txtDataLiquidacaoMovimentoFinanceiro
-                    .getText()));
-            final long clienteId = new Integer(this.txtClienteMovimentoFinanceiro.getText());
-            final long corretoraId = new Byte(this.txtCorretoraIdMovimentoFinanceiro.getText());
-            final long instituicaoId = new Integer(this.txtClienteMovimentoFinanceiro.getText());
-            dataLiquidacao.setTime(simpleDateFormat.parse((this.txtCorretoraIdMovimentoFinanceiro
-                    .getText())));
+		final ConfigInfo configInfo = this.getConfigDao().obterConfigInfoVigente();
+		try
+		{
+			final ServicoWebGeracaoRelatorio servicoWebGeracaoRelatorio =
+				new ServicoWebGeracaoRelatorioBeanServiceLocator().getServicoWebGeracaoRelatorioPort( this
+					.getURLServico( configInfo ) );
 
-            servicoWebGeracaoRelatorio.gerarRelatorioMovimentoFinanceiro(instituicaoId,
-                    corretoraId, clienteId, dataLiquidacao);
-        } catch (final ServiceException e)
-        {
-            throw new RuntimeException(
-                    "Ocorreu um erro inesperado na tentativa de uso do ServicoWebGeracaoRelatorio");
-        } catch (final RemoteException e)
-        {
-            throw new RuntimeException(
-                    "Ocorreu um erro inesperado na tentativa de uso do ServicoWebGeracaoRelatorio");
-        } catch (final MalformedURLException e)
-        {
-            throw new RuntimeException(
-                    "Ocorreu um erro inesperado na tentativa de uso do ServicoWebGeracaoRelatorio");
-        }
-    }
+			servicoWebGeracaoRelatorio.gerarRelatorioAtivosDisponiveis();
+		}
+		catch ( final ServiceException e )
+		{
+			throw new RuntimeException( "Ocorreu um erro inesperado na tentativa de uso do ServicoWebGeracaoRelatorio" );
+		}
+		catch ( final RemoteException e )
+		{
+			throw new RuntimeException( "Ocorreu um erro inesperado na tentativa de uso do ServicoWebGeracaoRelatorio" );
+		}
+		catch ( final MalformedURLException e )
+		{
+			throw new RuntimeException( "Ocorreu um erro inesperado na tentativa de uso do ServicoWebGeracaoRelatorio" );
+		}
+	}
 
-    public ConfigDao getConfigDao()
-    {
-        return this.configDao;
-    }
+	public void gerarRelatorioTaxasDeNegociacaoERegistroPorPeriodo(
+		final ActionEvent event )
+		throws Exception
+	{
+		final ConfigInfo configInfo = this.getConfigDao().obterConfigInfoVigente();
+		try
+		{
+			final ServicoWebGeracaoRelatorio servicoWebGeracaoRelatorio =
+				new ServicoWebGeracaoRelatorioBeanServiceLocator().getServicoWebGeracaoRelatorioPort( this
+					.getURLServico( configInfo ) );
 
-    public void setConfigDao(
-            final ConfigDao configDao)
-    {
-        this.configDao = configDao;
-    }
+			final SimpleDateFormat simpleDateFormat = new SimpleDateFormat( "dd/MM/yyyy", this.localeBrasil );
+			final Calendar dataPregaoInicio = new GregorianCalendar();
+			final Calendar dataPregaoFim = new GregorianCalendar();
+			dataPregaoInicio.setTime( simpleDateFormat.parse( this.txtDataPregaoInicioTxRegNeg.getText() ) );
+			dataPregaoFim.setTime( simpleDateFormat.parse( this.txtDataPregaoFimTxRegNeg.getText() ) );
+			final Double idCliente = new Double( this.txtIdCliTxRegNeg.getText() );
+			final Byte usarIdCliente = new Byte( this.txtUsarIdClienteTxRegNeg.getText() );
+			final Double idInstituicao = new Double( this.txtIdInstituicaoTxRegNeg.getText() );
+			servicoWebGeracaoRelatorio.gerarRelatorioTaxasDeNegociacaoERegistroOperacaoPeriodo(
+				usarIdCliente,
+				idCliente,
+				idInstituicao,
+				dataPregaoInicio,
+				dataPregaoFim );
+		}
+		catch ( final ServiceException e )
+		{
+			throw new RuntimeException( "Ocorreu um erro inesperado na tentativa de uso do ServicoWebGeracaoRelatorio" );
+		}
+		catch ( final RemoteException e )
+		{
+			throw new RuntimeException( "Ocorreu um erro inesperado na tentativa de uso do ServicoWebGeracaoRelatorio" );
+		}
+		catch ( final MalformedURLException e )
+		{
+			throw new RuntimeException( "Ocorreu um erro inesperado na tentativa de uso do ServicoWebGeracaoRelatorio" );
+		}
+	}
 
-    protected URL getURLServico(
-            final ConfigInfo configInfo)
-            throws MalformedURLException
-    {
-        return new URL(MessageFormat.format(
-                // "http://{0}:{1}/relatorio-webservices-adapters/ServicoWebGeracaoRelatorio",
-                "http://{0}:{1}/relatorio-webservice-adapters/ServicoWebGeracaoRelatorio",
-                configInfo.getHost(),
-                configInfo.getPorta()));
-    }
+	public void gerarRelatorioMovimentoFinanceiro(
+		final ActionEvent event )
+		throws Exception
+	{
+		final ConfigInfo configInfo = this.getConfigDao().obterConfigInfoVigente();
+		try
+		{
+			final ServicoWebGeracaoRelatorio servicoWebGeracaoRelatorio =
+				new ServicoWebGeracaoRelatorioBeanServiceLocator().getServicoWebGeracaoRelatorioPort( this
+					.getURLServico( configInfo ) );
+
+			final SimpleDateFormat simpleDateFormat = new SimpleDateFormat( "dd/MM/yyyy", this.localeBrasil );
+			final Calendar dataLiquidacao = new GregorianCalendar();
+
+			dataLiquidacao.setTime( simpleDateFormat.parse( this.txtDataLiquidacaoMovimentoFinanceiro.getText() ) );
+			final long clienteId = new Integer( this.txtClienteMovimentoFinanceiro.getText() );
+			final long corretoraId = new Byte( this.txtCorretoraIdMovimentoFinanceiro.getText() );
+			final long instituicaoId = new Integer( this.txtClienteMovimentoFinanceiro.getText() );
+			dataLiquidacao.setTime( simpleDateFormat.parse( ( this.txtCorretoraIdMovimentoFinanceiro.getText() ) ) );
+
+			servicoWebGeracaoRelatorio.gerarRelatorioMovimentoFinanceiro(
+				instituicaoId,
+				corretoraId,
+				clienteId,
+				dataLiquidacao );
+		}
+		catch ( final ServiceException e )
+		{
+			throw new RuntimeException( "Ocorreu um erro inesperado na tentativa de uso do ServicoWebGeracaoRelatorio" );
+		}
+		catch ( final RemoteException e )
+		{
+			throw new RuntimeException( "Ocorreu um erro inesperado na tentativa de uso do ServicoWebGeracaoRelatorio" );
+		}
+		catch ( final MalformedURLException e )
+		{
+			throw new RuntimeException( "Ocorreu um erro inesperado na tentativa de uso do ServicoWebGeracaoRelatorio" );
+		}
+	}
+
+	public ConfigDao getConfigDao()
+	{
+		return this.configDao;
+	}
+
+	public void setConfigDao(
+		final ConfigDao configDao )
+	{
+		this.configDao = configDao;
+	}
+
+	protected URL getURLServico(
+		final ConfigInfo configInfo )
+		throws MalformedURLException
+	{
+		return new URL( MessageFormat.format(
+			// "http://{0}:{1}/relatorio-webservices-adapters/ServicoWebGeracaoRelatorio",
+			"http://{0}:{1}/relatorio-webservice-adapters/ServicoWebGeracaoRelatorio",
+			configInfo.getHost(),
+			configInfo.getPorta() ) );
+	}
+
+	public URL getLocation()
+	{
+		return location;
+	}
+
+	public void setLocation(
+		final URL location )
+	{
+		this.location = location;
+	}
+
+	public ResourceBundle getResource()
+	{
+		return resource;
+	}
+
+	public void setResource(
+		final ResourceBundle resource )
+	{
+		this.resource = resource;
+	}
 }

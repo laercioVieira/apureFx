@@ -1,5 +1,6 @@
 package br.com.layonvsg.apurefx;
 
+import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -8,12 +9,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import br.com.layonvsg.apurefx.model.Tema;
 
-public class Derivativos
+public class Main
 	extends Application
 {
 
-	public Derivativos()
+	public Main()
 	{
 		super();
 
@@ -23,7 +25,7 @@ public class Derivativos
 		final String[] args )
 	{
 		Application.launch(
-			Derivativos.class,
+			Main.class,
 			( String[] ) null );
 
 	}
@@ -33,19 +35,26 @@ public class Derivativos
 		final Stage primaryStage )
 		throws Exception
 	{
+		final URL location = ClassLoader.getSystemResource( "fxml/BasicApplication.fxml" );
+		final ResourceBundle resource = ResourceBundle.getBundle(
+			"fxml/BasicApplication",
+			Locale.getDefault(),
+			ClassLoader.getSystemClassLoader() );
+		
 		final VBox page = ( VBox ) FXMLLoader.load(
-			Thread.currentThread().getContextClassLoader().getResource(
-				"fxml/BasicApplication.fxml" ),
-			ResourceBundle.getBundle(
-				"fxml/BasicApplication",
-				Locale.getDefault(),
-				ClassLoader.getSystemClassLoader() ) );
+			location,
+			resource );
 
 		final Scene scene = new Scene( page );
+		
+		if( Tema.BASIC.getURL() != null )
+		{
+			scene.getStylesheets().clear();
+			scene.getStylesheets().add( Tema.BASIC.getURL().toExternalForm() );
+		}
 		primaryStage.setScene( scene );
 		primaryStage.setTitle( "ApureFX - Uma Solução para integração JavaFX." );
 		primaryStage.show();
 
 	}
-
 }

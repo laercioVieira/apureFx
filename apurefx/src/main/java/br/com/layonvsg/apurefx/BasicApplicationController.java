@@ -16,6 +16,7 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -23,9 +24,13 @@ import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 import br.com.layonvsg.apurefx.dao.PersonalConfigDao;
 import br.com.layonvsg.apurefx.dto.PersonalConfig;
+import br.com.layonvsg.apurefx.servico.GerenciadorTemas;
+import br.com.layonvsg.apurefx.servico.ServicoGerenciadorTemas;
 
 public class BasicApplicationController
 {
+
+	private BasicApplicationControllerProduce myProducer;
 
 	@FXML
 	private VBox containerPrincipalApp;
@@ -78,70 +83,81 @@ public class BasicApplicationController
 	@FXML
 	private TextArea txtAreaStatus;
 
-	private Stage derivativosStageForm;
+	private Stage apuracaoStageForm;
 
 	@FXML
-	void abrirApuracao(
+	private GridPane containerMudarEstilo;
+
+	private Stage stageMudarEstilo;
+
+	private GerenciadorTemas gerenciadorTEmas;
+
+	private EscolherEstiloController escolherEstiloController;
+
+	@FXML
+	public void abrirApuracao(
 		final ActionEvent event )
+	{
+		getApuracaoStageForm().showAndWait();
+	}
+
+	private void setUpApuracaoForm()
 	{
 		try
 		{
-			setUpApuracaoForm();
-			getDerivativosForm().showAndWait();
+			final URL localizacao = Thread.currentThread().getContextClassLoader().getResource(
+				"fxml/Apuracao.fxml" );
+			final AnchorPane apuracaoPanel = ( AnchorPane ) FXMLLoader.load(
+				localizacao,
+				resources );
+
+			setApuracaoStageForm( new Stage( StageStyle.DECORATED ) );
+
+			getApuracaoStageForm().setTitle(
+				"Derivativos - BankPro" );
+
+			getApuracaoStageForm().initModality(
+				Modality.WINDOW_MODAL );
+
+			getApuracaoStageForm().setScene(
+				new Scene( apuracaoPanel ) );
 
 		}
 		catch ( final Exception e )
 		{
 			e.printStackTrace();
 		}
+
 	}
 
-	private void setUpApuracaoForm()
-		throws IOException
+	public Stage getApuracaoStageForm()
 	{
-		final AnchorPane derivativosFormPanel = ( AnchorPane ) FXMLLoader.load(
-			Thread.currentThread().getContextClassLoader().getResource(
-				"fxml/Derivativos.fxml" ),
-			ResourceBundle.getBundle(
-				"fxml/BasicApplication",
-				Locale.getDefault(),
-				ClassLoader.getSystemClassLoader() ) );
-
-		setDerivativosForm( new Stage( StageStyle.DECORATED ) );
-
-		getDerivativosForm().setTitle(
-			"Derivativos - BankPro" );
-
-		getDerivativosForm().initModality(
-			Modality.WINDOW_MODAL );
-
-		getDerivativosForm().setScene(
-			new Scene( derivativosFormPanel ) );
+		return this.apuracaoStageForm;
 	}
 
-	public Stage getDerivativosForm()
-	{
-		return this.derivativosStageForm;
-	}
-
-	public void setDerivativosForm(
+	public void setApuracaoStageForm(
 		final Stage stage )
 	{
-		this.derivativosStageForm = stage;
+		this.apuracaoStageForm = stage;
 	}
 
 	@FXML
-	void fecharAplicacao(
+	public void fecharAplicacao(
 		final ActionEvent event )
 	{
 		if ( containerPrincipalApp != null )
 		{
-			containerPrincipalApp.fireEvent( new Event( WindowEvent.WINDOW_CLOSE_REQUEST ) );
+			containerMudarEstilo.getScene().getWindow().fireEvent(
+				new Event( WindowEvent.WINDOW_CLOSE_REQUEST ) );
+			getApuracaoStageForm().getScene().getWindow().fireEvent(
+				new Event( WindowEvent.WINDOW_CLOSE_REQUEST ) );
+			containerPrincipalApp.getScene().getWindow().fireEvent(
+				new Event( WindowEvent.WINDOW_CLOSE_REQUEST ) );
 		}
 	}
 
 	@FXML
-	void importarNegocios(
+	protected void importarNegocios(
 		final ActionEvent event )
 	{
 		final ImportacaoNegocioController importacaoNegocioController = new ImportacaoNegocioController( txtAreaStatus );
@@ -159,14 +175,13 @@ public class BasicApplicationController
 	}
 
 	@FXML
-	void mudarEstilo(
-		final ActionEvent event )
+	public void abrirDialogoEscolhaEstilo()
 	{
-
+		stageMudarEstilo.showAndWait();
 	}
 
 	@FXML
-	void mudarIdioma(
+	protected void mudarIdioma(
 		final ActionEvent event )
 	{
 		try
@@ -175,11 +190,6 @@ public class BasicApplicationController
 			{
 				final CheckMenuItem checkMenuItem = ( CheckMenuItem ) event.getSource();
 
-				for ( final MenuItem element : checkMenuItem.getParentMenu().getItems() )
-				{
-					( ( CheckMenuItem ) element ).setSelected( false );
-				}
-
 				if ( checkMenuItem.getId() != null && checkMenuItem.getId().trim().equals(
 					"ckMnPortugues" ) )
 				{
@@ -187,12 +197,18 @@ public class BasicApplicationController
 						"fxml/BasicApplication",
 						Locale.getDefault(),
 						ClassLoader.getSystemClassLoader() );
-					
+
 					final VBox root = ( VBox ) FXMLLoader.load(
 						location,
 						resources );
+
 					containerPrincipalApp.getChildren().clear();
-					containerPrincipalApp.getChildren().addAll( root.getChildren() );
+					containerPrincipalApp.getChildren().addAll(
+						root.getChildren() );
+					for ( final MenuItem element : checkMenuItem.getParentMenu().getItems() )
+					{
+						( ( CheckMenuItem ) element ).setSelected( false );
+					}
 					checkMenuItem.setSelected( true );
 				}
 				else if ( checkMenuItem.getId() != null && checkMenuItem.getId().trim().equals(
@@ -206,9 +222,14 @@ public class BasicApplicationController
 					final VBox root = ( VBox ) FXMLLoader.load(
 						location,
 						resources );
-					containerPrincipalApp.getChildren().clear();
-					containerPrincipalApp.getChildren().addAll( root.getChildren() );
 
+					containerPrincipalApp.getChildren().clear();
+					containerPrincipalApp.getChildren().addAll(
+						root.getChildren() );
+					for ( final MenuItem element : checkMenuItem.getParentMenu().getItems() )
+					{
+						( ( CheckMenuItem ) element ).setSelected( false );
+					}
 					checkMenuItem.setSelected( true );
 				}
 			}
@@ -227,6 +248,20 @@ public class BasicApplicationController
 	@FXML
 	public void initialize()
 	{
+		checkPreconditions();
+		setUpMudarEstiloForm();
+		setUpApuracaoForm();
+		initMyProducer();
+	}
+
+	private void initMyProducer()
+	{
+		myProducer = new BasicApplicationControllerProduce( this );
+		escolherEstiloController.setGerenciadorTemas( new ServicoGerenciadorTemas( this ) );
+	}
+
+	private void checkPreconditions()
+	{
 		assert btnApuracao != null : "fx:id=\"btnApuracao\" was not injected: check your FXML file 'BasicApplication.fxml'.";
 		assert btnImportarNegocio != null : "fx:id=\"btnImportarNegocio\" was not injected: check your FXML file 'BasicApplication.fxml'.";
 		assert btnMudarEstilo != null : "fx:id=\"btnMudarEstilo\" was not injected: check your FXML file 'BasicApplication.fxml'.";
@@ -241,8 +276,51 @@ public class BasicApplicationController
 		assert mnMudarEstilo != null : "fx:id=\"mnMudarEstilo\" was not injected: check your FXML file 'BasicApplication.fxml'.";
 		assert mnSair != null : "fx:id=\"mnSair\" was not injected: check your FXML file 'BasicApplication.fxml'.";
 		assert txtAreaStatus != null : "fx:id=\"txtAreaStatus\" was not injected: check your FXML file 'BasicApplication.fxml'.";
+	}
+
+	private void setUpMudarEstiloForm()
+	{
+		try
+		{
+			Scene scene;
+			if ( containerMudarEstilo == null && stageMudarEstilo == null )
+			{
+				final FXMLLoader fxmlLoader = new FXMLLoader( 
+					Thread.currentThread().getContextClassLoader().getResource(
+									"fxml/EscolherEstiloDialog.fxml" ),
+								resources );
+				
+				containerMudarEstilo = ( GridPane ) fxmlLoader.load();
+				this.escolherEstiloController = ( EscolherEstiloController ) fxmlLoader.getController();
+				
+				scene = new Scene( containerMudarEstilo );
+				final URL url = ClassLoader.getSystemResource( "css/AlertDialog.css" );
+				scene.getStylesheets().clear();
+				if ( url != null )
+				{
+					scene.getStylesheets().add(
+						url.toExternalForm() );
+				}
+				else
+				{
+					scene.getStylesheets().addAll(
+						getContainerPrincipalApp().getScene().getStylesheets() );
+				}
+
+				stageMudarEstilo = new Stage( StageStyle.DECORATED );
+				stageMudarEstilo.setTitle( "Escolher Estilo" );
+				stageMudarEstilo.initModality( Modality.WINDOW_MODAL );
+				stageMudarEstilo.setScene( scene );
+			}
+
+		}
+		catch ( final IOException e )
+		{
+			e.printStackTrace();
+		}
 
 	}
+
 
 	public VBox getContainerPrincipalApp()
 	{
@@ -253,6 +331,17 @@ public class BasicApplicationController
 		final VBox containerPrincipalApp )
 	{
 		this.containerPrincipalApp = containerPrincipalApp;
+	}
+
+	public Stage getStageMudarEstilo()
+	{
+		return stageMudarEstilo;
+	}
+
+	public void setStageMudarEstilo(
+		final Stage stageMudarEstilo )
+	{
+		this.stageMudarEstilo = stageMudarEstilo;
 	}
 
 }

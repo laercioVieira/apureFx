@@ -2,8 +2,8 @@
 
 <negocios>
 	<negocio>
-		<id>3001</id>
-		<mercado>1</mercado>
+		<!-- <id>3001</id>
+		 --><mercado>1</mercado>
 		<quantidade>2</quantidade>
 		<preco>110.05</preco>
 		<naturezaNegociacao>1</naturezaNegociacao>
@@ -32,8 +32,8 @@
 			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" />
 	</negocio>
 	<negocio>
-		<id>3002</id>
-		<mercado>1</mercado>
+		<!-- <id>3002</id>
+		 --><mercado>1</mercado>
 		<quantidade>3</quantidade>
 		<preco>110.08</preco>
 		<naturezaNegociacao>1</naturezaNegociacao>
@@ -62,8 +62,8 @@
 			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" />
 	</negocio>
 	<negocio>
-		<id>3003</id>
-		<mercado>1</mercado>
+		<!-- <id>3003</id>
+		 --><mercado>1</mercado>
 		<quantidade>1</quantidade>
 		<preco>111</preco>
 		<naturezaNegociacao>2</naturezaNegociacao>
@@ -92,8 +92,8 @@
 			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" />
 	</negocio>
 	<negocio>
-		<id>3004</id>
-		<mercado>1</mercado>
+		<!-- <id>3004</id>
+		 --><mercado>1</mercado>
 		<quantidade>10</quantidade>
 		<preco>112</preco>
 		<naturezaNegociacao>2</naturezaNegociacao>

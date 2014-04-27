@@ -21,7 +21,7 @@ public class NegocioConverter
 		for ( final NegocioXML negocioXML : negociosXML )
 		{
 			final NegocioBuilder builder = Negocio.builder()
-			.comId( negocioXML.getId() )
+			//.comId( negocioXML.getId() )
 			.naData( Data.novaData( negocioXML.getData() ) )
 			.doContrato( negocioXML.getContratoId() )
 			.deNaturezaNegociacao( negocioXML.getNaturezaNegociacao() )

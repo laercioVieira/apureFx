@@ -8,8 +8,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
+<?scenebuilder-background-color 0xdfdfdfff?>
 <?scenebuilder-preview-i18n-resource BasicApplication_pt_BR.properties?>
-<?scenebuilder-stylesheet ../css/BasicApplication.css?>
+<?scenebuilder-stylesheet ../css/themeBasicApplication.css?>
 
 <VBox fx:id="containerPrincipalApp" prefHeight="394.0" prefWidth="640.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="br.com.layonvsg.apurefx.BasicApplicationController">
   <children>
@@ -20,7 +21,7 @@
             <MenuItem mnemonicParsing="false" onAction="#importarNegocios" text="%menu.title.importarNegocio" fx:id="mnImportarNegocio" />
             <MenuItem mnemonicParsing="false" onAction="#abrirApuracao" text="%menu.title.AbrirApuracao" fx:id="mnAbrirApuracao" />
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" onAction="#mudarEstilo" text="%menu.title.mudarEstilo" fx:id="mnMudarEstilo" />
+            <MenuItem mnemonicParsing="false" onAction="#abrirDialogoEscolhaEstilo" text="%menu.title.mudarEstilo" fx:id="mnMudarEstilo" />
             <SeparatorMenuItem mnemonicParsing="false" />
             <Menu mnemonicParsing="false" text="%menu.title.mudarIdioma" fx:id="mdMudarIdioma">
               <items>
@@ -60,16 +61,7 @@
               <children>
                 <Button fx:id="btnImportarNegocio" mnemonicParsing="false" onAction="#importarNegocios" prefHeight="50.0" prefWidth="160.0" style="" styleClass="botoesPrincipal" text="%principal.button.negocios" wrapText="false" />
                 <Button fx:id="btnApuracao" mnemonicParsing="false" onAction="#abrirApuracao" prefHeight="50.0" prefWidth="160.0" styleClass="botoesPrincipal" text="%principal.button.apuracao" />
-                <Button fx:id="btnMudarEstilo" mnemonicParsing="false" prefHeight="50.0" prefWidth="160.0" styleClass="botoesPrincipal" text="%principal.button.mudarestilo">
-                  <contextMenu>
-                    <ContextMenu fx:id="ctxtMnMudarEstilo">
-                      <items>
-                        <CheckMenuItem disable="true" mnemonicParsing="false" onAction="#mudarEstilo" selected="true" text="Tema1" fx:id="btnChkMenuTema1" />
-                        <CheckMenuItem mnemonicParsing="false" onAction="#mudarEstilo" text="Tema2" fx:id="btnChkMenuTema2" />
-                      </items>
-                    </ContextMenu>
-                  </contextMenu>
-                </Button>
+                <Button fx:id="btnMudarEstilo" mnemonicParsing="false" onAction="#abrirDialogoEscolhaEstilo" prefHeight="50.0" prefWidth="160.0" styleClass="botoesPrincipal" text="%principal.button.mudarestilo" />
                 <Button fx:id="btnSair" mnemonicParsing="false" onAction="#fecharAplicacao" prefHeight="50.0" prefWidth="160.0" styleClass="botoesPrincipal" text="%principal.button.sair" />
               </children>
             </VBox>
