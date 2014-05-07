@@ -22,27 +22,43 @@
         </Pane>
         <TabPane prefHeight="233.0" prefWidth="406.0" tabClosingPolicy="UNAVAILABLE">
           <tabs>
-            <Tab text="Ativo Disponível">
+            <Tab text="Negocios Importados">
               <content>
-                <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="622.0" styleClass="theme">
+                <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="196.0" prefWidth="622.0" styleClass="theme">
                   <children>
-                    <Button fx:id="btnGerar" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#gerarRelatorioAtivoDisponivel" prefWidth="59.0" text="Gerar" />
-                  </children>
-                  <stylesheets>
-                    <URL value="@../css/derivativos.css" />
-                  </stylesheets>
-                </AnchorPane>
-              </content>
-            </Tab>
-            <Tab text="Extrato Consolidado">
-              <content>
-                <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="theme">
-                  <children>
-                    <TextField fx:id="txtDataInicio" layoutX="168.0" layoutY="46.0" prefWidth="130.0" promptText="" text="19/07/2013" />
-                    <Label layoutX="167.0" layoutY="20.0" text="Data Início" />
-                    <Button layoutX="242.0" layoutY="80.0" mnemonicParsing="false" onAction="#gerarRelatorioExtratoConsolidadoDeAtivo" text="Gerar" />
-                    <TextField fx:id="txtIdCliente" layoutX="13.0" layoutY="46.0" prefWidth="130.0" text="1000" />
-                    <Label layoutX="13.0" layoutY="23.0" text="Cliente" />
+                    <GridPane id="GridPane" gridLinesVisible="false" layoutX="21.0" layoutY="14.0" prefHeight="123.0">
+                      <children>
+                        <Label text="Cliente:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                        <TextField id="txtIdCliente" fx:id="txtIdClienteImportNeg" prefWidth="130.0" text="1000" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                        <Label text="Instituição:" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+                        <TextField id="txtIdInstituicao" fx:id="txtIdInstituicaoImportNeg" prefWidth="130.0" text="1000" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        <Label text="Corretora:" GridPane.columnIndex="6" GridPane.rowIndex="0" />
+                        <TextField id="txtIdCliente" fx:id="txtIdCorretoraImportNeg" prefWidth="130.0" text="1000" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+                        <Label text="Data Pregão Inicio" textAlignment="LEFT" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                        <TextField id="txtDataPregao" fx:id="txtDataPregaoInicioImportNeg" prefWidth="130.0" promptText="" text="02/01/2003" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                        <Label text="Data Pregão Fim" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                        <TextField id="txtDataPregao" fx:id="txtDataPregaoFimImportNegoc" prefWidth="130.0" promptText="" text="31/12/2013" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                      </children>
+                      <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                      </columnConstraints>
+                      <rowConstraints>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                      </rowConstraints>
+                    </GridPane>
+                    <Button layoutX="21.0" layoutY="143.0" mnemonicParsing="false" onAction="#gerarRelatorioImportacaoNegociosPorPeriodo" prefHeight="30.0" prefWidth="130.0" text="Gerar" />
                   </children>
                   <stylesheets>
                     <URL value="@../css/derivativos.css" />
@@ -56,7 +72,7 @@
                   <children>
                     <TextField fx:id="txtDataPregao" layoutX="174.0" layoutY="43.0" prefWidth="130.0" promptText="" text="19/07/2013" />
                     <Label layoutX="174.0" layoutY="19.0" text="Data Pregão" />
-                    <Button layoutX="249.0" layoutY="140.0" mnemonicParsing="false" onAction="#gerarRelatorioOperacoesDerivativosRealizadasDia" text="Gerar" />
+                    <Button layoutX="16.0" layoutY="137.0" mnemonicParsing="false" onAction="#gerarRelatorioOperacoesDerivativosRealizadasDia" prefHeight="30.0" prefWidth="130.0" text="Gerar" />
                     <TextField id="txtIdCliente" fx:id="txtIdCliOperDerivDia" layoutX="15.0" layoutY="42.0" prefWidth="130.0" text="1000" />
                     <Label layoutX="15.0" layoutY="19.0" text="Cliente" />
                     <TextField fx:id="txtIdInstituicao" layoutX="15.0" layoutY="97.0" prefWidth="130.0" text="1000" />
@@ -70,21 +86,11 @@
                 </AnchorPane>
               </content>
             </Tab>
-            <Tab text="Taxas Neg e Reg">
+            <Tab text="Ativo Disponível">
               <content>
-                <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="theme">
+                <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="622.0" styleClass="theme">
                   <children>
-                    <TextField id="txtDataPregao" fx:id="txtDataPregaoInicioTxRegNeg" layoutX="183.0" layoutY="45.0" prefWidth="130.0" promptText="" text="01/01/2007" />
-                    <Label layoutX="183.0" layoutY="21.0" text="Data Pregão Inicio" />
-                    <Button layoutX="258.0" layoutY="142.0" mnemonicParsing="false" onAction="#gerarRelatorioTaxasDeNegociacaoERegistroPorPeriodo" text="Gerar" />
-                    <TextField id="txtIdCliente" fx:id="txtIdCliTxRegNeg" layoutX="24.0" layoutY="44.0" prefWidth="130.0" text="1000" />
-                    <Label layoutX="24.0" layoutY="21.0" text="Cliente" />
-                    <TextField id="txtIdInstituicao" fx:id="txtIdInstituicaoTxRegNeg" layoutX="183.0" layoutY="96.0" prefWidth="130.0" text="1000" />
-                    <Label layoutX="183.0" layoutY="73.0" text="Instituição" />
-                    <TextField id="txtIdCliente" fx:id="txtUsarIdClienteTxRegNeg" layoutX="25.0" layoutY="99.0" prefWidth="130.0" text="0" />
-                    <Label layoutX="27.0" layoutY="76.0" text="filtrar Cliente" />
-                    <TextField id="txtDataPregao" fx:id="txtDataPregaoFimTxRegNeg" layoutX="337.0" layoutY="45.0" prefWidth="130.0" promptText="" text="31/12/2013" />
-                    <Label layoutX="337.0" layoutY="21.0" text="Data Pregão Fim" />
+                    <Button fx:id="btnGerar" layoutX="14.0" layoutY="16.0" mnemonicParsing="false" onAction="#gerarRelatorioAtivoDisponivel" prefHeight="30.0" prefWidth="130.0" text="Gerar" />
                   </children>
                   <stylesheets>
                     <URL value="@../css/derivativos.css" />
@@ -92,35 +98,27 @@
                 </AnchorPane>
               </content>
             </Tab>
-            <Tab text="Movimento Financeiro">
+            <Tab text="Extrato Consolidado">
               <content>
-                <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="theme">
                   <children>
-                    <AnchorPane id="Content" layoutX="0.0" layoutY="-17.0" prefHeight="200.0" prefWidth="622.0">
-                      <children>
-                        <Label layoutX="14.0" layoutY="28.0" prefWidth="61.0" text="Instituição:" />
-                        <TextField id="txtInstituicaoId" layoutX="14.0" layoutY="52.0" prefWidth="96.0" />
-                        <TextField id="txtDataLiquidacao" layoutX="143.0" layoutY="52.0" prefWidth="88.0" />
-                        <Label layoutX="144.0" layoutY="28.0" text="Data liquidacao:" />
-                        <Label layoutX="14.0" layoutY="93.0" text="Corretora:" />
-                        <Label layoutX="143.0" layoutY="93.0" text="Cliente:" />
-                        <TextField id="txtCorretoraId" layoutX="14.0" layoutY="127.0" prefWidth="96.0" />
-                        <TextField id="txtClienteId" layoutX="143.0" layoutY="127.0" prefWidth="86.0" />
-                        <Button layoutX="238.0" layoutY="164.0" mnemonicParsing="false" onAction="#gerarRelatorioMovimentoFinanceiro" text="Gerar" />
-                      </children>
-                      <stylesheets>
-                        <URL value="@../css/derivativos.css" />
-                      </stylesheets>
-                    </AnchorPane>
+                    <TextField fx:id="txtDataInicio" layoutX="178.0" layoutY="46.0" prefWidth="130.0" promptText="" text="19/07/2013" />
+                    <Label layoutX="177.0" layoutY="20.0" text="Data Início" />
+                    <Button layoutX="23.0" layoutY="139.0" mnemonicParsing="false" onAction="#gerarRelatorioExtratoConsolidadoDeAtivo" prefHeight="30.0" prefWidth="130.0" text="Gerar" />
+                    <TextField fx:id="txtIdCliente" layoutX="23.0" layoutY="46.0" prefWidth="130.0" text="1000" />
+                    <Label layoutX="23.0" layoutY="23.0" text="Cliente" />
                   </children>
+                  <stylesheets>
+                    <URL value="@../css/derivativos.css" />
+                  </stylesheets>
                 </AnchorPane>
               </content>
             </Tab>
           </tabs>
         </TabPane>
-        <Pane prefHeight="68.0" prefWidth="622.0">
+        <Pane prefHeight="55.0001220703125" prefWidth="622.0">
           <children>
-            <Button fx:id="btnSair" layoutX="552.0" layoutY="21.0" mnemonicParsing="false" onAction="#sair" text="Sair" />
+            <Button fx:id="btnSair" layoutX="478.0" layoutY="9.0" mnemonicParsing="false" onAction="#sair" prefHeight="30.0" prefWidth="130.0" text="Sair" />
           </children>
         </Pane>
       </children>

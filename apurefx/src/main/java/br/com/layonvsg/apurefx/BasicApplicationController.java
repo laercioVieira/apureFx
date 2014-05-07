@@ -1,7 +1,9 @@
 package br.com.layonvsg.apurefx;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Date;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -18,19 +20,22 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
+import br.com.layonvsg.apurefx.dao.ConfigDao;
 import br.com.layonvsg.apurefx.dao.PersonalConfigDao;
+import br.com.layonvsg.apurefx.dto.ConfigInfo;
 import br.com.layonvsg.apurefx.dto.PersonalConfig;
-import br.com.layonvsg.apurefx.servico.GerenciadorTemas;
 import br.com.layonvsg.apurefx.servico.ServicoGerenciadorTemas;
+import br.com.layonvsg.apurefx.util.LocalizadorResource;
 
 public class BasicApplicationController
 {
 
-	private BasicApplicationControllerProduce myProducer;
+	private static final long INSTITUICAO_DEFAULT_1000L = 1000L;
 
 	@FXML
 	private VBox containerPrincipalApp;
@@ -90,8 +95,6 @@ public class BasicApplicationController
 
 	private Stage stageMudarEstilo;
 
-	private GerenciadorTemas gerenciadorTEmas;
-
 	private EscolherEstiloController escolherEstiloController;
 
 	@FXML
@@ -101,32 +104,23 @@ public class BasicApplicationController
 		getApuracaoStageForm().showAndWait();
 	}
 
-	private void setUpApuracaoForm()
+	private void setUpApuracaoForm() throws IOException
 	{
-		try
-		{
-			final URL localizacao = Thread.currentThread().getContextClassLoader().getResource(
-				"fxml/Apuracao.fxml" );
-			final AnchorPane apuracaoPanel = ( AnchorPane ) FXMLLoader.load(
-				localizacao,
-				resources );
+		final URL localizacao = LocalizadorResource.getInstance().getFXML( "Apuracao.fxml" );
+		final AnchorPane apuracaoPanel = ( AnchorPane ) FXMLLoader.load(
+			localizacao,
+			resources );
 
-			setApuracaoStageForm( new Stage( StageStyle.DECORATED ) );
+		setApuracaoStageForm( new Stage( StageStyle.DECORATED ) );
 
-			getApuracaoStageForm().setTitle(
-				"Derivativos - BankPro" );
+		getApuracaoStageForm().setTitle(
+			"Derivativos - BankPro" );
 
-			getApuracaoStageForm().initModality(
-				Modality.WINDOW_MODAL );
+		getApuracaoStageForm().initModality(
+			Modality.WINDOW_MODAL );
 
-			getApuracaoStageForm().setScene(
-				new Scene( apuracaoPanel ) );
-
-		}
-		catch ( final Exception e )
-		{
-			e.printStackTrace();
-		}
+		getApuracaoStageForm().setScene(
+			new Scene( apuracaoPanel ) );
 
 	}
 
@@ -163,15 +157,36 @@ public class BasicApplicationController
 		final ImportacaoNegocioController importacaoNegocioController = new ImportacaoNegocioController( txtAreaStatus );
 
 		final PersonalConfigDao personalConfigDao = new PersonalConfigDao();
-		PersonalConfig personalConfig = personalConfigDao.getCurrentConfig();
+		final ConfigDao configDao = new ConfigDao();
 
+		PersonalConfig personalConfig = personalConfigDao.getCurrentConfig();
 		if ( personalConfig == null || personalConfig.getDefaultLocalizacaoNegocios() == null )
 		{
 			personalConfig = new PersonalConfig();
-			personalConfigDao.save( personalConfig );
 		}
 
-		importacaoNegocioController.importarNegociosApartirDe( personalConfig.getDefaultLocalizacaoNegocios() );
+		final FileChooser fileChooser = new FileChooser();
+		final FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter( "XML Files (*.xml)", "*.xml" );
+		fileChooser.getExtensionFilters().add(
+			extFilter );
+
+		fileChooser.setInitialDirectory( new File( personalConfig.getDefaultLocalizacaoNegocios() ) );
+		final File file = fileChooser.showOpenDialog( containerPrincipalApp.getScene().getWindow() );
+
+		if ( file != null )
+		{
+			personalConfig.setDefaultLocalizacaoNegocios( file.getParentFile().getAbsolutePath() );
+			personalConfigDao.save( personalConfig );
+			final Date dataFim = new Date( System.currentTimeMillis() );
+			final ConfigInfo configInfo = configDao.obterConfigInfoVigente();
+
+			importacaoNegocioController.importarNegociosApartirDe(
+				configInfo,
+				file,
+				INSTITUICAO_DEFAULT_1000L,
+				dataFim );
+		}
+
 	}
 
 	@FXML
@@ -190,8 +205,18 @@ public class BasicApplicationController
 			{
 				final CheckMenuItem checkMenuItem = ( CheckMenuItem ) event.getSource();
 
+				for ( final MenuItem element : checkMenuItem.getParentMenu().getItems() )
+				{
+					if ( !( checkMenuItem.getId() != null && checkMenuItem.getId().trim().equals(
+						element.getId() ) ) )
+					{
+						( ( CheckMenuItem ) element ).setSelected( false );
+					}
+				}
+
 				if ( checkMenuItem.getId() != null && checkMenuItem.getId().trim().equals(
-					"ckMnPortugues" ) )
+					"ckMnPortugues" ) && !resources.getLocale().equals(
+					Locale.getDefault() ) )
 				{
 					this.resources = ResourceBundle.getBundle(
 						"fxml/BasicApplication",
@@ -205,41 +230,36 @@ public class BasicApplicationController
 					containerPrincipalApp.getChildren().clear();
 					containerPrincipalApp.getChildren().addAll(
 						root.getChildren() );
-					for ( final MenuItem element : checkMenuItem.getParentMenu().getItems() )
-					{
-						( ( CheckMenuItem ) element ).setSelected( false );
-					}
-					checkMenuItem.setSelected( true );
+					this.ckMnIngles.setSelected( false );
+					this.ckMnPortugues.setSelected( true );
 				}
 				else if ( checkMenuItem.getId() != null && checkMenuItem.getId().trim().equals(
-					"ckMnIngles" ) )
+					"ckMnIngles" ) && !resources.getLocale().equals(
+					Locale.ENGLISH ) )
 				{
 					this.resources = ResourceBundle.getBundle(
 						"fxml/BasicApplication",
 						Locale.ENGLISH,
 						ClassLoader.getSystemClassLoader() );
 
-					final VBox root = ( VBox ) FXMLLoader.load(
-						location,
-						resources );
+					final FXMLLoader fxmlLoader = new FXMLLoader( location, resources );
+
+					final VBox root = ( VBox ) fxmlLoader.load();
 
 					containerPrincipalApp.getChildren().clear();
 					containerPrincipalApp.getChildren().addAll(
 						root.getChildren() );
-					for ( final MenuItem element : checkMenuItem.getParentMenu().getItems() )
-					{
-						( ( CheckMenuItem ) element ).setSelected( false );
-					}
-					checkMenuItem.setSelected( true );
+					this.ckMnIngles.setSelected( true );
+					this.ckMnPortugues.setSelected( false );
+
 				}
 			}
-			else if ( event.getSource() instanceof Button )
-			{
 
-			}
 		}
 		catch ( final Exception e )
 		{
+			JanelaMensagem.getInstance().addMessage(
+				e ).showAndWait();
 			e.printStackTrace();
 		}
 
@@ -248,15 +268,24 @@ public class BasicApplicationController
 	@FXML
 	public void initialize()
 	{
-		checkPreconditions();
-		setUpMudarEstiloForm();
-		setUpApuracaoForm();
-		initMyProducer();
+		try
+		{
+			checkPreconditions();
+			setUpMudarEstiloForm();
+			setUpApuracaoForm();
+			initGerenciadorTemas();
+
+		}
+		catch ( final Exception e )
+		{
+			JanelaMensagem.getInstance().addMessage(
+				e ).showAndWait();
+			e.printStackTrace();
+		}
 	}
 
-	private void initMyProducer()
+	private void initGerenciadorTemas()
 	{
-		myProducer = new BasicApplicationControllerProduce( this );
 		escolherEstiloController.setGerenciadorTemas( new ServicoGerenciadorTemas( this ) );
 	}
 
@@ -278,49 +307,38 @@ public class BasicApplicationController
 		assert txtAreaStatus != null : "fx:id=\"txtAreaStatus\" was not injected: check your FXML file 'BasicApplication.fxml'.";
 	}
 
-	private void setUpMudarEstiloForm()
+	private void setUpMudarEstiloForm() throws IOException
 	{
-		try
+		Scene scene;
+		if ( containerMudarEstilo == null && stageMudarEstilo == null )
 		{
-			Scene scene;
-			if ( containerMudarEstilo == null && stageMudarEstilo == null )
-			{
-				final FXMLLoader fxmlLoader = new FXMLLoader( 
-					Thread.currentThread().getContextClassLoader().getResource(
-									"fxml/EscolherEstiloDialog.fxml" ),
-								resources );
-				
-				containerMudarEstilo = ( GridPane ) fxmlLoader.load();
-				this.escolherEstiloController = ( EscolherEstiloController ) fxmlLoader.getController();
-				
-				scene = new Scene( containerMudarEstilo );
-				final URL url = ClassLoader.getSystemResource( "css/AlertDialog.css" );
-				scene.getStylesheets().clear();
-				if ( url != null )
-				{
-					scene.getStylesheets().add(
-						url.toExternalForm() );
-				}
-				else
-				{
-					scene.getStylesheets().addAll(
-						getContainerPrincipalApp().getScene().getStylesheets() );
-				}
+			final FXMLLoader fxmlLoader = new FXMLLoader( Thread.currentThread().getContextClassLoader().getResource(
+				"fxml/EscolherEstiloDialog.fxml" ), resources );
 
-				stageMudarEstilo = new Stage( StageStyle.DECORATED );
-				stageMudarEstilo.setTitle( "Escolher Estilo" );
-				stageMudarEstilo.initModality( Modality.WINDOW_MODAL );
-				stageMudarEstilo.setScene( scene );
+			containerMudarEstilo = ( GridPane ) fxmlLoader.load();
+			this.escolherEstiloController = ( EscolherEstiloController ) fxmlLoader.getController();
+
+			scene = new Scene( containerMudarEstilo );
+			final URL url = ClassLoader.getSystemResource( "css/AlertDialog.css" );
+			scene.getStylesheets().clear();
+			if ( url != null )
+			{
+				scene.getStylesheets().add(
+					url.toExternalForm() );
+			}
+			else
+			{
+				scene.getStylesheets().addAll(
+					getContainerPrincipalApp().getScene().getStylesheets() );
 			}
 
-		}
-		catch ( final IOException e )
-		{
-			e.printStackTrace();
+			stageMudarEstilo = new Stage( StageStyle.DECORATED );
+			stageMudarEstilo.setTitle( "Escolher Estilo" );
+			stageMudarEstilo.initModality( Modality.APPLICATION_MODAL );
+			stageMudarEstilo.setScene( scene );
 		}
 
 	}
-
 
 	public VBox getContainerPrincipalApp()
 	{

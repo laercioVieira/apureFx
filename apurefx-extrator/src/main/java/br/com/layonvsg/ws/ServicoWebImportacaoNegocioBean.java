@@ -1,6 +1,7 @@
 package br.com.layonvsg.ws;
 
 import java.io.File;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -12,6 +13,7 @@ import javax.jws.soap.SOAPBinding.Style;
 import javax.jws.soap.SOAPBinding.Use;
 
 import br.com.layonvsg.servico.ServicoImportadorNegocio;
+import br.com.temasistemas.data.Data;
 import br.com.temasistemas.log.Log;
 import br.com.temasistemas.log.Logger;
 
@@ -28,9 +30,17 @@ public class ServicoWebImportacaoNegocioBean
 	@Inject
 	private Logger logger;
 
+	
+	public ServicoWebImportacaoNegocioBean()
+	{
+		super();
+	}
+		
 	@Override
 	public List<Log> importarApartirDe(
-		final String localizacao )
+		final String localizacao,
+		final long instituicaoId,
+		final Date dataFim )
 	{
 		if ( localizacao == null || localizacao.isEmpty() )
 		{
@@ -39,10 +49,21 @@ public class ServicoWebImportacaoNegocioBean
 			return getLogger().getCurrentLogs();
 		}
 
+		if( dataFim == null )
+		{
+			getLogger().log(
+				new Log( "Importação não efetuada, dataFim nula." ) );
+			return getLogger().getCurrentLogs();
+		}
+		
 		final File file = new File( localizacao );
 
+		final Data data = Data.novaData( dataFim );
+		
 		getServicoImportadorNegocio().importarFrom(
-			file );
+			file,
+			instituicaoId,
+			data );
 
 		return getLogger().getCurrentLogs();
 	}

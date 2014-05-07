@@ -5,9 +5,9 @@
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package br.com.layonvsg.relatorios.ws.adapter;
+package br.com.temasistemas.relatorios.ws.adapter;
 
-public class ServicoWebGeracaoRelatorioBeanServiceLocator extends org.apache.axis.client.Service implements br.com.layonvsg.relatorios.ws.adapter.ServicoWebGeracaoRelatorioBeanService {
+public class ServicoWebGeracaoRelatorioBeanServiceLocator extends org.apache.axis.client.Service implements br.com.temasistemas.relatorios.ws.adapter.ServicoWebGeracaoRelatorioBeanService {
 
     public ServicoWebGeracaoRelatorioBeanServiceLocator() {
     }
@@ -22,7 +22,7 @@ public class ServicoWebGeracaoRelatorioBeanServiceLocator extends org.apache.axi
     }
 
     // Use to get a proxy class for ServicoWebGeracaoRelatorioPort
-    private java.lang.String ServicoWebGeracaoRelatorioPort_address = "http://localhost:8080/relatorio-webservice-adapters/ServicoWebGeracaoRelatorio";
+    private java.lang.String ServicoWebGeracaoRelatorioPort_address = "http://localhost:8081/relatorio-webservice-adapters/ServicoWebGeracaoRelatorio";
 
     public java.lang.String getServicoWebGeracaoRelatorioPortAddress() {
         return ServicoWebGeracaoRelatorioPort_address;
@@ -39,7 +39,7 @@ public class ServicoWebGeracaoRelatorioBeanServiceLocator extends org.apache.axi
         ServicoWebGeracaoRelatorioPortWSDDServiceName = name;
     }
 
-    public br.com.layonvsg.relatorios.ws.adapter.ServicoWebGeracaoRelatorio getServicoWebGeracaoRelatorioPort() throws javax.xml.rpc.ServiceException {
+    public br.com.temasistemas.relatorios.ws.adapter.ServicoWebGeracaoRelatorio getServicoWebGeracaoRelatorioPort() throws javax.xml.rpc.ServiceException {
        java.net.URL endpoint;
         try {
             endpoint = new java.net.URL(ServicoWebGeracaoRelatorioPort_address);
@@ -50,9 +50,9 @@ public class ServicoWebGeracaoRelatorioBeanServiceLocator extends org.apache.axi
         return getServicoWebGeracaoRelatorioPort(endpoint);
     }
 
-    public br.com.layonvsg.relatorios.ws.adapter.ServicoWebGeracaoRelatorio getServicoWebGeracaoRelatorioPort(java.net.URL portAddress) throws javax.xml.rpc.ServiceException {
+    public br.com.temasistemas.relatorios.ws.adapter.ServicoWebGeracaoRelatorio getServicoWebGeracaoRelatorioPort(java.net.URL portAddress) throws javax.xml.rpc.ServiceException {
         try {
-            br.com.layonvsg.relatorios.ws.adapter.ServicoWebGeracaoRelatorioBeanServiceSoapBindingStub _stub = new br.com.layonvsg.relatorios.ws.adapter.ServicoWebGeracaoRelatorioBeanServiceSoapBindingStub(portAddress, this);
+            br.com.temasistemas.relatorios.ws.adapter.ServicoWebGeracaoRelatorioBeanServiceSoapBindingStub _stub = new br.com.temasistemas.relatorios.ws.adapter.ServicoWebGeracaoRelatorioBeanServiceSoapBindingStub(portAddress, this);
             _stub.setPortName(getServicoWebGeracaoRelatorioPortWSDDServiceName());
             return _stub;
         }
@@ -72,8 +72,8 @@ public class ServicoWebGeracaoRelatorioBeanServiceLocator extends org.apache.axi
      */
     public java.rmi.Remote getPort(Class serviceEndpointInterface) throws javax.xml.rpc.ServiceException {
         try {
-            if (br.com.layonvsg.relatorios.ws.adapter.ServicoWebGeracaoRelatorio.class.isAssignableFrom(serviceEndpointInterface)) {
-                br.com.layonvsg.relatorios.ws.adapter.ServicoWebGeracaoRelatorioBeanServiceSoapBindingStub _stub = new br.com.layonvsg.relatorios.ws.adapter.ServicoWebGeracaoRelatorioBeanServiceSoapBindingStub(new java.net.URL(ServicoWebGeracaoRelatorioPort_address), this);
+            if (br.com.temasistemas.relatorios.ws.adapter.ServicoWebGeracaoRelatorio.class.isAssignableFrom(serviceEndpointInterface)) {
+                br.com.temasistemas.relatorios.ws.adapter.ServicoWebGeracaoRelatorioBeanServiceSoapBindingStub _stub = new br.com.temasistemas.relatorios.ws.adapter.ServicoWebGeracaoRelatorioBeanServiceSoapBindingStub(new java.net.URL(ServicoWebGeracaoRelatorioPort_address), this);
                 _stub.setPortName(getServicoWebGeracaoRelatorioPortWSDDServiceName());
                 return _stub;
             }

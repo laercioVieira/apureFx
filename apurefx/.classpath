@@ -40,5 +40,7 @@
 	<classpathentry kind="lib" path="src/main/resources/META-INF/lib/jaxrpc.jar"/>
 	<classpathentry kind="lib" path="src/main/resources/META-INF/lib/org.apache.commons.logging_1.1.1.v201101211721.jar"/>
 	<classpathentry kind="lib" path="src/main/resources/META-INF/lib/saaj.jar"/>
+	<classpathentry kind="lib" path="C:/Java/eclipse-kepler/plugins/javax.wsdl_1.6.2.v201012040545.jar"/>
+	<classpathentry kind="lib" path="C:/Java/eclipse-kepler/plugins/org.apache.commons.logging_1.1.1.v201101211721.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

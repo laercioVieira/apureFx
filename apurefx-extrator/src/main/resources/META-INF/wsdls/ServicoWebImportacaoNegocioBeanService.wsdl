@@ -7,6 +7,8 @@
 <xs:complexType name="importarApartirDe">
     <xs:sequence>
       <xs:element minOccurs="0" name="localizacao" type="xs:string"/>
+      <xs:element name="instituicaoId" type="xs:long"/>
+      <xs:element minOccurs="0" name="dataFim" type="xs:dateTime"/>
     </xs:sequence>
   </xs:complexType>
 <xs:complexType name="importarApartirDeResponse">

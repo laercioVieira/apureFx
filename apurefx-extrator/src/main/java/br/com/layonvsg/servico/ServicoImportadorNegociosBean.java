@@ -13,10 +13,18 @@ import javax.xml.bind.JAXBException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import br.com.layonvsg.modelo.extrator.negocios.Mercado;
 import br.com.layonvsg.modelo.extrator.negocios.NegocioConverter;
 import br.com.layonvsg.modelo.extrator.negocios.NegociosXML;
+import br.com.temasistemas.data.Data;
+import br.com.temasistemas.derivativos.modelo.MercadoDerivativo;
+import br.com.temasistemas.derivativos.modelo.apuracao.ServicoApuracao;
+import br.com.temasistemas.derivativos.modelo.disponivel.modelo.anotacao.Disponivel;
 import br.com.temasistemas.derivativos.modelo.negocio.Negocio;
 import br.com.temasistemas.derivativos.modelo.repositorio.RepositorioNegocio;
+import br.com.temasistemas.feriados.servico.ServicoDiasUteis;
+import br.com.temasistemas.java.lang.ext.exception.BusinessRuntimeException;
+import br.com.temasistemas.java.lang.ext.validation.Precondition;
 import br.com.temasistemas.log.LogBuilder;
 import br.com.temasistemas.log.Logger;
 
@@ -37,28 +45,38 @@ public class ServicoImportadorNegociosBean
 	@Inject
 	private RepositorioNegocio repositorioNegocio;
 
+	@Disponivel
+	@Inject
+	private ServicoApuracao servicoApuracao;
+
+	@Inject
+	private ServicoDiasUteis servicoDiasUteis;
+
 	@Override
 	public void importarFrom(
-		final File localizacao )
+		final File localizacao,
+		final long instituicaoId,
+		final Data dataMaxima )
 	{
 		if ( localizacao != null )
 		{
 			try
 			{
+				checkPreconditions(
+					instituicaoId,
+					dataMaxima );
+				
 				String msg = "Iniciando a importação de negócios. Localização: \'";
-					msg.concat( localizacao.getCanonicalPath() ).concat( "\'." );
+				msg.concat(
+					localizacao.getCanonicalPath().toString() ).concat(
+					"\'." );
 				getLogger().log(
 					new br.com.temasistemas.log.Log( msg ) );
 
-				msg = "Iniciando a Limpeza dos negócios.";
-				getLogger().log(
-					new br.com.temasistemas.log.Log( msg ) );
-
-				getRepositorioNegocio().excluirTodos();
-
-				msg = "Limpeza dos negócios efetuada.";
-				getLogger().log(
-					new br.com.temasistemas.log.Log( msg ) );
+				excluirNegociosEmCascata(
+					instituicaoId,
+					dataMaxima,
+					MercadoDerivativo.DISPONIVEL.getValue() );
 
 				if ( localizacao.isHidden() || !localizacao.isFile() )
 				{
@@ -85,7 +103,9 @@ public class ServicoImportadorNegociosBean
 
 				final List<Negocio> listaNegocios = NegocioConverter.convertFrom( negocios.getNegocios() );
 
-				msg = "Iniciando a Persistência dos negócios. Quantidade: " + ( listaNegocios != null ? listaNegocios.size() : 0 );
+				msg =
+					"Iniciando a Persistência dos negócios. Quantidade: "
+						+ ( listaNegocios != null ? listaNegocios.size() : 0 );
 				getLogger().log(
 					new br.com.temasistemas.log.Log( msg ) );
 
@@ -124,6 +144,57 @@ public class ServicoImportadorNegociosBean
 		}
 	}
 
+	private void checkPreconditions(
+		final long instituicaoId,
+		final Data dataMaxima )
+	{
+		Precondition.checkNotNull( dataMaxima, "dataMaxima" );
+		Precondition.checkNotNegativeOrZero( instituicaoId, "instituicaoId" );
+		//dataProcessamentoEUtil( dataMaxima );
+	}
+
+	private void excluirNegociosEmCascata(
+		final long instituicaoId,
+		final Data dataMaxima,
+		final int mercado )
+	{
+		String msg;
+		msg = "Iniciando a Limpeza das Dependências (Casamentos, Saldos e Operações).";
+		getLogger().log(
+			new br.com.temasistemas.log.Log( msg ) );
+		
+		getServicoApuracao().excluirApuracao(
+			dataMaxima,
+			instituicaoId,
+			mercado );
+		
+		msg = "Limpeza das Dependências efetuada! Mercado: " + Mercado.fromValue( mercado ).getDescricao();
+		getLogger().log(
+			new br.com.temasistemas.log.Log( msg ) );
+		
+		msg = "Iniciando a Limpeza dos negócios.";
+		getLogger().log(
+			new br.com.temasistemas.log.Log( msg ) );
+
+		getRepositorioNegocio().excluirTodos();
+
+		msg = "Limpeza dos negócios efetuada.";
+		getLogger().log(
+			new br.com.temasistemas.log.Log( msg ) );
+	}
+
+	protected void dataProcessamentoEUtil(
+		final Data dataAtual )
+	{
+		if ( !this.getServicoDiasUteis().validarDiaUtil(
+			dataAtual.toValue() ) )
+		{
+			throw new BusinessRuntimeException( MessageFormat.format(
+				"A data {0} não é uma data útil para o sistema.",
+				dataAtual.toValue() ) );
+		}
+	}
+
 	public Logger getLogger()
 	{
 		return logger;
@@ -155,6 +226,28 @@ public class ServicoImportadorNegociosBean
 		final RepositorioNegocio repositorioNegocio )
 	{
 		this.repositorioNegocio = repositorioNegocio;
+	}
+
+	public ServicoApuracao getServicoApuracao()
+	{
+		return servicoApuracao;
+	}
+
+	public void setServicoApuracao(
+		final ServicoApuracao servicoApuracao )
+	{
+		this.servicoApuracao = servicoApuracao;
+	}
+
+	public ServicoDiasUteis getServicoDiasUteis()
+	{
+		return servicoDiasUteis;
+	}
+
+	public void setServicoDiasUteis(
+		final ServicoDiasUteis servicoDiasUteis )
+	{
+		this.servicoDiasUteis = servicoDiasUteis;
 	}
 
 }

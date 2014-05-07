@@ -1,8 +1,8 @@
-package br.com.layonvsg.relatorios.ws.adapter;
+package br.com.temasistemas.relatorios.ws.adapter;
 
-public class ServicoWebGeracaoRelatorioProxy implements br.com.layonvsg.relatorios.ws.adapter.ServicoWebGeracaoRelatorio {
+public class ServicoWebGeracaoRelatorioProxy implements br.com.temasistemas.relatorios.ws.adapter.ServicoWebGeracaoRelatorio {
   private String _endpoint = null;
-  private br.com.layonvsg.relatorios.ws.adapter.ServicoWebGeracaoRelatorio servicoWebGeracaoRelatorio = null;
+  private br.com.temasistemas.relatorios.ws.adapter.ServicoWebGeracaoRelatorio servicoWebGeracaoRelatorio = null;
   
   public ServicoWebGeracaoRelatorioProxy() {
     _initServicoWebGeracaoRelatorioProxy();
@@ -15,7 +15,7 @@ public class ServicoWebGeracaoRelatorioProxy implements br.com.layonvsg.relatori
   
   private void _initServicoWebGeracaoRelatorioProxy() {
     try {
-      servicoWebGeracaoRelatorio = (new br.com.layonvsg.relatorios.ws.adapter.ServicoWebGeracaoRelatorioBeanServiceLocator()).getServicoWebGeracaoRelatorioPort();
+      servicoWebGeracaoRelatorio = (new br.com.temasistemas.relatorios.ws.adapter.ServicoWebGeracaoRelatorioBeanServiceLocator()).getServicoWebGeracaoRelatorioPort();
       if (servicoWebGeracaoRelatorio != null) {
         if (_endpoint != null)
           ((javax.xml.rpc.Stub)servicoWebGeracaoRelatorio)._setProperty("javax.xml.rpc.service.endpoint.address", _endpoint);
@@ -38,37 +38,31 @@ public class ServicoWebGeracaoRelatorioProxy implements br.com.layonvsg.relatori
     
   }
   
-  public br.com.layonvsg.relatorios.ws.adapter.ServicoWebGeracaoRelatorio getServicoWebGeracaoRelatorio() {
+  public br.com.temasistemas.relatorios.ws.adapter.ServicoWebGeracaoRelatorio getServicoWebGeracaoRelatorio() {
     if (servicoWebGeracaoRelatorio == null)
       _initServicoWebGeracaoRelatorioProxy();
     return servicoWebGeracaoRelatorio;
   }
   
-  public br.com.layonvsg.relatorios.ws.adapter.Log[] gerarRelatorioExtratoConsolidadoDeAtivos(double idCliente, java.util.Calendar dataInicio) throws java.rmi.RemoteException{
+  public br.com.temasistemas.relatorios.ws.adapter.Log[] gerarRelatorioExtratoConsolidadoDeAtivos(double idCliente, java.util.Calendar dataInicio) throws java.rmi.RemoteException{
     if (servicoWebGeracaoRelatorio == null)
       _initServicoWebGeracaoRelatorioProxy();
     return servicoWebGeracaoRelatorio.gerarRelatorioExtratoConsolidadoDeAtivos(idCliente, dataInicio);
   }
   
-  public br.com.layonvsg.relatorios.ws.adapter.Log[] gerarRelatorioMovimentoFinanceiro(long instituicaoId, long corretoraId, long clienteId, java.util.Calendar dataLiquidacao) throws java.rmi.RemoteException{
+  public br.com.temasistemas.relatorios.ws.adapter.Log[] gerarRelatorioNegociosImportados(long idInstituicao, java.util.Calendar dataPregaoInicio, java.util.Calendar dataPregaoFim, long idCorretora, long idCliente) throws java.rmi.RemoteException{
     if (servicoWebGeracaoRelatorio == null)
       _initServicoWebGeracaoRelatorioProxy();
-    return servicoWebGeracaoRelatorio.gerarRelatorioMovimentoFinanceiro(instituicaoId, corretoraId, clienteId, dataLiquidacao);
+    return servicoWebGeracaoRelatorio.gerarRelatorioNegociosImportados(idInstituicao, dataPregaoInicio, dataPregaoFim, idCorretora, idCliente);
   }
   
-  public br.com.layonvsg.relatorios.ws.adapter.Log[] gerarRelatorioAtivosDisponiveis() throws java.rmi.RemoteException{
+  public br.com.temasistemas.relatorios.ws.adapter.Log[] gerarRelatorioAtivosDisponiveis() throws java.rmi.RemoteException{
     if (servicoWebGeracaoRelatorio == null)
       _initServicoWebGeracaoRelatorioProxy();
     return servicoWebGeracaoRelatorio.gerarRelatorioAtivosDisponiveis();
   }
   
-  public br.com.layonvsg.relatorios.ws.adapter.Log[] gerarRelatorioTaxasDeNegociacaoERegistroOperacaoPeriodo(byte usarIdCliente, double idCliente, double idInstituicao, java.util.Calendar dataPregaoInicio, java.util.Calendar dataPregaoFim) throws java.rmi.RemoteException{
-    if (servicoWebGeracaoRelatorio == null)
-      _initServicoWebGeracaoRelatorioProxy();
-    return servicoWebGeracaoRelatorio.gerarRelatorioTaxasDeNegociacaoERegistroOperacaoPeriodo(usarIdCliente, idCliente, idInstituicao, dataPregaoInicio, dataPregaoFim);
-  }
-  
-  public br.com.layonvsg.relatorios.ws.adapter.Log[] gerarRelatorioOperacoesDerivativosRealizadasDia(double idInstituicao, java.util.Calendar dataPregao, double idCorretora, double idCliente) throws java.rmi.RemoteException{
+  public br.com.temasistemas.relatorios.ws.adapter.Log[] gerarRelatorioOperacoesDerivativosRealizadasDia(double idInstituicao, java.util.Calendar dataPregao, double idCorretora, double idCliente) throws java.rmi.RemoteException{
     if (servicoWebGeracaoRelatorio == null)
       _initServicoWebGeracaoRelatorioProxy();
     return servicoWebGeracaoRelatorio.gerarRelatorioOperacoesDerivativosRealizadasDia(idInstituicao, dataPregao, idCorretora, idCliente);

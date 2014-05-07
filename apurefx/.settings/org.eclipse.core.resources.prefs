@@ -9,3 +9,13 @@ encoding//src/main/java/br/com/layonvsg/opcoes/ws/adapter/futuro/ServicoWebApura
 encoding//src/main/java/br/com/layonvsg/opcoes/ws/adapter/futuro/ServicoWebApuracaoOpcaoPadronizadaSobreFuturoBeanService.java=UTF-8
 encoding//src/main/java/br/com/layonvsg/opcoes/ws/adapter/futuro/ServicoWebApuracaoOpcaoPadronizadaSobreFuturoBeanServiceLocator.java=UTF-8
 encoding//src/main/java/br/com/layonvsg/opcoes/ws/adapter/futuro/ServicoWebApuracaoOpcaoPadronizadaSobreFuturoBeanServiceSoapBindingStub.java=UTF-8
+encoding//src/main/java/br/com/layonvsg/ws/Log.java=UTF-8
+encoding//src/main/java/br/com/layonvsg/ws/ServicoWebImportacaoNegocio.java=UTF-8
+encoding//src/main/java/br/com/layonvsg/ws/ServicoWebImportacaoNegocioBeanService.java=UTF-8
+encoding//src/main/java/br/com/layonvsg/ws/ServicoWebImportacaoNegocioBeanServiceLocator.java=UTF-8
+encoding//src/main/java/br/com/layonvsg/ws/ServicoWebImportacaoNegocioBeanServiceSoapBindingStub.java=UTF-8
+encoding//src/main/java/br/com/temasistemas/relatorios/ws/adapter/Log.java=UTF-8
+encoding//src/main/java/br/com/temasistemas/relatorios/ws/adapter/ServicoWebGeracaoRelatorio.java=UTF-8
+encoding//src/main/java/br/com/temasistemas/relatorios/ws/adapter/ServicoWebGeracaoRelatorioBeanService.java=UTF-8
+encoding//src/main/java/br/com/temasistemas/relatorios/ws/adapter/ServicoWebGeracaoRelatorioBeanServiceLocator.java=UTF-8
+encoding//src/main/java/br/com/temasistemas/relatorios/ws/adapter/ServicoWebGeracaoRelatorioBeanServiceSoapBindingStub.java=UTF-8

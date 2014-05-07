@@ -12,8 +12,11 @@ public class ConfigInfo
 
 	private String host;
 
-	private String porta;
-
+	private String porta;	
+	
+	private String defaultLocalizacaoNegocios =
+					"D:\\Documents\\GitHub\\apureFx\\apurefx-extrator\\src\\main\\resources\\negocios.xml";
+	
 	public ConfigInfo()
 	{
 		super();
@@ -28,6 +31,19 @@ public class ConfigInfo
 		setPorta( porta );
 	}
 
+	public ConfigInfo(
+		final String host,
+		final String porta,
+		final String defaultFolderNegoc )
+	{
+		super();
+		setHost( host );
+		setPorta( porta );
+		setDefaultLocalizacaoNegocios( defaultFolderNegoc );
+		
+	}
+
+	
 	public String getHost()
 	{
 		return host;
@@ -50,6 +66,20 @@ public class ConfigInfo
 	{
 		Precondition.checkNotNullAndNotBlank( porta, "porta" );
 		this.porta = porta;
+	}
+
+	
+	public String getDefaultLocalizacaoNegocios()
+	{
+		return defaultLocalizacaoNegocios;
+	}
+
+	
+	public void setDefaultLocalizacaoNegocios(
+		final String defaultLocalizacaoNegocios )
+	{
+		Precondition.checkNotNullAndNotBlank( defaultLocalizacaoNegocios, "defaultLocalizacaoNegocios" );
+		this.defaultLocalizacaoNegocios = defaultLocalizacaoNegocios;
 	}
 
 }

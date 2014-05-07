@@ -1,5 +1,6 @@
 package br.com.layonvsg.ws;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Local;
@@ -12,7 +13,7 @@ import br.com.temasistemas.log.Log;
 
 
 @Local
-@WebService(endpointInterface = "br.com.temasistemas.extrator.ServicoWebImportacaoNegocio")
+@WebService(endpointInterface = "br.com.layonvsg.ws.ServicoWebImportacaoNegocio")
 public interface ServicoWebImportacaoNegocio
 {
 
@@ -22,6 +23,8 @@ public interface ServicoWebImportacaoNegocio
 	@WebMethod
 	@WebResult(name = "logs")
     List<Log> importarApartirDe(
-		@WebParam( name= "localizacao" ) final String localizacao );
+		@WebParam( name = "localizacao" ) final String localizacao,
+		@WebParam( name = "instituicaoId" ) final long instituicaoId,
+		@WebParam( name = "dataFim" ) final Date dataFim );
 	
 }

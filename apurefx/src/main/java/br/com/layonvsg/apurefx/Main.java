@@ -1,5 +1,6 @@
 package br.com.layonvsg.apurefx;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -10,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import br.com.layonvsg.apurefx.model.Tema;
+import br.com.layonvsg.apurefx.util.LocalizadorResource;
 
 public class Main
 	extends Application
@@ -24,9 +26,17 @@ public class Main
 	public static void main(
 		final String[] args )
 	{
-		Application.launch(
-			Main.class,
-			( String[] ) null );
+		try
+		{
+			Application.launch(
+				Main.class,
+				( String[] ) null );
+		}
+		catch ( final Exception e )
+		{
+			JanelaMensagem.getInstance().addMessage(
+				e ).showAndWait();
+		}
 
 	}
 
@@ -35,26 +45,44 @@ public class Main
 		final Stage primaryStage )
 		throws Exception
 	{
-		final URL location = ClassLoader.getSystemResource( "fxml/BasicApplication.fxml" );
+		final VBox page = createFromFXML();
+		setUpMainContainer(
+			primaryStage,
+			page );
+		primaryStage.show();
+	}
+
+	private void setUpMainContainer(
+		final Stage primaryStage,
+		final VBox page )
+	{
+		final Scene scene = new Scene( page );
+
+		if ( Tema.BASIC.getURL() != null )
+		{
+			scene.getStylesheets().clear();
+			scene.getStylesheets().add(
+				Tema.BASIC.getURL().toExternalForm() );
+		}
+		primaryStage.setScene( scene );
+		primaryStage.setTitle( "ApureFX - Uma Solução para integração JavaFX." );
+	}
+
+	private VBox createFromFXML()
+		throws IOException
+	{
+		final URL location = LocalizadorResource.getInstance().getFXML(
+			"BasicApplication.fxml" );
+
 		final ResourceBundle resource = ResourceBundle.getBundle(
 			"fxml/BasicApplication",
 			Locale.getDefault(),
 			ClassLoader.getSystemClassLoader() );
-		
+
 		final VBox page = ( VBox ) FXMLLoader.load(
 			location,
 			resource );
 
-		final Scene scene = new Scene( page );
-		
-		if( Tema.BASIC.getURL() != null )
-		{
-			scene.getStylesheets().clear();
-			scene.getStylesheets().add( Tema.BASIC.getURL().toExternalForm() );
-		}
-		primaryStage.setScene( scene );
-		primaryStage.setTitle( "ApureFX - Uma Solução para integração JavaFX." );
-		primaryStage.show();
-
+		return page;
 	}
 }

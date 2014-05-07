@@ -71,7 +71,7 @@ public class ImportadorNegocios
 				System.out.println( n );
 			}
 
-			servico.importarFrom( file );
+			//servico.importarFrom( file );
 		}
 		catch ( final JAXBException e )
 		{

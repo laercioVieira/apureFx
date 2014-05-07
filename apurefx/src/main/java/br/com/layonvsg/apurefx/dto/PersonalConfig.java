@@ -11,7 +11,7 @@ public class PersonalConfig
 	private String defaultFolder = "C:\\";
 
 	private String defaultLocalizacaoNegocios =
-					"D:\\Documents\\GitHub\\apureFx\\apurefx-extrator\\src\\main\\resources\\negocios.xml";
+					"D:\\Documents\\GitHub\\apureFx\\apurefx-extrator\\src\\main\\resources";
 	
 	
 	public PersonalConfig()

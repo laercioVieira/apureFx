@@ -1,87 +1,162 @@
+/**
+ * Log.java
+ *
+ * This file was auto-generated from WSDL
+ * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
+ */
 
 package br.com.layonvsg.ws;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlType;
+public class Log  implements java.io.Serializable {
+    
+	private static final long serialVersionUID = -1584920986146510552L;
 
+	private java.lang.String mensagem;
 
-/**
- * <p>Java class for log complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
- * 
- * <pre>
- * &lt;complexType name="log">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="mensagem" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="stackTrace" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *       &lt;/sequence>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
- * </pre>
- * 
- * 
- */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "log", propOrder = {
-    "mensagem",
-    "stackTrace"
-})
-public class Log {
+    private java.lang.String stackTrace;
 
-    protected String mensagem;
-    protected String stackTrace;
+    public Log() {
+    }
+
+    public Log(
+           final java.lang.String mensagem,
+           final java.lang.String stackTrace) {
+           this.mensagem = mensagem;
+           this.stackTrace = stackTrace;
+    }
+
 
     /**
-     * Gets the value of the mensagem property.
+     * Gets the mensagem value for this Log.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return mensagem
      */
-    public String getMensagem() {
+    public java.lang.String getMensagem() {
         return mensagem;
     }
 
-    /**
-     * Sets the value of the mensagem property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setMensagem(String value) {
-        this.mensagem = value;
-    }
 
     /**
-     * Gets the value of the stackTrace property.
+     * Sets the mensagem value for this Log.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @param mensagem
      */
-    public String getStackTrace() {
+    public void setMensagem(final java.lang.String mensagem) {
+        this.mensagem = mensagem;
+    }
+
+
+    /**
+     * Gets the stackTrace value for this Log.
+     * 
+     * @return stackTrace
+     */
+    public java.lang.String getStackTrace() {
         return stackTrace;
     }
 
+
     /**
-     * Sets the value of the stackTrace property.
+     * Sets the stackTrace value for this Log.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param stackTrace
      */
-    public void setStackTrace(String value) {
-        this.stackTrace = value;
+    public void setStackTrace(final java.lang.String stackTrace) {
+        this.stackTrace = stackTrace;
+    }
+
+    private java.lang.Object __equalsCalc = null;
+    @Override
+	public synchronized boolean equals(final java.lang.Object obj) {
+        if (!(obj instanceof Log)) return false;
+        final Log other = (Log) obj;
+        if (obj == null) return false;
+        if (this == obj) return true;
+        if (__equalsCalc != null) {
+            return (__equalsCalc == obj);
+        }
+        __equalsCalc = obj;
+        boolean _equals;
+        _equals = true && 
+            ((this.mensagem==null && other.getMensagem()==null) || 
+             (this.mensagem!=null &&
+              this.mensagem.equals(other.getMensagem()))) &&
+            ((this.stackTrace==null && other.getStackTrace()==null) || 
+             (this.stackTrace!=null &&
+              this.stackTrace.equals(other.getStackTrace())));
+        __equalsCalc = null;
+        return _equals;
+    }
+
+    private boolean __hashCodeCalc = false;
+    @Override
+	public synchronized int hashCode() {
+        if (__hashCodeCalc) {
+            return 0;
+        }
+        __hashCodeCalc = true;
+        int _hashCode = 1;
+        if (getMensagem() != null) {
+            _hashCode += getMensagem().hashCode();
+        }
+        if (getStackTrace() != null) {
+            _hashCode += getStackTrace().hashCode();
+        }
+        __hashCodeCalc = false;
+        return _hashCode;
+    }
+
+    // Type metadata
+    private static org.apache.axis.description.TypeDesc typeDesc =
+        new org.apache.axis.description.TypeDesc(Log.class, true);
+
+    static {
+        typeDesc.setXmlType(new javax.xml.namespace.QName("http://ws.layonvsg.com.br/", "log"));
+        org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("mensagem");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "mensagem"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("stackTrace");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "stackTrace"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+    }
+
+    /**
+     * Return type metadata object
+     */
+    public static org.apache.axis.description.TypeDesc getTypeDesc() {
+        return typeDesc;
+    }
+
+    /**
+     * Get Custom Serializer
+     */
+    public static org.apache.axis.encoding.Serializer getSerializer(
+           final java.lang.String mechType, 
+           final java.lang.Class _javaType,  
+           final javax.xml.namespace.QName _xmlType) {
+        return 
+          new  org.apache.axis.encoding.ser.BeanSerializer(
+            _javaType, _xmlType, typeDesc);
+    }
+
+    /**
+     * Get Custom Deserializer
+     */
+    public static org.apache.axis.encoding.Deserializer getDeserializer(
+           final java.lang.String mechType, 
+           final java.lang.Class _javaType,  
+           final javax.xml.namespace.QName _xmlType) {
+        return 
+          new  org.apache.axis.encoding.ser.BeanDeserializer(
+            _javaType, _xmlType, typeDesc);
     }
 
 }

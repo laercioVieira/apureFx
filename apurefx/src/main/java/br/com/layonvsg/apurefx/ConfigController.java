@@ -18,10 +18,10 @@ public class ConfigController
 
 	@FXML
 	private ResourceBundle resources;
-	
+
 	@FXML
 	private URL location;
-	
+
 	@FXML
 	private AnchorPane configForm;
 
@@ -55,12 +55,14 @@ public class ConfigController
 	{
 		try
 		{
-			getConfigInfo().setHost( getTxtHost().getText() );
-			getConfigInfo().setPorta( getTxtPorta().getText() );
-			
+			getConfigInfo().setHost(
+				getTxtHost().getText() );
+			getConfigInfo().setPorta(
+				getTxtPorta().getText() );
+
 			getConfigDao().salvar(
 				getConfigInfo() );
-			
+
 			getConfigForm().getScene().getWindow().hide();
 		}
 		catch ( final Exception ex )
@@ -125,26 +127,22 @@ public class ConfigController
 		this.txtPorta = txtPorta;
 	}
 
-	
 	public ResourceBundle getResources()
 	{
 		return resources;
 	}
 
-	
 	public void setResources(
 		final ResourceBundle resources )
 	{
 		this.resources = resources;
 	}
 
-	
 	public URL getLocation()
 	{
 		return location;
 	}
 
-	
 	public void setLocation(
 		final URL location )
 	{

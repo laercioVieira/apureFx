@@ -5,9 +5,9 @@
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package br.com.layonvsg.relatorios.ws.adapter;
+package br.com.temasistemas.relatorios.ws.adapter;
 
-public class ServicoWebGeracaoRelatorioBeanServiceSoapBindingStub extends org.apache.axis.client.Stub implements br.com.layonvsg.relatorios.ws.adapter.ServicoWebGeracaoRelatorio {
+public class ServicoWebGeracaoRelatorioBeanServiceSoapBindingStub extends org.apache.axis.client.Stub implements br.com.temasistemas.relatorios.ws.adapter.ServicoWebGeracaoRelatorio {
     private java.util.Vector cachedSerClasses = new java.util.Vector();
     private java.util.Vector cachedSerQNames = new java.util.Vector();
     private java.util.Vector cachedSerFactories = new java.util.Vector();
@@ -16,7 +16,7 @@ public class ServicoWebGeracaoRelatorioBeanServiceSoapBindingStub extends org.ap
     static org.apache.axis.description.OperationDesc [] _operations;
 
     static {
-        _operations = new org.apache.axis.description.OperationDesc[5];
+        _operations = new org.apache.axis.description.OperationDesc[4];
         _initOperationDesc1();
     }
 
@@ -31,25 +31,28 @@ public class ServicoWebGeracaoRelatorioBeanServiceSoapBindingStub extends org.ap
         param.setOmittable(true);
         oper.addParameter(param);
         oper.setReturnType(new javax.xml.namespace.QName("http://adapter.ws.relatorios.temasistemas.com.br/", "log"));
-        oper.setReturnClass(br.com.layonvsg.relatorios.ws.adapter.Log[].class);
+        oper.setReturnClass(br.com.temasistemas.relatorios.ws.adapter.Log[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "logs"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
         _operations[0] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
-        oper.setName("gerarRelatorioMovimentoFinanceiro");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "instituicaoId"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "long"), long.class, false, false);
+        oper.setName("gerarRelatorioNegociosImportados");
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "idInstituicao"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "long"), long.class, false, false);
         oper.addParameter(param);
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "corretoraId"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "long"), long.class, false, false);
-        oper.addParameter(param);
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "clienteId"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "long"), long.class, false, false);
-        oper.addParameter(param);
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "dataLiquidacao"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "dateTime"), java.util.Calendar.class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "dataPregaoInicio"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "dateTime"), java.util.Calendar.class, false, false);
         param.setOmittable(true);
         oper.addParameter(param);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "dataPregaoFim"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "dateTime"), java.util.Calendar.class, false, false);
+        param.setOmittable(true);
+        oper.addParameter(param);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "idCorretora"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "long"), long.class, false, false);
+        oper.addParameter(param);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "idCliente"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "long"), long.class, false, false);
+        oper.addParameter(param);
         oper.setReturnType(new javax.xml.namespace.QName("http://adapter.ws.relatorios.temasistemas.com.br/", "log"));
-        oper.setReturnClass(br.com.layonvsg.relatorios.ws.adapter.Log[].class);
+        oper.setReturnClass(br.com.temasistemas.relatorios.ws.adapter.Log[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "logs"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
@@ -58,7 +61,7 @@ public class ServicoWebGeracaoRelatorioBeanServiceSoapBindingStub extends org.ap
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("gerarRelatorioAtivosDisponiveis");
         oper.setReturnType(new javax.xml.namespace.QName("http://adapter.ws.relatorios.temasistemas.com.br/", "log"));
-        oper.setReturnClass(br.com.layonvsg.relatorios.ws.adapter.Log[].class);
+        oper.setReturnClass(br.com.temasistemas.relatorios.ws.adapter.Log[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "logs"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
@@ -76,32 +79,11 @@ public class ServicoWebGeracaoRelatorioBeanServiceSoapBindingStub extends org.ap
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "idCliente"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "double"), double.class, false, false);
         oper.addParameter(param);
         oper.setReturnType(new javax.xml.namespace.QName("http://adapter.ws.relatorios.temasistemas.com.br/", "log"));
-        oper.setReturnClass(br.com.layonvsg.relatorios.ws.adapter.Log[].class);
+        oper.setReturnClass(br.com.temasistemas.relatorios.ws.adapter.Log[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "logs"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
         _operations[3] = oper;
-
-        oper = new org.apache.axis.description.OperationDesc();
-        oper.setName("gerarRelatorioTaxasDeNegociacaoERegistroOperacaoPeriodo");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "usarIdCliente"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "byte"), byte.class, false, false);
-        oper.addParameter(param);
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "idCliente"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "double"), double.class, false, false);
-        oper.addParameter(param);
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "idInstituicao"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "double"), double.class, false, false);
-        oper.addParameter(param);
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "dataPregaoInicio"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "dateTime"), java.util.Calendar.class, false, false);
-        param.setOmittable(true);
-        oper.addParameter(param);
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "dataPregaoFim"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "dateTime"), java.util.Calendar.class, false, false);
-        param.setOmittable(true);
-        oper.addParameter(param);
-        oper.setReturnType(new javax.xml.namespace.QName("http://adapter.ws.relatorios.temasistemas.com.br/", "log"));
-        oper.setReturnClass(br.com.layonvsg.relatorios.ws.adapter.Log[].class);
-        oper.setReturnQName(new javax.xml.namespace.QName("", "logs"));
-        oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
-        oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[4] = oper;
 
     }
 
@@ -136,7 +118,7 @@ public class ServicoWebGeracaoRelatorioBeanServiceSoapBindingStub extends org.ap
             java.lang.Class simplelistdf = org.apache.axis.encoding.ser.SimpleListDeserializerFactory.class;
             qName = new javax.xml.namespace.QName("http://adapter.ws.relatorios.temasistemas.com.br/", "log");
             cachedSerQNames.add(qName);
-            cls = br.com.layonvsg.relatorios.ws.adapter.Log.class;
+            cls = br.com.temasistemas.relatorios.ws.adapter.Log.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
@@ -207,7 +189,7 @@ public class ServicoWebGeracaoRelatorioBeanServiceSoapBindingStub extends org.ap
         }
     }
 
-    public br.com.layonvsg.relatorios.ws.adapter.Log[] gerarRelatorioExtratoConsolidadoDeAtivos(double idCliente, java.util.Calendar dataInicio) throws java.rmi.RemoteException {
+    public br.com.temasistemas.relatorios.ws.adapter.Log[] gerarRelatorioExtratoConsolidadoDeAtivos(double idCliente, java.util.Calendar dataInicio) throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -231,9 +213,9 @@ public class ServicoWebGeracaoRelatorioBeanServiceSoapBindingStub extends org.ap
         else {
             extractAttachments(_call);
             try {
-                return (br.com.layonvsg.relatorios.ws.adapter.Log[]) _resp;
+                return (br.com.temasistemas.relatorios.ws.adapter.Log[]) _resp;
             } catch (java.lang.Exception _exception) {
-                return (br.com.layonvsg.relatorios.ws.adapter.Log[]) org.apache.axis.utils.JavaUtils.convert(_resp, br.com.layonvsg.relatorios.ws.adapter.Log[].class);
+                return (br.com.temasistemas.relatorios.ws.adapter.Log[]) org.apache.axis.utils.JavaUtils.convert(_resp, br.com.temasistemas.relatorios.ws.adapter.Log[].class);
             }
         }
   } catch (org.apache.axis.AxisFault axisFaultException) {
@@ -241,7 +223,7 @@ public class ServicoWebGeracaoRelatorioBeanServiceSoapBindingStub extends org.ap
 }
     }
 
-    public br.com.layonvsg.relatorios.ws.adapter.Log[] gerarRelatorioMovimentoFinanceiro(long instituicaoId, long corretoraId, long clienteId, java.util.Calendar dataLiquidacao) throws java.rmi.RemoteException {
+    public br.com.temasistemas.relatorios.ws.adapter.Log[] gerarRelatorioNegociosImportados(long idInstituicao, java.util.Calendar dataPregaoInicio, java.util.Calendar dataPregaoFim, long idCorretora, long idCliente) throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -253,11 +235,11 @@ public class ServicoWebGeracaoRelatorioBeanServiceSoapBindingStub extends org.ap
         _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
         _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
-        _call.setOperationName(new javax.xml.namespace.QName("http://adapter.ws.relatorios.temasistemas.com.br/", "gerarRelatorioMovimentoFinanceiro"));
+        _call.setOperationName(new javax.xml.namespace.QName("http://adapter.ws.relatorios.temasistemas.com.br/", "gerarRelatorioNegociosImportados"));
 
         setRequestHeaders(_call);
         setAttachments(_call);
- try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {new java.lang.Long(instituicaoId), new java.lang.Long(corretoraId), new java.lang.Long(clienteId), dataLiquidacao});
+ try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {new java.lang.Long(idInstituicao), dataPregaoInicio, dataPregaoFim, new java.lang.Long(idCorretora), new java.lang.Long(idCliente)});
 
         if (_resp instanceof java.rmi.RemoteException) {
             throw (java.rmi.RemoteException)_resp;
@@ -265,9 +247,9 @@ public class ServicoWebGeracaoRelatorioBeanServiceSoapBindingStub extends org.ap
         else {
             extractAttachments(_call);
             try {
-                return (br.com.layonvsg.relatorios.ws.adapter.Log[]) _resp;
+                return (br.com.temasistemas.relatorios.ws.adapter.Log[]) _resp;
             } catch (java.lang.Exception _exception) {
-                return (br.com.layonvsg.relatorios.ws.adapter.Log[]) org.apache.axis.utils.JavaUtils.convert(_resp, br.com.layonvsg.relatorios.ws.adapter.Log[].class);
+                return (br.com.temasistemas.relatorios.ws.adapter.Log[]) org.apache.axis.utils.JavaUtils.convert(_resp, br.com.temasistemas.relatorios.ws.adapter.Log[].class);
             }
         }
   } catch (org.apache.axis.AxisFault axisFaultException) {
@@ -275,7 +257,7 @@ public class ServicoWebGeracaoRelatorioBeanServiceSoapBindingStub extends org.ap
 }
     }
 
-    public br.com.layonvsg.relatorios.ws.adapter.Log[] gerarRelatorioAtivosDisponiveis() throws java.rmi.RemoteException {
+    public br.com.temasistemas.relatorios.ws.adapter.Log[] gerarRelatorioAtivosDisponiveis() throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -299,9 +281,9 @@ public class ServicoWebGeracaoRelatorioBeanServiceSoapBindingStub extends org.ap
         else {
             extractAttachments(_call);
             try {
-                return (br.com.layonvsg.relatorios.ws.adapter.Log[]) _resp;
+                return (br.com.temasistemas.relatorios.ws.adapter.Log[]) _resp;
             } catch (java.lang.Exception _exception) {
-                return (br.com.layonvsg.relatorios.ws.adapter.Log[]) org.apache.axis.utils.JavaUtils.convert(_resp, br.com.layonvsg.relatorios.ws.adapter.Log[].class);
+                return (br.com.temasistemas.relatorios.ws.adapter.Log[]) org.apache.axis.utils.JavaUtils.convert(_resp, br.com.temasistemas.relatorios.ws.adapter.Log[].class);
             }
         }
   } catch (org.apache.axis.AxisFault axisFaultException) {
@@ -309,7 +291,7 @@ public class ServicoWebGeracaoRelatorioBeanServiceSoapBindingStub extends org.ap
 }
     }
 
-    public br.com.layonvsg.relatorios.ws.adapter.Log[] gerarRelatorioOperacoesDerivativosRealizadasDia(double idInstituicao, java.util.Calendar dataPregao, double idCorretora, double idCliente) throws java.rmi.RemoteException {
+    public br.com.temasistemas.relatorios.ws.adapter.Log[] gerarRelatorioOperacoesDerivativosRealizadasDia(double idInstituicao, java.util.Calendar dataPregao, double idCorretora, double idCliente) throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -333,43 +315,9 @@ public class ServicoWebGeracaoRelatorioBeanServiceSoapBindingStub extends org.ap
         else {
             extractAttachments(_call);
             try {
-                return (br.com.layonvsg.relatorios.ws.adapter.Log[]) _resp;
+                return (br.com.temasistemas.relatorios.ws.adapter.Log[]) _resp;
             } catch (java.lang.Exception _exception) {
-                return (br.com.layonvsg.relatorios.ws.adapter.Log[]) org.apache.axis.utils.JavaUtils.convert(_resp, br.com.layonvsg.relatorios.ws.adapter.Log[].class);
-            }
-        }
-  } catch (org.apache.axis.AxisFault axisFaultException) {
-  throw axisFaultException;
-}
-    }
-
-    public br.com.layonvsg.relatorios.ws.adapter.Log[] gerarRelatorioTaxasDeNegociacaoERegistroOperacaoPeriodo(byte usarIdCliente, double idCliente, double idInstituicao, java.util.Calendar dataPregaoInicio, java.util.Calendar dataPregaoFim) throws java.rmi.RemoteException {
-        if (super.cachedEndpoint == null) {
-            throw new org.apache.axis.NoEndPointException();
-        }
-        org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[4]);
-        _call.setUseSOAPAction(true);
-        _call.setSOAPActionURI("");
-        _call.setEncodingStyle(null);
-        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
-        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
-        _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
-        _call.setOperationName(new javax.xml.namespace.QName("http://adapter.ws.relatorios.temasistemas.com.br/", "gerarRelatorioTaxasDeNegociacaoERegistroOperacaoPeriodo"));
-
-        setRequestHeaders(_call);
-        setAttachments(_call);
- try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {new java.lang.Byte(usarIdCliente), new java.lang.Double(idCliente), new java.lang.Double(idInstituicao), dataPregaoInicio, dataPregaoFim});
-
-        if (_resp instanceof java.rmi.RemoteException) {
-            throw (java.rmi.RemoteException)_resp;
-        }
-        else {
-            extractAttachments(_call);
-            try {
-                return (br.com.layonvsg.relatorios.ws.adapter.Log[]) _resp;
-            } catch (java.lang.Exception _exception) {
-                return (br.com.layonvsg.relatorios.ws.adapter.Log[]) org.apache.axis.utils.JavaUtils.convert(_resp, br.com.layonvsg.relatorios.ws.adapter.Log[].class);
+                return (br.com.temasistemas.relatorios.ws.adapter.Log[]) org.apache.axis.utils.JavaUtils.convert(_resp, br.com.temasistemas.relatorios.ws.adapter.Log[].class);
             }
         }
   } catch (org.apache.axis.AxisFault axisFaultException) {
