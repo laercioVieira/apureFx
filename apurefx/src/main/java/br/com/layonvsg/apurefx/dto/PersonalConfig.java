@@ -1,8 +1,11 @@
 package br.com.layonvsg.apurefx.dto;
 
 import java.io.Serializable;
+import java.net.URL;
 
+import org.apache.commons.io.FileUtils;
 
+import br.com.layonvsg.apurefx.util.LocalizadorResource;
 public class PersonalConfig
 	implements Serializable
 {
@@ -10,16 +13,32 @@ public class PersonalConfig
 
 	private String defaultFolder = "C:\\";
 
-	private String defaultLocalizacaoNegocios =
-					"D:\\Documents\\GitHub\\apureFx\\apurefx-extrator\\src\\main\\resources";
+	private String defaultLocalizacaoNegocios;
 	
 	
 	public PersonalConfig()
 	{
 		super();
+		definirPastaPadraoNegocios();
 	}
 
-	
+	private void definirPastaPadraoNegocios()
+	{
+		final URL localizacaoNegocios = LocalizadorResource.getInstance().getResource(
+			"negocios.xml" );
+		if ( localizacaoNegocios != null )
+		{
+			defaultLocalizacaoNegocios = FileUtils.toFile( localizacaoNegocios ).getParent();
+		}
+		else
+		{
+			defaultLocalizacaoNegocios = defaultFolder;
+		}
+		/*
+		 * "D:\\Documents\\GitHub\\apureFx\\apurefx-extrator\\src\\main\\resources";
+		 */
+	}
+
 	public String getDefaultFolder()
 	{
 		return defaultFolder;

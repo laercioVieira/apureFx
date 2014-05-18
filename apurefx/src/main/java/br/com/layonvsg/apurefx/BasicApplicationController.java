@@ -25,6 +25,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
+import org.jboss.logging.Logger;
 import br.com.layonvsg.apurefx.dao.ConfigDao;
 import br.com.layonvsg.apurefx.dao.PersonalConfigDao;
 import br.com.layonvsg.apurefx.dto.ConfigInfo;
@@ -96,6 +97,7 @@ public class BasicApplicationController
 	private Stage stageMudarEstilo;
 
 	private EscolherEstiloController escolherEstiloController;
+	private static final Logger LOGGER = Logger.getLogger( BasicApplicationController.class );
 
 	@FXML
 	public void abrirApuracao(
@@ -104,9 +106,11 @@ public class BasicApplicationController
 		getApuracaoStageForm().showAndWait();
 	}
 
-	private void setUpApuracaoForm() throws IOException
+	private void setUpApuracaoForm()
+		throws IOException
 	{
-		final URL localizacao = LocalizadorResource.getInstance().getFXML( "Apuracao.fxml" );
+		final URL localizacao = LocalizadorResource.getInstance().getFXML(
+			"Apuracao.fxml" );
 		final AnchorPane apuracaoPanel = ( AnchorPane ) FXMLLoader.load(
 			localizacao,
 			resources );
@@ -154,7 +158,10 @@ public class BasicApplicationController
 	protected void importarNegocios(
 		final ActionEvent event )
 	{
-		final ImportacaoNegocioController importacaoNegocioController = new ImportacaoNegocioController( txtAreaStatus );
+		try
+		{
+			final ImportacaoNegocioController importacaoNegocioController =
+				new ImportacaoNegocioController( txtAreaStatus );
 
 		final PersonalConfigDao personalConfigDao = new PersonalConfigDao();
 		final ConfigDao configDao = new ConfigDao();
@@ -166,7 +173,8 @@ public class BasicApplicationController
 		}
 
 		final FileChooser fileChooser = new FileChooser();
-		final FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter( "XML Files (*.xml)", "*.xml" );
+			final FileChooser.ExtensionFilter extFilter =
+				new FileChooser.ExtensionFilter( "XML Files (*.xml)", "*.xml" );
 		fileChooser.getExtensionFilters().add(
 			extFilter );
 
@@ -185,6 +193,13 @@ public class BasicApplicationController
 				file,
 				INSTITUICAO_DEFAULT_1000L,
 				dataFim );
+			}
+		}
+		catch ( final Exception exception )
+		{
+			LOGGER.error( "Ocorreu uma falha na tentativa de importação de negócios.", exception );
+			JanelaMensagem.getInstance().addMessage(
+				exception ).showAndWait();
 		}
 
 	}
@@ -258,9 +273,9 @@ public class BasicApplicationController
 		}
 		catch ( final Exception e )
 		{
+			LOGGER.error( "Não foi possível realizar a operação.", e);
 			JanelaMensagem.getInstance().addMessage(
 				e ).showAndWait();
-			e.printStackTrace();
 		}
 
 	}
@@ -278,9 +293,9 @@ public class BasicApplicationController
 		}
 		catch ( final Exception e )
 		{
+			LOGGER.error( "Não foi possível iniciar a aplicação.", e);
 			JanelaMensagem.getInstance().addMessage(
 				e ).showAndWait();
-			e.printStackTrace();
 		}
 	}
 
@@ -307,7 +322,8 @@ public class BasicApplicationController
 		assert txtAreaStatus != null : "fx:id=\"txtAreaStatus\" was not injected: check your FXML file 'BasicApplication.fxml'.";
 	}
 
-	private void setUpMudarEstiloForm() throws IOException
+	private void setUpMudarEstiloForm()
+		throws IOException
 	{
 		Scene scene;
 		if ( containerMudarEstilo == null && stageMudarEstilo == null )

@@ -5,8 +5,6 @@ import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -67,27 +65,24 @@ public class JanelaMensagem
 	{
 		if( okButton != null && okButton.onActionProperty() != null )
 		{
-			okButton.onActionProperty().addListener( 
-				new ChangeListener<EventHandler<ActionEvent>>()
-				{
+			okButton.setOnAction( new EventHandler<ActionEvent>()
+			{
 
-					@Override
-					public void changed(
-						final ObservableValue< ? extends EventHandler<ActionEvent>> arg0,
-						final EventHandler<ActionEvent> arg1,
-						final EventHandler<ActionEvent> arg2 )
+				@Override
+				public void handle(
+					final ActionEvent arg0 )
+				{
+					if( containerPrincipal != null )
 					{
-						if( containerPrincipal != null )
-						{
-							containerPrincipal.getScene().getWindow().hide();
-						}
-					};
-								
-				} );
+						containerPrincipal.getScene().getWindow().hide();
+					}
+				}
+				
+			} );
 		}
 	}
 
-	protected JanelaMensagem()
+	public JanelaMensagem()
 	{
 		super();
 	}

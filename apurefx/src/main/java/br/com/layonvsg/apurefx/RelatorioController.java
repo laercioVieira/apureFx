@@ -265,8 +265,7 @@ public class RelatorioController
 		}
 		catch ( final Exception e )
 		{
-			
-			throw new RuntimeException( "Ocorreu um erro inesperado na tentativa de uso do ServicoWebGeracaoRelatorio" );
+			JanelaMensagem.getInstance().addMessage( e ).showAndWait();
 		}
 		
 	}
