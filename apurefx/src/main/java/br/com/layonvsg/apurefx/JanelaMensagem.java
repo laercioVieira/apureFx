@@ -20,6 +20,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
+
+import org.jboss.logging.Logger;
+
 import br.com.layonvsg.apurefx.model.MessageType;
 import br.com.layonvsg.apurefx.util.LocalizadorResource;
 import br.com.temasistemas.java.lang.ext.validation.Precondition;
@@ -55,9 +58,12 @@ public class JanelaMensagem
 	@FXML
 	private static TextArea textAreaMensagem;
 
+	private static final Logger LOGGER = Logger.getLogger( JanelaMensagem.class ); 
+	
 	@FXML
 	private void initialize()
 	{
+		LOGGER.info( "Inicializando o utilitário 'Janela de Mensagem' [Singleton]" );
 		registrarEventosBotaoOK();
 	}
 
@@ -74,6 +80,7 @@ public class JanelaMensagem
 				{
 					if( containerPrincipal != null )
 					{
+						textAreaMensagem.clear();
 						containerPrincipal.getScene().getWindow().hide();
 					}
 				}
@@ -106,7 +113,7 @@ public class JanelaMensagem
 		}
 		catch ( final Exception e )
 		{
-			e.printStackTrace();
+			LOGGER.error( e.getMessage(), e );
 		}
 		
 		return instance;
@@ -114,8 +121,8 @@ public class JanelaMensagem
 
 	private static void registrarEventos()
 	{
-		containerPrincipal.getScene().getWindow().setOnCloseRequest(
-			limpaMensagensNoFechamento() );
+		containerPrincipal.setOnCloseRequest( limpaMensagensNoFechamento() );
+		containerPrincipal.setOnHiding( limpaMensagensNoFechamento() );
 	}
 
 	private static void setUpContainerPrincipal()
@@ -142,7 +149,7 @@ public class JanelaMensagem
 
 	private static EventHandler<WindowEvent> limpaMensagensNoFechamento()
 	{
-		return new EventHandler<WindowEvent>()
+		final EventHandler<WindowEvent> eventClearTextArea = new EventHandler<WindowEvent>()
 		{
 
 			@Override
@@ -156,6 +163,8 @@ public class JanelaMensagem
 			}
 
 		};
+		
+		return eventClearTextArea;
 	}
 
 	public JanelaMensagem addMessage(
@@ -214,6 +223,11 @@ public class JanelaMensagem
 	{
 		containerPrincipal.getScene().getWindow().fireEvent(
 			new Event( WindowEvent.WINDOW_CLOSE_REQUEST ) );
+	}
+
+	public boolean temMensagens()
+	{
+		return textAreaMensagem.getText().isEmpty();
 	}
 
 }

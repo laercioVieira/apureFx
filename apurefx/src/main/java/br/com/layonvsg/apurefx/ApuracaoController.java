@@ -35,6 +35,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
+
+import org.jboss.logging.Logger;
+
 import br.com.layonvsg.apurefx.dao.ConfigDao;
 import br.com.layonvsg.apurefx.dao.PersonalConfigDao;
 import br.com.layonvsg.apurefx.dto.ConfigInfo;
@@ -57,10 +60,10 @@ public class ApuracaoController
 	private final Locale localeBrasil = new Locale( "pt", "BR" );
 
 	private ConfigDao configDao = new ConfigDao();
-	
+
 	@FXML
 	private ResourceBundle resources;
-	
+
 	@FXML
 	private URL location;
 
@@ -93,6 +96,8 @@ public class ApuracaoController
 
 	private final Map<DataApuracao, List<Ocorrencias>> logs = new HashMap<>( 0 );
 
+	private static final Logger LOGGER = Logger.getLogger( ApuracaoController.class );
+
 	public ApuracaoController()
 	{
 		super();
@@ -105,13 +110,15 @@ public class ApuracaoController
 		{
 			configurarTabelaDatasApuracao();
 			configurarComboTipoApuracao();
-			setUpRelatorioForm();			
+			setUpRelatorioForm();
 			setUpConfigForm();
 
 		}
 		catch ( final Exception ex )
 		{
-			ex.printStackTrace();
+			LOGGER.error(
+				"Ocorreram erros durante a inicialização da Classe de Apuração Controller.",
+				ex );
 		}
 	}
 
@@ -124,7 +131,7 @@ public class ApuracaoController
 			descricoesTipo.add( tipoApuracao.getDescricao() );
 		}
 
-		getCmbTipoApuracao().setItems( 
+		getCmbTipoApuracao().setItems(
 			FXCollections.observableArrayList( descricoesTipo ) );
 		getCmbTipoApuracao().getSelectionModel().selectedIndexProperty().addListener(
 			new ChangeListener<Number>()
@@ -141,12 +148,11 @@ public class ApuracaoController
 			} );
 	}
 
-
 	private void setUpRelatorioForm()
-					throws IOException
+		throws IOException
 	{
 		final URL url = ClassLoader.getSystemResource( "fxml/Relatorios.fxml" );
-		
+
 		final FXMLLoader fxmlLoader = new FXMLLoader( url, resources );
 		final AnchorPane relatorioFormPanel = ( AnchorPane ) fxmlLoader.load();
 		setRelatorioForm( new Stage( StageStyle.UTILITY ) );
@@ -159,13 +165,12 @@ public class ApuracaoController
 	private void setUpConfigForm()
 		throws IOException
 	{
-		final URL location = ClassLoader.getSystemResource( 
-			"fxml/ConfigForm.fxml" );
-		
+		final URL location = ClassLoader.getSystemResource( "fxml/ConfigForm.fxml" );
+
 		final FXMLLoader fxmlLoader = new FXMLLoader( location, resources );
 
 		final AnchorPane configBdFormPanel = ( AnchorPane ) fxmlLoader.load();
-		setConfigForm( new Stage( StageStyle.TRANSPARENT ) );
+		setConfigForm( new Stage( StageStyle.UTILITY ) );
 		getConfigForm().initModality(
 			Modality.APPLICATION_MODAL );
 		getConfigForm().setScene(
@@ -291,7 +296,7 @@ public class ApuracaoController
 	private void apurarDatas()
 	{
 		final ConfigInfo configInfo = getConfigDao().obterConfigInfoVigente();
-		
+
 		for ( int i = 0; i < getDatasOriginais().size(); i++ )
 		{
 			final DataApuracao dataApuracao = getDatasOriginais().get(
@@ -306,7 +311,8 @@ public class ApuracaoController
 				final List<Ocorrencias> locaLogs = getTipoApuracao().apurar(
 					dataApuracao.getData(),
 					dataApuracao.getDataAnterior(),
-					1000, configInfo );
+					1000,
+					configInfo );
 
 				if ( locaLogs.size() > 0 )
 				{
@@ -350,7 +356,7 @@ public class ApuracaoController
 			i,
 			dataApuracao );
 	}
-	
+
 	@FXML
 	public void gerarRelatorios(
 		final ActionEvent event )
@@ -362,29 +368,40 @@ public class ApuracaoController
 	public void importar(
 		final ActionEvent event )
 	{
-		final FileChooser fileChooser = new FileChooser();
-		final FileChooser.ExtensionFilter extFilter =
-			new FileChooser.ExtensionFilter( "Excel 2007 Files (*.xlsx)", "*.xlsx" );
-		fileChooser.getExtensionFilters().add(
-			extFilter );
-
-		PersonalConfig personalConfig = personalConfigDao.getCurrentConfig();
-
-		if ( personalConfig == null )
+		try
 		{
-			personalConfig = new PersonalConfig();
+			final FileChooser fileChooser = new FileChooser();
+			final FileChooser.ExtensionFilter extFilter =
+				new FileChooser.ExtensionFilter( "Excel 2007 Files (*.xlsx)", "*.xlsx" );
+			fileChooser.getExtensionFilters().add(
+				extFilter );
+
+			PersonalConfig personalConfig = personalConfigDao.getCurrentConfig();
+
+			if ( personalConfig == null )
+			{
+				personalConfig = new PersonalConfig();
+			}
+
+			fileChooser.setInitialDirectory( new File( personalConfig.getDefaultFolder() ) );
+
+			final File file = fileChooser.showOpenDialog( mainPanel.getScene().getWindow() );
+
+			if ( file != null )
+			{
+				logs.clear();
+				personalConfig.setDefaultFolder( file.getParentFile().getAbsolutePath() );
+				personalConfigDao.save( personalConfig );
+				atualizarTableView( file );
+			}
 		}
-
-		fileChooser.setInitialDirectory( new File( personalConfig.getDefaultFolder() ) );
-
-		final File file = fileChooser.showOpenDialog( mainPanel.getScene().getWindow() );
-
-		if ( file != null )
+		catch ( final Exception e )
 		{
-			logs.clear();
-			personalConfig.setDefaultFolder( file.getParentFile().getAbsolutePath() );
-			personalConfigDao.save( personalConfig );
-			atualizarTableView( file );
+			LOGGER.error(
+				e.getMessage(),
+				e );
+			JanelaMensagem.getInstance().addMessage(
+				e ).showAndWait();
 		}
 	}
 
@@ -395,9 +412,9 @@ public class ApuracaoController
 		datas.clear();
 
 		datasOriginais.addAll( new ImportadorDataApuracao().importarDatas( file ) );
-		
+
 		Collections.reverse( datasOriginais );
-		
+
 		if ( datasOriginais.isEmpty() )
 		{
 			setDatas( FXCollections.<DataApuracao> emptyObservableList() );
@@ -408,7 +425,7 @@ public class ApuracaoController
 		{
 			final ObservableList<DataApuracao> datasObservaveis =
 				FXCollections.observableArrayList( new ArrayList( datasOriginais.size() ) );
-			
+
 			datasObservaveis.addAll( datasOriginais );
 			setDatas( datasObservaveis );
 			getTblDatasApuracao().setItems(
@@ -533,45 +550,39 @@ public class ApuracaoController
 	{
 		this.relatorioForm = relatorioForm;
 	}
-	
-	
+
 	public Stage getRelatorioForm()
 	{
 		return relatorioForm;
 	}
-	
+
 	public ConfigDao getConfigDao()
 	{
 		return configDao;
 	}
 
-	
 	public void setConfigDao(
 		final ConfigDao configDao )
 	{
 		this.configDao = configDao;
 	}
 
-	
 	public ResourceBundle getResources()
 	{
 		return resources;
 	}
 
-	
 	public void setResources(
 		final ResourceBundle resources )
 	{
 		this.resources = resources;
 	}
 
-	
 	public URL getLocation()
 	{
 		return location;
 	}
 
-	
 	public void setLocation(
 		final URL location )
 	{

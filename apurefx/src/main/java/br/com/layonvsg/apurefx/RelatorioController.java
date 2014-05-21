@@ -14,9 +14,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+
+import org.jboss.logging.Logger;
+
 import br.com.layonvsg.apurefx.dao.ConfigDao;
 import br.com.layonvsg.apurefx.dto.ConfigInfo;
 import br.com.layonvsg.apurefx.model.MessageType;
+import br.com.layonvsg.apurefx.util.LocalizadorResource;
 import br.com.temasistemas.java.lang.ext.validation.Precondition;
 import br.com.temasistemas.relatorios.ws.adapter.Log;
 import br.com.temasistemas.relatorios.ws.adapter.ServicoWebGeracaoRelatorio;
@@ -45,6 +49,8 @@ public class RelatorioController
 
 	@FXML
 	private TextField txtIdInstituicaoImportNeg;
+
+	private static final Logger LOGGER = Logger.getLogger( RelatorioController.class );
 
 	@FXML
 	void gerarRelatorioImportacaoNegociosPorPeriodo(
@@ -84,35 +90,47 @@ public class RelatorioController
 				new ServicoWebGeracaoRelatorioBeanServiceLocator()
 					.getServicoWebGeracaoRelatorioPort( getURLServico( configInfo ) );
 
-			final Log[] logs = servico.gerarRelatorioNegociosImportados( 
-				idInstituicao, 
+			final Log[] logs = servico.gerarRelatorioNegociosImportados(
+				idInstituicao,
 				dataInicio,
 				dataFim,
 				idCorretora,
 				idCliente );
-			
-			if( logs != null )
+
+			final JanelaMensagem janelaMensagem = JanelaMensagem.getInstance();
+
+			if ( logs != null )
 			{
 				for ( final Log log : logs )
 				{
-					JanelaMensagem.getInstance()
-					.addMessage( MessageType.ERRO, "Mensagem: " + log.getMensagem() + "\n" )
-					.addMessage( MessageType.ERRO, "StackTrace: " + log.getStackTrace() + "\n" )
-					.showAndWait();
+					janelaMensagem.addMessage(
+						MessageType.ERRO,
+						"Mensagem: " + log.getMensagem() + "\n" ).addMessage(
+						MessageType.ERRO,
+						"StackTrace: " + log.getStackTrace() + "\n" );
 				}
+
+				if ( janelaMensagem.temMensagens() )
+				{
+					janelaMensagem.showAndWait();
+				}
+
 			}
 			else
 			{
-				JanelaMensagem.getInstance()
-					.addMessage( MessageType.INFO, "PDF exportado com sucesso!" )
-					.showAndWait();
+				janelaMensagem.addMessage(
+					MessageType.INFO,
+					"PDF exportado com sucesso!" ).showAndWait();
 			}
+
 		}
 		catch ( final Exception e )
 		{
-			JanelaMensagem.getInstance().addMessage( e )
-			.showAndWait();
-			e.printStackTrace();
+			LOGGER.error(
+				e.getMessage(),
+				e );
+			JanelaMensagem.getInstance().addMessage(
+				e ).showAndWait();
 		}
 
 	}
@@ -199,7 +217,7 @@ public class RelatorioController
 		try
 		{
 			final ConfigInfo configInfo = this.getConfigDao().obterConfigInfoVigente();
-			
+
 			final ServicoWebGeracaoRelatorio servicoWebGeracaoRelatorio =
 				new ServicoWebGeracaoRelatorioBeanServiceLocator().getServicoWebGeracaoRelatorioPort( this
 					.getURLServico( configInfo ) );
@@ -210,17 +228,51 @@ public class RelatorioController
 			final Double idCliente = new Double( this.txtIdCliOperDerivDia.getText() );
 			final Double idCorretora = new Double( this.txtIdCorretora.getText() );
 			final Double idInstituicao = new Double( this.txtIdInstituicao.getText() );
-			servicoWebGeracaoRelatorio.gerarRelatorioOperacoesDerivativosRealizadasDia(
+
+			final Log[] logs = servicoWebGeracaoRelatorio.gerarRelatorioOperacoesDerivativosRealizadasDia(
 				idInstituicao,
 				dataPregao,
 				idCorretora,
 				idCliente );
+
+			extractMensagemFromLogs( logs );
 		}
 		catch ( final Exception exception )
 		{
-			JanelaMensagem.getInstance().addMessage( exception ).showAndWait();			
+			LOGGER.error(
+				exception.getMessage(),
+				exception );
+			JanelaMensagem.getInstance().addMessage(
+				exception ).showAndWait();
 		}
 
+	}
+
+	protected void extractMensagemFromLogs(
+		final Log[] logs )
+	{
+		if ( logs == null || logs.length == 0 )
+		{
+			JanelaMensagem
+				.getInstance()
+				.addMessage(
+					MessageType.INFO,
+					"Relatório PDF exportado com sucesso! \n"
+						+ "Localização: '"
+						+ LocalizadorResource.PATH_PDF_GENERATED_DEFAULT
+						+ "'" ).showAndWait();
+		}
+		else
+		{
+			for ( final Log log : logs )
+			{
+				JanelaMensagem.getInstance().addMessage(
+					MessageType.ERRO,
+					"Houveram ocorrências durante a geração do Relatório PDF. \n" + "Mensagem: " + log.getMensagem() )
+					.showAndWait();
+
+			}
+		}
 	}
 
 	public void gerarRelatorioExtratoConsolidadoDeAtivo(
@@ -230,7 +282,7 @@ public class RelatorioController
 		try
 		{
 			final ConfigInfo configInfo = this.getConfigDao().obterConfigInfoVigente();
-			
+
 			final ServicoWebGeracaoRelatorio servicoWebGeracaoRelatorio =
 				new ServicoWebGeracaoRelatorioBeanServiceLocator().getServicoWebGeracaoRelatorioPort( this
 					.getURLServico( configInfo ) );
@@ -239,13 +291,20 @@ public class RelatorioController
 			final Calendar dataInicio = new GregorianCalendar();
 			dataInicio.setTime( simpleDateFormat.parse( this.txtDataInicio.getText() ) );
 			final Double idCliente = new Double( this.txtIdCliente.getText() );
-			servicoWebGeracaoRelatorio.gerarRelatorioExtratoConsolidadoDeAtivos(
+
+			final Log[] logs = servicoWebGeracaoRelatorio.gerarRelatorioExtratoConsolidadoDeAtivos(
 				idCliente,
 				dataInicio );
+
+			extractMensagemFromLogs( logs );
 		}
 		catch ( final Exception e )
 		{
-			JanelaMensagem.getInstance().addMessage( e ).showAndWait();
+			LOGGER.error(
+				e.getMessage(),
+				e );
+			JanelaMensagem.getInstance().addMessage(
+				e ).showAndWait();
 		}
 	}
 
@@ -256,20 +315,25 @@ public class RelatorioController
 		try
 		{
 			final ConfigInfo configInfo = this.getConfigDao().obterConfigInfoVigente();
-			
+
 			final ServicoWebGeracaoRelatorio servicoWebGeracaoRelatorio =
 				new ServicoWebGeracaoRelatorioBeanServiceLocator().getServicoWebGeracaoRelatorioPort( this
 					.getURLServico( configInfo ) );
 
-			servicoWebGeracaoRelatorio.gerarRelatorioAtivosDisponiveis();
+			final Log[] logs = servicoWebGeracaoRelatorio.gerarRelatorioAtivosDisponiveis();
+
+			extractMensagemFromLogs( logs );
 		}
 		catch ( final Exception e )
 		{
-			JanelaMensagem.getInstance().addMessage( e ).showAndWait();
+			LOGGER.error(
+				e.getMessage(),
+				e );
+			JanelaMensagem.getInstance().addMessage(
+				e ).showAndWait();
 		}
-		
-	}
 
+	}
 
 	public ConfigDao getConfigDao()
 	{

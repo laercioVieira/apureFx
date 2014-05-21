@@ -25,7 +25,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
+
 import org.jboss.logging.Logger;
+
 import br.com.layonvsg.apurefx.dao.ConfigDao;
 import br.com.layonvsg.apurefx.dao.PersonalConfigDao;
 import br.com.layonvsg.apurefx.dto.ConfigInfo;
@@ -97,6 +99,7 @@ public class BasicApplicationController
 	private Stage stageMudarEstilo;
 
 	private EscolherEstiloController escolherEstiloController;
+	
 	private static final Logger LOGGER = Logger.getLogger( BasicApplicationController.class );
 
 	@FXML
@@ -143,14 +146,21 @@ public class BasicApplicationController
 	public void fecharAplicacao(
 		final ActionEvent event )
 	{
-		if ( containerPrincipalApp != null )
+		try
 		{
-			containerMudarEstilo.getScene().getWindow().fireEvent(
-				new Event( WindowEvent.WINDOW_CLOSE_REQUEST ) );
-			getApuracaoStageForm().getScene().getWindow().fireEvent(
-				new Event( WindowEvent.WINDOW_CLOSE_REQUEST ) );
-			containerPrincipalApp.getScene().getWindow().fireEvent(
-				new Event( WindowEvent.WINDOW_CLOSE_REQUEST ) );
+			if ( containerPrincipalApp != null )
+			{
+				containerMudarEstilo.getScene().getWindow().fireEvent(
+					new Event( WindowEvent.WINDOW_CLOSE_REQUEST ) );
+				getApuracaoStageForm().getScene().getWindow().fireEvent(
+					new Event( WindowEvent.WINDOW_CLOSE_REQUEST ) );
+				containerPrincipalApp.getScene().getWindow().fireEvent(
+					new Event( WindowEvent.WINDOW_CLOSE_REQUEST ) );
+			}
+		}
+		catch ( final Exception e )
+		{
+			LOGGER.error( e.getMessage(), e );
 		}
 	}
 

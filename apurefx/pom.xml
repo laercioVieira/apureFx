@@ -49,7 +49,7 @@
 			<artifactId>javafx</artifactId>
 			<version>01.00.00.00</version>
 			<scope>system</scope>
-			<systemPath>${sceneBuilderDir}/runtime/jre/lib/jfxrt.jar</systemPath>
+			<systemPath>${libDir}\jfxrt.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>br.com.temasistemas</groupId>

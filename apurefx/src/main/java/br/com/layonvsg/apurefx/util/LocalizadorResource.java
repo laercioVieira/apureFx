@@ -11,6 +11,7 @@ public class LocalizadorResource
 	private static final String PATH_CSS_DEFAULT = "css/";
 	private static final String PATH_IMAGES_DEFAULT = "images/";
 	private static final String PATH_FXML_DEFAULT = "fxml/";
+	public static final String PATH_PDF_GENERATED_DEFAULT = "C:\\Java\\JBoss\\jboss-as-7.2.0.Final\\standalone\\deployments";
 	private static LocalizadorResource instance;
 	
 	private LocalizadorResource()

@@ -10,12 +10,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
+import org.jboss.logging.Logger;
+
 import br.com.layonvsg.apurefx.model.Tema;
 import br.com.layonvsg.apurefx.util.LocalizadorResource;
 
 public class Main
 	extends Application
 {
+
+	private static final Logger LOGGER = Logger.getLogger( BasicApplicationController.class );
 
 	public Main()
 	{
@@ -34,6 +39,7 @@ public class Main
 		}
 		catch ( final Exception e )
 		{
+			LOGGER.error( "Não foi possível iniciar a aplicação. Detalhes no LOG.", e);
 			JanelaMensagem.getInstance().addMessage(
 				e ).showAndWait();
 		}
