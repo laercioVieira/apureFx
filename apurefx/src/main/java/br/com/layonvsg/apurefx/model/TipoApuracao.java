@@ -59,10 +59,10 @@ public enum TipoApuracao
 
 				if ( logs == null )
 				{
-					return new ArrayList<>( 0 );
+					return new ArrayList<Ocorrencias>( 0 );
 				}
 
-				final List<Ocorrencias> listaOcorrencia = new ArrayList<>( logs.length );
+				final List<Ocorrencias> listaOcorrencia = new ArrayList<Ocorrencias>( logs.length );
 
 				for ( final Log log : logs )
 				{
@@ -109,10 +109,10 @@ public enum TipoApuracao
 
 				if ( logs == null )
 				{
-					return new ArrayList<>( 0 );
+					return new ArrayList<Ocorrencias>( 0 );
 				}
 
-				final List<Ocorrencias> listaOcorrencia = new ArrayList<>( logs.length );
+				final List<Ocorrencias> listaOcorrencia = new ArrayList<Ocorrencias>( logs.length );
 
 				for ( final br.com.layonvsg.disponivel.ws.adapter.Log log : logs )
 				{
@@ -159,10 +159,10 @@ public enum TipoApuracao
 
 				if ( logs == null )
 				{
-					return new ArrayList<>( 0 );
+					return new ArrayList<Ocorrencias>( 0 );
 				}
 
-				final List<Ocorrencias> listaOcorrencia = new ArrayList<>( logs.length );
+				final List<Ocorrencias> listaOcorrencia = new ArrayList<Ocorrencias>( logs.length );
 
 				for ( final br.com.layonvsg.opcoes.ws.adapter.disponivel.Log log : logs )
 				{
@@ -209,10 +209,10 @@ public enum TipoApuracao
 
 				if ( logs == null )
 				{
-					return new ArrayList<>( 0 );
+					return new ArrayList<Ocorrencias>( 0 );
 				}
 
-				final List<Ocorrencias> listaOcorrencia = new ArrayList<>( logs.length );
+				final List<Ocorrencias> listaOcorrencia = new ArrayList<Ocorrencias>( logs.length );
 
 				for ( final br.com.layonvsg.opcoes.ws.adapter.futuro.Log log : logs )
 				{
@@ -253,10 +253,10 @@ public enum TipoApuracao
 
 				if ( logs == null )
 				{
-					return new ArrayList<>( 0 );
+					return new ArrayList<Ocorrencias>( 0 );
 				}
 
-				final List<Ocorrencias> listaOcorrencia = new ArrayList<>( logs.length );
+				final List<Ocorrencias> listaOcorrencia = new ArrayList<Ocorrencias>( logs.length );
 
 				for ( final br.com.layonvsg.estruturada.ws.adapter.Log log : logs )
 				{
@@ -302,10 +302,10 @@ public enum TipoApuracao
 
 				if ( logs == null )
 				{
-					return new ArrayList<>( 0 );
+					return new ArrayList<Ocorrencias>( 0 );
 				}
 
-				final List<Ocorrencias> listaOcorrencia = new ArrayList<>( logs.length );
+				final List<Ocorrencias> listaOcorrencia = new ArrayList<Ocorrencias>( logs.length );
 
 				for ( final br.com.layonvsg.sca.ws.adapter.Log log : logs )
 				{

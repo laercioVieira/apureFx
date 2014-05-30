@@ -88,13 +88,13 @@ public class ApuracaoController
 
 	private ObservableList<DataApuracao> datas = FXCollections.emptyObservableList();
 
-	private final List<DataApuracao> datasOriginais = new ArrayList<>( 0 );
+	private final List<DataApuracao> datasOriginais = new ArrayList<DataApuracao>( 0 );
 
 	private final PersonalConfigDao personalConfigDao = new PersonalConfigDao();
 
 	private TipoApuracao tipoApuracao;
 
-	private final Map<DataApuracao, List<Ocorrencias>> logs = new HashMap<>( 0 );
+	private final Map<DataApuracao, List<Ocorrencias>> logs = new HashMap<DataApuracao, List<Ocorrencias>>( 0 );
 
 	private static final Logger LOGGER = Logger.getLogger( ApuracaoController.class );
 
@@ -124,7 +124,7 @@ public class ApuracaoController
 
 	private void configurarComboTipoApuracao()
 	{
-		final List<String> descricoesTipo = new ArrayList<>( 4 );
+		final List<String> descricoesTipo = new ArrayList<String>( 4 );
 
 		for ( final TipoApuracao tipoApuracao : TipoApuracao.values() )
 		{

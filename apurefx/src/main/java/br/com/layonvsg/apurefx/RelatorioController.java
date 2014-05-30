@@ -120,7 +120,9 @@ public class RelatorioController
 			{
 				janelaMensagem.addMessage(
 					MessageType.INFO,
-					"PDF exportado com sucesso!" ).showAndWait();
+					"PDF exportado com sucesso! \nLocalização: '"
+						+ LocalizadorResource.PATH_PDF_GENERATED_DEFAULT
+						+ "'" ).showAndWait();
 			}
 
 		}

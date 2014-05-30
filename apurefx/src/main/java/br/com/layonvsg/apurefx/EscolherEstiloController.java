@@ -121,7 +121,7 @@ public class EscolherEstiloController
 	private void configurarComboTemas()
 	{
 
-		final List<String> descricoesTema = new ArrayList<>( 2 );
+		final List<String> descricoesTema = new ArrayList<String>( 2 );
 
 		for ( final Tema tema : Tema.values() )
 		{

@@ -40,7 +40,7 @@ public class ImportadorDataApuracao
 		{
 			Date dataAnterior = calendar.getTime();
 			
-			final List<DataApuracao> datas = new ArrayList<>( 0 );
+			final List<DataApuracao> datas = new ArrayList<DataApuracao>( 0 );
 
 			fis = new FileInputStream( arquivo );
 

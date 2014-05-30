@@ -18,5 +18,11 @@
 			<type>ejb</type>
 		</dependency>
 
+		<dependency>
+			<groupId>br.com.temasistemas</groupId>
+			<artifactId>derivativos-infra</artifactId>
+			<version>01.00.00.00</version>
+			<type>ejb</type>
+		</dependency>
 	</dependencies>
 </project>
